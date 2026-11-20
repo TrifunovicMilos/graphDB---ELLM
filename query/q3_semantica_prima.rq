@@ -1,0 +1,15 @@
+PREFIX ex:   <http://example.org/semop/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wd:   <http://www.wikidata.org/entity/>
+PREFIX wdt:  <http://www.wikidata.org/prop/direct/>
+SELECT ?e ?label WHERE {
+  # prima il filtro semantico su tutti i giochi del set principale (barriera: sottoquery)
+  { SELECT ?e ?label WHERE {
+      { SELECT ?e WHERE { ?e a ex:VideoGame ; ex:inSet ex:set-main . } ORDER BY ?e LIMIT __N__ }
+      ?e rdfs:label ?label .
+      OPTIONAL { ?e ex:lead ?lead }
+      FILTER( ex:sem_filter(?label, COALESCE(?lead, ""), "the game is a platformer") )
+  } }
+  # poi la restrizione strutturale (gratis): sviluppatore giapponese
+  { SELECT DISTINCT ?e WHERE { ?e wdt:P178 ?dev . ?dev wdt:P17 wd:Q17 . } }
+}

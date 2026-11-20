@@ -1,0 +1,8 @@
+PREFIX ex:   <http://example.org/semop/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?e ?label ?value WHERE {
+  { SELECT ?e WHERE { ?e a ex:VideoGame ; ex:inSet ex:set-main . } ORDER BY ?e LIMIT __N__ }
+  ?e rdfs:label ?label .
+  OPTIONAL { ?e ex:lead ?lead }
+  BIND( ex:sem_map(?label, COALESCE(?lead, ""), "the company that developed the game") AS ?value )
+}

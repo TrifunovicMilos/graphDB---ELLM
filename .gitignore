@@ -1,0 +1,7 @@
+data/
+.env
+cache_llm.json
+__pycache__/
+*.pyc
+.DS_Store
+results.csv
