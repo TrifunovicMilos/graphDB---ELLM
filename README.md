@@ -24,7 +24,7 @@ Per ora tutto gira anche con un **modello finto** (una regola a parole chiave, g
 |---|---|---|
 | Q1 filtro "platformer" | fatta | provata col modello vero su 60 giochi |
 | Q2 filtro "visual novel" | fatta | provata solo col modello finto |
-| Q3 restrizione + filtro | fatta, 3 piani | `q3_naive`, `q3_struttura_prima`, `q3_semantica_prima` (vedi sotto) |
+| Q3 restrizione + filtro | fatta, 2 piani | `q3_struttura_prima`, `q3_semantica_prima` (vedi sotto) |
 | Q4 classificazione | fatta | provata col modello vero su 20 giochi |
 | Q5 estrazione | fatta (abbinamento semplice) | provata col modello vero su 15 giochi |
 | Q6 join 50 × 100 | **manca** | |
@@ -54,7 +54,7 @@ Per ora tutto gira anche con un **modello finto** (una regola a parole chiave, g
 ├── run.py           il programma da lanciare (vedi "Come si usa")
 ├── query/
 │   ├── q1.rq   q2.rq   q4.rq   q5.rq
-│   └── q3_naive.rq   q3_struttura_prima.rq   q3_semantica_prima.rq
+│   └── q3_struttura_prima.rq   q3_semantica_prima.rq
 ├── data/games/      NON è nel repository: pacchetto dati del corso (dev/ ed eval/)
 └── cache_llm.json   generato dal programma, NON è nel repository
 ```
@@ -112,8 +112,7 @@ Il criterio ℓ di ogni query è **fisso** e identico per tutti i gruppi (compar
 
 - **Q1** `the game is a platformer`: filtro su 1.000 giochi. Soluzione espansa: genere che arriva a *platformer* anche attraverso i sottogeneri (200 giochi); soluzione diretta: 171.
 - **Q2** `the game is a visual novel`: filtro raro (30 positivi). Le descrizioni spesso nominano già il genere, quindi la gestione dei testi in τ conta.
-- **Q3**: prima una restrizione strutturale (giochi con uno sviluppatore, `P178`, il cui paese, `P17`, è il Giappone: 259 giochi in 272 righe), poi il filtro di Q1. Tre piani:
-  - `q3_naive`: una chiamata per riga del join, quindi 272 (alcuni giochi hanno più sviluppatori e vengono chiamati due volte);
+- **Q3**: prima una restrizione strutturale (giochi con uno sviluppatore, `P178`, il cui paese, `P17`, è il Giappone: 259 giochi in 272 righe), poi il filtro di Q1. 2 piani:
   - `q3_struttura_prima`: prima i 259 giochi unici, poi il filtro (259 chiamate);
   - `q3_semantica_prima`: prima il filtro su tutti i 1.000, poi la restrizione (1.000 chiamate).
   Il risultato è lo stesso, cambia il costo. Le metriche ufficiali contano le chiamate dei due ordini.
