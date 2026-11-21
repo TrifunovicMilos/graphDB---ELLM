@@ -1,178 +1,139 @@
 # Semantic operators on graphs: *games* domain (Oxigraph)
 
-Team project for the course *Graph Databases* 2026/2027.
-Domain: video games with series. Engine: **Oxigraph** (Python library `pyoxigraph`). Group: **[ELLM]**.
+Team project for the course *Graph Databases* 2026/2027. Group: **LLME**.
+Domain: video games with series. Engine: **Oxigraph** (`pyoxigraph`). Every model call goes through the course **LLM gateway**.
 
 ## Overview
 
-The project runs SPARQL queries on a video-game graph and, inside the query, asks a language model (LLM) to decide on each row: this is a *semantic operator*. There are four operators:
+SPARQL queries run on a video-game graph and, inside the query, a language model decides on each row. Four operators:
 
-| Operator | What it does | Common queries |
+| Operator | What it does | Queries |
 |---|---|---|
 | `sem_filter` | yes/no on a row | Q1, Q2, Q3 |
-| `sem_classify` | picks one label out of 8 | Q4 |
-| `sem_map` | extracts free text, then matches it to an entity | Q5 |
-| `sem_join` | yes/no on a (game, series) pair | Q6, Q7 |
+| `sem_classify` | one label out of 8 | Q4 |
+| `sem_map` | extracts free text, matched to an entity | Q5 |
+| `sem_join` | yes/no on a (game, series) pair | Q6 (Q7 optional) |
 
-All the work measures quality (precision, recall, accuracy...) and cost (number of model calls) against the official course solutions.
-
-Everything also runs with a **fake model** (a free, instant keyword rule) used to test the structure without waiting for the real model.
+Q8 counts, per decade, the games accepted by Q1, with no new model calls.
+Everything is measured: quality against the official solutions, cost in model calls and tokens (from the gateway log).
 
 ## Status
 
-| Query | Status | Notes |
-|---|---|---|
-| Q1 filter "platformer" | done | tried with the real model on 60 games |
-| Q2 filter "visual novel" | done | tried with the fake model only |
-| Q3 restriction + filter | done, 3 plans | `q3_naive`, `q3_struttura_prima`, `q3_semantica_prima` (see below) |
-| Q4 classification | done | tried with the real model on 20 games |
-| Q5 extraction | done (simple matching) | tried with the real model on 15 games |
-| Q6 join 50 × 100 | done (nested loop, 5,000 pairs) | full run with the fake model; small test with the real model |
-| Q7 large join (optional) | missing | |
-| Q8 count per decade | done | needs Q1 on all 1,000 games |
+| Query | Status |
+|---|---|
+| Q1, Q2 filters | done |
+| Q3 restriction + filter | done, 3 plans (`q3_naive`, `q3_struttura_prima`, `q3_semantica_prima`) |
+| Q4 classification | done (the 8 labels are an enum of the answer schema) |
+| Q5 extraction | done, simple matching |
+| Q6 join 50 x 100 | done, nested loop (5,000 pairs) |
+| Q7 large join (optional) | missing (blocking with embeddings) |
+| Q8 count per decade | done, reuses a Q1 run |
+| Run files (`semops-run/1`) | written by `run.py --write-run` |
 
-## Missing
+## Still to do
 
-- Q7 (optional bonus) with top-10 blocking and embeddings (`bge-small-en-v1.5`); the same blocking idea can also reduce the 5,000 calls of Q6.
-- A **fast model** (course gateway, or other): locally the 3-billion-parameter model takes about 15-18 seconds per call, so full runs (about 8,700 calls on dev, about 19,900 on eval) are not feasible on our laptops.
-- **Run files** (`runs/<domain>/<set>/<query>/<run_id>.json`) and the check with `tools/semops_check.py` from the data package. The checker expects, for Q1-Q6, a run with plan `ref` (reference) also on the evaluation set.
-- The **baseline** (reference plan: one request per row or pair, no tricks) for Q1-Q6, on dev and eval, and the comparison with optimised plans.
-- **Optimisations**: the cache exists; cascade (with confidence), blocking, etc. are missing.
-- A better τ (now just name + lead) and better prompt instructions; error analysis.
-- The **6 own queries** (M2) with solution and leakage check, and the design note / report.
-- Q5: smarter matching (today: identical name, a single entity, otherwise "unresolved").
+- Reference runs (`plan ref`) on dev and eval for Q1-Q6, with a cloud model (gateway route + credits).
+- Optimisations: cascade (proxy + oracle), blocking for joins, block prompts; frontier of at least three operating points.
+- Better τ and prompts; error analysis. Q5 matching beyond identical names.
+- The 6 own queries (M2) with answer key under `keys/`, leakage check; design note and report.
 
-## Repository structure
+## Repository layout
 
 ```
 .
 ├── README.md
-├── .gitignore
-├── semops.py        library: graph loading, τ, prompts, fake and real model, cache,
-│                    sem_filter, sem_classify, query execution, evaluations (Q1-Q4, Q8)
-├── extraction.py    Q5: sem_map and string -> entity matching (labels.csv, aliases.csv)
-├── joining.py       Q6: sem_join, pair sampling for tests, pair evaluation
-├── run.py           the program to launch (see "Usage")
-├── query/
-│   ├── q1.rq   q2.rq   q4.rq   q5.rq   q6.rq
-│   └── q3_naive.rq   q3_struttura_prima.rq   q3_semantica_prima.rq
-├── data/games/      NOT in the repository: course data package (dev/ and eval/)
-└── cache_llm.json   generated by the program, NOT in the repository
+├── prices.json          our price list (every model used must be listed, even at price 0)
+├── run.py               the program to launch
+├── semops/
+│   ├── config.py        group id, gateway address, criteria, label set
+│   ├── prompts.py       τ, instructions, JSON schemas, prompt builders
+│   ├── gateway.py       HTTP client of the LLM gateway
+│   ├── fake.py          free fake models, for testing without any model
+│   ├── operators.py     sem_filter / classify / map / join as Oxigraph functions
+│   ├── engine.py        graph loading, running the .rq files, join sampling
+│   ├── metrics.py       evaluation against gt/*.csv
+│   ├── runfiles.py      official run files
+│   └── pipelines.py     one function per query type
+├── query/               q1 q2 q4 q5 q6 and the three q3 plans (.rq)
+├── runs/                official run files (committed)
+├── keys/                answer keys of our own queries (committed)
+└── data/games/          NOT committed: course data package (dev/, eval/)
 ```
 
-## Installation
+## Setup
 
-1. **Python 3** (tested with 3.12) and the `pyoxigraph` library:
+1. `pip install pyoxigraph`
+2. Data: copy the course package to `data/games/` (never commit it; `hidden.nt` least of all).
+3. **Gateway** (separate folder, e.g. `~/llm-gateway`): follow its README and manual. On a Mac with an Intel processor `bash setup.sh` fails on `onnxruntime`; install without the embedding libraries:
    ```bash
-   pip install pyoxigraph
+   uv sync --locked --python 3.12 --no-install-package fastembed --no-install-package onnxruntime
    ```
-2. **Data**: copy the course package into `data/games/` without renaming files. At least `data/games/dev/graph.nt`, `labels.csv`, `aliases.csv` and the `gt/` folder are needed. It must not be committed to Git (the hidden statements file `hidden.nt` in particular).
-3. **Local model (optional, for `--llm real`)**: install [Ollama](https://ollama.com) and pull a small model:
-   ```bash
-   ollama pull qwen2.5:3b
-   ```
-   Ollama must be running while you launch runs. Address and model name are at the top of `semops.py` (`URL`, `MODEL`).
+   then run the remaining steps of `setup.sh` by hand (`chmod +x bin/* tools/semops_cli.py`, copy `gateway.toml.example` to `gateway.toml` and `models.toml.example` to `models.toml`, copy the credential templates). Embeddings then come from `local/nomic-embed-text` (Ollama) or Google. Start it with `start server`; check with `curl http://127.0.0.1:8000/health`.
+4. Local model: `ollama pull qwen2.5:3b` (Ollama must be running).
+5. Run files: set `SEMOPS_CHECKER_PATH` to `semops_check.py` (outside this repository), and set `SEMOPS_GROUP_ID` (or edit `semops/config.py`). `SEMOPS_GATEWAY_LOG` must point to the gateway's `data/calls.jsonl` if the gateway is not in `~/llm-gateway`.
 
 ## Usage
 
-From the project folder:
-
 ```bash
-python run.py <query_file> [--type filter|classify|extract|join] [--n N] [--m M] [--llm fake|real]
-              [--data folder] [--gt solution_file] [--q8 q8_file]
+python run.py <Q1|Q2|Q3|Q4|Q5|Q6|Q8> [--llm fake|gateway] [--model NAME] [--set dev|eval]
+              [--n N] [--m M] [--plan ID] [--run-id ID] [--reference-run ID]
+              [--source-run ID] [--query-file FILE] [--write-run] [--yes]
 ```
 
 | Option | Meaning |
 |---|---|
-| `--type` | `filter` (Q1-Q3, default), `classify` (Q4), `extract` (Q5), `join` (Q6) |
-| `--n N` | use only the first N games (0 = all) |
-| `--m M` | only with `join`: use only M series on the right (0 = all). The true series of the chosen games are always included, so the test is easier than the real one |
-| `--llm` | `fake` (default, free) or `real` (Ollama; uses and fills the cache) |
-| `--data` | set folder, default `data/games/dev` (for eval: `data/games/eval`) |
-| `--gt` | official solution: computes precision/recall (or hit rate, accuracy, ...) |
-| `--q8` | only with Q1 on all games: also computes the count per decade |
+| `--llm` | `fake` (default, free) or `gateway` (real model) |
+| `--model` | public model name of the gateway (default `local/qwen2.5:3b`) |
+| `--n` | only the first N inputs (0 = all) |
+| `--m` | Q6 tests only: M series on the right; makes the test easier than the real one |
+| `--plan` | plan id in the run file (`ref` = reference plan) |
+| `--source-run` | Q8: run id of the Q1 run whose decisions are reused |
+| `--write-run` | write `runs/games/<set>/<query>/<run_id>.json` (needs `--llm gateway`, no `--m`) |
+| `--yes` | skip the confirmation on big runs |
 
-Examples, all with the fake model (add `--llm real --n 20` to try the real one):
-
-```bash
-python run.py query/q1.rq --gt data/games/dev/gt/q1.csv --q8 data/games/dev/gt/q8.csv
-python run.py query/q2.rq --gt data/games/dev/gt/q2.csv
-python run.py query/q3_struttura_prima.rq --gt data/games/dev/gt/q3.csv
-python run.py query/q3_semantica_prima.rq --gt data/games/dev/gt/q3.csv
-python run.py query/q4.rq --type classify --gt data/games/dev/gt/q4.csv
-python run.py query/q5.rq --type extract --gt data/games/dev/gt/q5.csv
-python run.py query/q6.rq --type join --gt data/games/dev/gt/q6.csv
-```
-
-Real model on a small Q6 sample (6 games × 10 series = 60 pairs, about 15-20 minutes):
+Examples:
 
 ```bash
-python run.py query/q6.rq --type join --llm real --n 6 --m 10 --gt data/games/dev/gt/q6.csv
+python run.py Q1 --llm fake
+python run.py Q1 --llm gateway --n 20
+python run.py Q6 --llm gateway --n 6 --m 10
+python run.py Q1 --llm gateway --plan ref --write-run --run-id g07-dev-q1-ref
+python run.py Q8 --source-run g07-dev-q1-ref --write-run --run-id g07-dev-q8-ref
+python run.py Q3 --query-file query/q3_struttura_prima.rq --llm gateway --plan structure-first
 ```
 
-Tips:
-- The output lists every evaluated game: add `| tail -30` to see only the summary.
-- With `--llm real` and more than 100 games (or pairs) the program asks for confirmation (hours of waiting).
-- Real answers are saved in `cache_llm.json`: re-running the same command does not repeat the calls. The cache key includes model and prompt, so if you change τ, the instructions or the model, the old answers are not reused.
-
-## The common queries, briefly
-
-The criterion ℓ of each query is **fixed** and identical for all groups (it appears in the `.rq` between quotes). Ours are: the instructions around it, τ, the execution plan and the model. Numbers refer to the dev set (1,000 games in the main set).
-
-- **Q1** `the game is a platformer`: filter on 1,000 games. Expanded solution: genre reaching *platformer* also through subgenres (200 games); direct solution: 171.
-- **Q2** `the game is a visual novel`: rare filter (30 positives). Descriptions often already name the genre, so how the text goes into τ matters.
-- **Q3**: first a structural restriction (games with a developer, `P178`, whose country, `P17`, is Japan: 259 games in 272 rows), then the Q1 filter. Three plans:
-  - `q3_naive`: one call per join row, so 272 (some games have several developers and are called twice);
-  - `q3_struttura_prima`: first the 259 unique games, then the filter (259 calls);
-  - `q3_semantica_prima`: first the filter on all 1,000, then the restriction (1,000 calls).
-  The result is the same, the cost changes. The official metrics count the calls of both orders.
-- **Q4** `the genre that describes the game best`: classification of 444 games into one of 8 labels (action, adventure, role-playing, action-adventure, puzzle, racing, first-person shooter, shoot 'em up). An answer outside the 8 is an error, logged separately. Metrics: hit rate, accuracy and macro-F1.
-- **Q5** `the company that developed the game`: the model answers with a name; we match it to an entity through `labels.csv` and `aliases.csv`. Only the 805 games with a solution are evaluated. Metrics: accuracy and unresolved rate.
-- **Q6** `the game is part of the series`: join of 50 games by 100 series (5,000 pairs, all evaluated in the reference plan: nested loop, one call per pair). About 50 pairs are true. The `.rq` has two placeholders (`__VALUES_L__`, `__VALUES_R__`) that `joining.py` fills in for sampled tests.
-- **Q7** (optional): like Q6 but 200 × 300, with top-10 blocking before the model. *To do.*
-- **Q8**: count, per decade of `ex:firstYear`, of the Q1 decisions, with no new calls. Metric: mean relative error over non-empty decades.
+The evaluation against `gt/` is printed automatically when the file exists. Add `| tail -30` to see only the summary.
 
 ## How it works
 
 ```
 run.py
  ├─ loads the graph (graph.nt) into Oxigraph
- ├─ runs the query once with an operator that always says "true" (zero cost)
- │    to know which rows reach the model ("candidates")
- └─ runs the real query: for each row Oxigraph calls our sem_* function:
-        τ(row) -> text  ->  prompt (instructions + "Criterion: ℓ" + text)
-        -> cache?  yes: saved answer   no: call the model (Ollama) and save
-    then compares with gt/*.csv and prints the metrics
+ ├─ runs the query once with an "always true" backend (free): the candidates
+ └─ runs the query for real: Oxigraph calls our sem_* function per row
+        tau(row) -> text -> instructions + "Criterion: ℓ" + text + JSON schema
+        -> POST /v1/responses on the gateway (cache, validation, retries, log)
+    then evaluates, and with --write-run builds the run file:
+        answer (SPARQL JSON) + calls read from the gateway log + price list -> semops_check.write_run_file
 ```
 
-Where to change things (in `semops.py` unless stated):
-- **what the model sees**: function `tau`
-- **how it is asked**: `INSTRUCTIONS`, `INSTRUCTIONS_CLASSIFY`, `build_prompt*` (Q5: `INSTRUCTIONS_MAP` in `extraction.py`; Q6: `INSTRUCTIONS_PAIR` in `joining.py`)
-- **the model**: `MODEL` and `URL`
-- **evaluation order**: the `.rq` files (sub-queries `{ SELECT ... }` act as a "barrier": they are computed before the semantic filter)
+Notes:
+- `parse_ok: false` from the gateway means the model failed the schema; it is counted as a broken answer, not as a "no".
+- Cache hits and tokens are only in the gateway log. The cache is the gateway's (namespace `llme-v1`, see `config.py`); `run_id` is not part of the cache key.
+- The run id should be unique per execution (the default adds a timestamp): the log is read by run id.
+- Each query reads its fixed criterion from the `.rq` file; the instructions around it, τ and the model are ours.
 
-## Provisional results (only to check that it works)
+## Open points
 
-Small samples and a local 3-billion-parameter model: not results to report.
+- Group id (`g..`) to be set in `config.py`.
+- Which model is the oracle for the official runs, and prices of the cloud models in `prices.json`.
+- P178 (developer) in τ: allowed by the property catalogue but it is the Q5 solution; not used for now.
+- τ text: `ex:lead` as in `graph.nt`; comparison with `description_screened` still to do.
+- Q6 with the small local model accepts unrelated series (precision 0.21 on an easy sample): to improve with prompt, cascade or blocking.
+- How cache hits count in the official costs: the checker records `cache_hit` for each call.
 
-- Q1, 60 games: precision 0.71 / recall 0.62 on the direct solution; 0.86 / 0.55 on the expanded one.
-- Q4, 20 games: hit rate 0.65, macro-F1 0.68; 3 answers out of 20 outside the label list.
-- Q5, 15 games (13 evaluable): accuracy 0.69.
-- Q5 with the fake model on the whole dev set: accuracy 0.34, unresolved 0.63 (the fake model only looks for "developed by X").
-- Q6 with the fake model on all 5,000 pairs: precision 0.96, recall 0.98, F1 0.97 (the fake rule checks that the series name appears in the game text).
-- Q6 with the real model, 6 games × 10 series (easy sample, true series included): recall 1.00 but precision 0.21 (28 pairs accepted, 6 correct): the model answers "yes" to unrelated series. 60 calls took about 1,100 s.
+## Git rules
 
-## Open decisions and doubts
-
-- **P178 (developer) in τ**: the property catalogue allows it in τ, but it is the Q5 solution. For now τ does not use it. To be confirmed with the project slides.
-- **τ text**: we use `ex:lead` as it comes in `graph.nt`; the comparison with the `description_screened` column of `entities.csv` is still to do.
-- **Q5, matching**: identical-name matching discards ambiguous names; the model sometimes answers with the parent company ("Sega") instead of the studio ("Sega AM2").
-- **Out-of-list answers in Q4**: the small model invents labels (e.g. "metroidvania game"). Options to evaluate: stricter instruction, constrained answer format, bigger model.
-- **Q6, too many "yes"**: the small model accepts unrelated series; options: stricter instruction, cascade with confidence, blocking with embeddings, bigger model.
-- **Cache and costs**: it is not yet clear how cached answers count in the official costs (the run file has a `cache_hit` field for each call).
-
-## Git rules for the team
-
-- Never commit `data/`, `hidden.nt`, `cache_llm.json` (see `.gitignore`).
-- Work on a branch per task and open a pull request; do not push directly to `main` for big changes.
-- Change prompts, τ or the model in one commit at a time and note the effect on the metrics in the commit message, so results stay traceable.
+- Never commit `data/`, `hidden.nt`, credentials (`*.local.env`).
+- Commit `runs/` and `keys/`: they are the submission.
+- One branch per task; one change of prompt, τ or model per commit, with the effect on the metrics in the message.
