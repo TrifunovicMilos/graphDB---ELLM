@@ -48,7 +48,6 @@ def run_filter(opts, store, backend, stats):
     print("candidate games:", len(candidates))
     accepted_map, t0, t1 = _timed(lambda: engine.run_filter(store, opts.query_file, opts.n, functions_real))
     operators.raise_if_failed(stats)
-    operators.raise_if_failed(stats)
     print("\ngames accepted by the model:", len(accepted_map))
     gt = _gt(opts, opts.query_id.lower())
     if gt:
@@ -67,7 +66,6 @@ def run_classify(opts, store, backend, stats):
     answers, t0, t1 = _timed(lambda: engine.run_values(
         store, opts.query_file, opts.n, operators.make_functions(backend, stats), "genre"))
     operators.raise_if_failed(stats)
-    operators.raise_if_failed(stats)
     gt = _gt(opts, "q4")
     if gt:
         metrics.evaluate_q4(gt, answers, candidates)
@@ -84,7 +82,6 @@ def run_extract(opts, store, backend, stats):
     print("games to process:", len(candidates))
     answers, t0, t1 = _timed(lambda: engine.run_values(
         store, opts.query_file, opts.n, operators.make_functions(backend, stats), "value"))
-    operators.raise_if_failed(stats)
     operators.raise_if_failed(stats)
     index, names = metrics.load_index(opts.data_dir)
     gt = _gt(opts, "q5")
@@ -109,7 +106,6 @@ def run_join(opts, store, backend, stats):
             raise SystemExit("cancelled")
     accepted, t0, t1 = _timed(lambda: engine.run_pairs(
         store, opts.query_file, operators.make_functions(backend, stats), left, right))
-    operators.raise_if_failed(stats)
     operators.raise_if_failed(stats)
     print("\npairs accepted by the model:", len(accepted))
     if gt:
