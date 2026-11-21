@@ -16,6 +16,7 @@ import time
 
 from semops import config, engine, fake, operators, pipelines, runfiles
 from semops.gateway import Gateway, GatewayError
+from semops.operators import ModelCallError
 
 p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 p.add_argument("query_id", choices=sorted(config.QUERY_KIND), help="Q1..Q6 or Q8")
@@ -31,6 +32,7 @@ p.add_argument("--run-id", help="run id (default: <group>-<set>-<query>-<plan>-<
 p.add_argument("--reference-run", help="run id of the ref run this run is compared with")
 p.add_argument("--source-run", help="Q8: run id of the Q1 run whose decisions are reused")
 p.add_argument("--write-run", action="store_true", help="write the official run file under runs/")
+p.add_argument("--gt", help="solution file (default: data/games/<set>/gt/<query>.csv, found automatically)")
 p.add_argument("--prices", default="prices.json", help="our price list (JSON), used for run files")
 p.add_argument("--yes", action="store_true", help="do not ask for confirmation on big runs")
 a = p.parse_args()
@@ -75,7 +77,7 @@ try:
         if not a.source_run:
             raise SystemExit("Q8 needs --source-run <run id of the Q1 run>")
         out = pipelines.run_count(a, store)
-except GatewayError as e:
+except (GatewayError, ModelCallError) as e:
     raise SystemExit("ERROR: %s" % e)
 
 print(f"\nfunction calls: {stats.calls} | broken answers: {stats.broken} | out of list: {stats.out_of_list}")
