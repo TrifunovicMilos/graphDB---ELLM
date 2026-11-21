@@ -132,8 +132,3 @@ Notes:
 - Q6 with the small local model accepts unrelated series (precision 0.21 on an easy sample): to improve with prompt, cascade or blocking.
 - How cache hits count in the official costs: the checker records `cache_hit` for each call.
 
-## Git rules
-
-- Never commit `data/`, `hidden.nt`, credentials (`*.local.env`).
-- Commit `runs/` and `keys/`: they are the submission.
-- One branch per task; one change of prompt, τ or model per commit, with the effect on the metrics in the message.
