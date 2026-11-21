@@ -1,74 +1,101 @@
+# The program you launch. Examples:
+#   python run.py query/q1.rq --n 60 --llm real --gt data/games/dev/gt/q1.csv
+#   python run.py query/q4.rq --type classify --n 30 --gt data/games/dev/gt/q4.csv
+#   python run.py query/q5.rq --type extract --n 30 --gt data/games/dev/gt/q5.csv
+#   python run.py query/q6.rq --type join --gt data/games/dev/gt/q6.csv
 import argparse, os
-import semops     
-import estrazione  
+import semops       # filters, classification, cache, counters, evaluations (Q1-Q4, Q8)
+import extraction   # Q5
+import joining      # Q6
 
-# argparse legge le parole scritte dopo "python run.py" e le mette in a
+# argparse reads the words written after "python run.py" and puts them in `a`
 p = argparse.ArgumentParser()
-p.add_argument("query", help="file della query, es. query/q1.rq")                 # obbligatorio
-p.add_argument("--tipo", choices=["filtro", "classifica", "estrai"], default="filtro",
-               help="filtro = Q1-Q3, classifica = Q4, estrai = Q5")
-p.add_argument("--n", type=int, default=0, help="quanti giochi (0 = tutti)")
-p.add_argument("--llm", choices=["finto", "vero"], default="finto")
-p.add_argument("--dati", default="data/games/dev", help="cartella dei dati")
-p.add_argument("--gt", default=None, help="file della soluzione, es. data/games/dev/gt/q1.csv")
-p.add_argument("--q8", default=None, help="file gt/q8.csv: calcola anche il conteggio per decennio (Q8)")
+p.add_argument("query", help="query file, e.g. query/q1.rq")                      # required
+p.add_argument("--type", choices=["filter", "classify", "extract", "join"], default="filter",
+               help="filter = Q1-Q3, classify = Q4, extract = Q5, join = Q6")
+p.add_argument("--n", type=int, default=0, help="how many games (0 = all)")
+p.add_argument("--m", type=int, default=0, help="only for --type join: how many series on the right (0 = all)")
+p.add_argument("--llm", choices=["fake", "real"], default="fake")
+p.add_argument("--data", default="data/games/dev", help="data folder")
+p.add_argument("--gt", default=None, help="solution file, e.g. data/games/dev/gt/q1.csv")
+p.add_argument("--q8", default=None, help="gt/q8.csv file: also computes the count per decade (Q8)")
 a = p.parse_args()
 
-# freno di sicurezza: col modello vero, molte righe vogliono ore
-if a.llm == "vero" and (a.n == 0 or a.n > 100):
-    if input("Molte chiamate (circa 15 s l'una senza cache). Continuare? (s/n) ") != "s":
-        raise SystemExit("annullato")
+# safety brake: with the real model, many rows take hours
+if a.llm == "real" and a.type != "join" and (a.n == 0 or a.n > 100):
+    if input("Many calls (about 15 s each without cache). Continue? (y/n) ") != "y":
+        raise SystemExit("cancelled")
 
-# carica il grafo
-store = semops.carica_grafo(os.path.join(a.dati, "graph.nt"))
-print("triple caricate:", len(store))
+# load the graph
+store = semops.load_graph(os.path.join(a.data, "graph.nt"))
+print("triples loaded:", len(store))
 
-if a.tipo == "filtro":
-    # candidati = i giochi che arrivano alla FILTER (con la funzione "sempre vero": costo zero)
-    candidati = semops.esegui(store, a.query, a.n, semops.funzioni_sempre_vero())
-    print("giochi candidati:", len(candidati))
+if a.type == "filter":
+    # candidates = the games that reach the FILTER (with the "always true" function: zero cost)
+    candidates = semops.run_query(store, a.query, a.n, semops.always_true_functions())
+    print("candidate games:", len(candidates))
 
-    # la query vera
-    llm = semops.llm_finto if a.llm == "finto" else semops.llm_vero
-    semops.azzera_stats()
-    predetti = semops.esegui(store, a.query, a.n, semops.crea_funzioni(llm))
-    print("\ngiochi accettati dal modello:", len(predetti))
+    # the real query; `llm` is a FUNCTION (no parentheses: we do not call it now)
+    llm = semops.fake_llm if a.llm == "fake" else semops.real_llm
+    semops.reset_stats()
+    predicted = semops.run_query(store, a.query, a.n, semops.make_functions(llm))
+    print("\ngames accepted by the model:", len(predicted))
 
-    # confronto con la soluzione ufficiale 
+    # comparison with the official solution
     if a.gt:
-        semops.valuta(a.gt, candidati, predetti)
+        semops.evaluate(a.gt, candidates, predicted)
 
-    # Q8: conteggio per decennio delle decisioni di Q1 (nessuna nuova chiamata)
+    # Q8 = count per decade of the Q1 decisions (no new calls)
     if a.q8:
         if a.n:
-            print("ATTENZIONE: Q8 ha senso solo su TUTTI i giochi (--n 0); con --n il confronto è parziale.")
-        semops.valuta_q8(a.q8, semops.conta_per_decennio(store, predetti))
+            print("WARNING: Q8 only makes sense on ALL games (--n 0); with --n the comparison is partial.")
+        semops.evaluate_q8(a.q8, semops.count_per_decade(store, predicted))
 
-elif a.tipo == "classifica":
-    # classificazione (Q4): ogni gioco riceve un' etichetta
-    candidati = semops.esegui_classifica(store, a.query, a.n, semops.funzioni_classifica_vuote())
-    print("giochi da classificare:", len(candidati))
+elif a.type == "classify":
+    # classification (Q4): each game gets one label
+    candidates = semops.run_classify(store, a.query, a.n, semops.empty_classify_functions())
+    print("games to classify:", len(candidates))
 
-    llm = semops.llm_finto_etichetta if a.llm == "finto" else semops.llm_vero_etichetta
-    semops.azzera_stats()
-    risposte = semops.esegui_classifica(store, a.query, a.n, semops.crea_funzioni_classifica(llm))
+    llm = semops.fake_llm_label if a.llm == "fake" else semops.real_llm_label
+    semops.reset_stats()
+    answers = semops.run_classify(store, a.query, a.n, semops.make_classify_functions(llm))
 
     if a.gt:
-        semops.valuta_q4(a.gt, risposte, candidati)
+        semops.evaluate_q4(a.gt, answers, candidates)
+
+elif a.type == "extract":
+    # extraction (Q5): each game gets a free text, then we match it to an entity
+    candidates = extraction.run_values(store, a.query, a.n, extraction.empty_map_functions())
+    print("games to process:", len(candidates))
+
+    llm = extraction.fake_llm_value if a.llm == "fake" else extraction.real_llm_value
+    semops.reset_stats()
+    answers = extraction.run_values(store, a.query, a.n, extraction.make_map_functions(llm))
+
+    if a.gt:
+        index, names = extraction.load_index(a.data)     # labels.csv + aliases.csv
+        extraction.evaluate_q5(a.gt, answers, index, names)
 
 else:
-    # estrazione (Q5): ogni gioco riceve un testo libero, poi lo abbiniamo a un'entità
-    candidati = estrazione.esegui_valori(store, a.query, a.n, estrazione.funzioni_mappa_vuote())
-    print("giochi da elaborare:", len(candidati))
+    # join (Q6): each (game, series) pair gets a yes/no
+    true_pairs = joining.read_pairs(a.gt) if a.gt else None
+    left_list, right_list = joining.pick_sample(store, a.n, a.m, true_pairs)
+    candidates = joining.run_pairs(store, a.query, joining.always_true_join_functions(), left_list, right_list)
+    print("pairs to evaluate:", len(candidates))
 
-    llm = estrazione.llm_finto_valore if a.llm == "finto" else estrazione.llm_vero_valore
-    semops.azzera_stats()
-    risposte = estrazione.esegui_valori(store, a.query, a.n, estrazione.crea_funzioni_mappa(llm))
+    # safety brake: one real-model call per pair
+    if a.llm == "real" and len(candidates) > 100:
+        if input("%d pairs = %d calls (about 15 s each without cache). Continue? (y/n) " % (len(candidates), len(candidates))) != "y":
+            raise SystemExit("cancelled")
+
+    llm = joining.fake_llm_pair if a.llm == "fake" else joining.real_llm_pair
+    semops.reset_stats()
+    predicted = joining.run_pairs(store, a.query, joining.make_join_functions(llm), left_list, right_list)
+    print("\npairs accepted by the model:", len(predicted))
 
     if a.gt:
-        indice, nomi = estrazione.carica_indice(a.dati)     # labels.csv + aliases.csv
-        estrazione.valuta_q5(a.gt, risposte, indice, nomi)
+        joining.evaluate_pairs(a.gt, candidates, predicted)
 
 s = semops.stats
-print(f"\nchiamate vere: {s['chiamate']}, dalla cache: {s['cache']}, tempo LLM: {s['secondi']:.0f}s")
-print(f"risposte non valide: {s['non_valide']}, fuori lista: {s['fuori_lista']}")
+print(f"\nreal calls: {s['calls']}, from cache: {s['cache']}, LLM time: {s['seconds']:.0f}s")
+print(f"invalid answers: {s['invalid']}, out of list: {s['out_of_list']}")

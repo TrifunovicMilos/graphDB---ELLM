@@ -1,20 +1,20 @@
-# Libreria del progetto importata da run.py
-# da run.py le funzioni si chiamano con semops.nome_funzione(...)
+# Project library, imported by run.py.
+# From run.py the functions are called as semops.function_name(...)
 
-# INDICE: dati, tau e prompt, modello finto,  modello vero + cache
-#         sem_filter (Q1-Q3), sem_classify (Q4), esegui e valuta, Q8
+# INDEX: data, tau and prompts, fake model, real model + cache,
+#        sem_filter (Q1-Q3), sem_classify (Q4), run and evaluate, Q8
 import csv, hashlib, json, os, time, urllib.request
 import pyoxigraph as ox
 
-# costanti (usate in questo file)
-URL        = "http://localhost:11434/v1/chat/completions"             # indirizzo di Ollama sul tuo Mac
-MODELLO    = "qwen2.5:3b"                                             # modello da usare (anche nella chiave di cache)
-FILE_CACHE = "cache_llm.json"                                         # cache
-EX         = "http://example.org/semop/"                              # prefisso dei nostri predicati (ex:)
-XSD_BOOL   = ox.NamedNode("http://www.w3.org/2001/XMLSchema#boolean") # tipo booleano per SPARQL
+# constants (used in this file)
+URL        = "http://localhost:11434/v1/chat/completions"             # address of Ollama on the local machine
+MODEL      = "qwen2.5:3b"                                             # model to use (also part of the cache key)
+CACHE_FILE = "cache_llm.json"                                         # cache of the model answers
+EX         = "http://example.org/semop/"                              # prefix of our predicates (ex:)
+XSD_BOOL   = ox.NamedNode("http://www.w3.org/2001/XMLSchema#boolean") # boolean type for SPARQL
 
-# le 8 etichette di Q4 per i giochi: codice -> nome in inglese
-ETICHETTE_Q4 = {
+# the 8 Q4 genre labels: code -> English name
+Q4_LABELS = {
     "Q270948":  "action game",
     "Q23916":   "adventure video game",
     "Q744038":  "role-playing video game",
@@ -24,331 +24,337 @@ ETICHETTE_Q4 = {
     "Q185029":  "first-person shooter",
     "Q1044478": "shoot 'em up",
 }
-# nome (minuscolo) -> codice, per capire a quale etichetta corrisponde la risposta del modello
-NOME_A_QID = {nome.lower(): qid for qid, nome in ETICHETTE_Q4.items()}
+# name (lowercase) -> code, to find which label the model answer corresponds to
+NAME_TO_QID = {name.lower(): qid for qid, name in Q4_LABELS.items()}
 
-# contatori condivisi
-stats = {"chiamate": 0, "cache": 0, "secondi": 0.0, "fuori_lista": 0, "non_valide": 0}
+# shared counters
+stats = {"calls": 0, "cache": 0, "seconds": 0.0, "out_of_list": 0, "invalid": 0}
 
-# chiamata da run.py subito prima della query vera
-def azzera_stats():
-    stats.update(chiamate=0, cache=0, secondi=0.0, fuori_lista=0, non_valide=0)
+# called by run.py right before the real query
+def reset_stats():
+    stats.update(calls=0, cache=0, seconds=0.0, out_of_list=0, invalid=0)
 
-# DATI
 
-# legge un file .nt e lo carica in un database Oxigraph in memoria
-def carica_grafo(percorso):
+# DATA
+
+# reads an .nt file and loads it into an in-memory Oxigraph database
+def load_graph(path):
     store = ox.Store()
-    store.bulk_load(path=percorso, format=ox.RdfFormat.N_TRIPLES)
+    store.bulk_load(path=path, format=ox.RdfFormat.N_TRIPLES)
     return store
 
-# TAU E PROMPT
 
-ISTRUZIONI = ("You are a classifier. Decide whether the item satisfies the criterion. "
-              "Answer only with JSON: {\"answer\": true} or {\"answer\": false}.")
+# TAU AND PROMPTS
 
-ISTRUZIONI_CLASSIFICA = ("You are a classifier. Choose the single label that best answers the criterion "
+INSTRUCTIONS = ("You are a classifier. Decide whether the item satisfies the criterion. "
+                "Answer only with JSON: {\"answer\": true} or {\"answer\": false}.")
+
+INSTRUCTIONS_CLASSIFY = ("You are a classifier. Choose the single label that best answers the criterion "
                          "for the item. Answer only with JSON: {\"label\": \"<one of the labels>\"}.")
 
-# trasforma un'entità (qui: nome + lead) in un testo (il modello vede solo testo)
+# turns an entity (here: name + lead text) into a text (the model only sees text)
 # tau("Doom", "Doom is a 1993 first-person shooter.") ->  "Doom. Doom is a 1993 first-person shooter."
-# il [:1200] taglia il testo ai primi 1200 caratteri
+# the [:1200] cuts the text to the first 1200 characters
 def tau(label, lead):
     return (label + ". " + lead)[:1200]
 
-# incolla istruzioni + criterio + tau nel messaggio completo per il modello
-# la chiama sem_filter per ogni riga
-# la struttura del prompt è: istruzioni, 'Criterion: ...', tau
-def costruisci_prompt(criterio, testo_tau):
-    return ISTRUZIONI + "\n\nCriterion: " + criterio + "\n\nItem: " + testo_tau
+# glues instructions + criterion + tau into the full message for the model
+# called by sem_filter for every row
+# prompt structure: instructions, 'Criterion: ...', tau
+def build_prompt(criterion, tau_text):
+    return INSTRUCTIONS + "\n\nCriterion: " + criterion + "\n\nItem: " + tau_text
 
-# prompt per la CLASSIFICAZIONE: come sopra più l'elenco delle etichette ammesse
-def costruisci_prompt_classifica(criterio, testo_tau, nomi):
-    return (ISTRUZIONI_CLASSIFICA + "\n\nCriterion: " + criterio +
-            "\n\nLabels: " + ", ".join(nomi) + "\n\nItem: " + testo_tau)
+# prompt for CLASSIFICATION: same as above plus the list of allowed labels
+def build_prompt_classify(criterion, tau_text, names):
+    return (INSTRUCTIONS_CLASSIFY + "\n\nCriterion: " + criterion +
+            "\n\nLabels: " + ", ".join(names) + "\n\nItem: " + tau_text)
 
 
-# "MODELLO FINTO (gratis)
+# FAKE MODEL (free)
 
-# dice True se nel testo dopo 'Item:' compare una parola scelta dal criterio
-# lanci run.py con --llm finto
-def llm_finto(prompt):
-    stats["chiamate"] += 1
-    criterio = prompt.split("Criterion:")[1].split("Item:")[0].lower()
-    testo = prompt.split("Item:")[1].lower()
-    parola = "visual novel" if "visual novel" in criterio else "platform"
-    return parola in testo
+# says True if a word chosen from the criterion appears in the text after 'Item:'
+# used with run.py --llm fake
+def fake_llm(prompt):
+    stats["calls"] += 1
+    criterion = prompt.split("Criterion:")[1].split("Item:")[0].lower()
+    text = prompt.split("Item:")[1].lower()
+    word = "visual novel" if "visual novel" in criterion else "platform"
+    return word in text
 
-# finto LLM per la classificazione: sceglie un'etichetta da parole chiave nel testo
-# lanci run.py con --tipo classifica --llm finto.
-# guarda il testo dopo 'Item:'
-# se non trova nulla risponde "action game".
-def llm_finto_etichetta(prompt):
-    stats["chiamate"] += 1
-    testo = prompt.split("Item:")[1].lower()
-    regole = [("first-person shooter", "first-person shooter"),
-              ("shoot 'em up", "shoot 'em up"), ("shmup", "shoot 'em up"),
-              ("role-playing", "role-playing video game"),
-              ("puzzle", "puzzle video game"), ("racing", "racing video game"),
-              ("action-adventure", "action-adventure game"),
-              ("adventure", "adventure video game"), ("action", "action game")]
-    for parola, etichetta in regole:
-        if parola in testo:
-            return etichetta
+# fake LLM for classification: picks a label from keywords in the text
+# used with run.py --type classify --llm fake
+# looks at the text after 'Item:'; the ORDER of the rules matters (first match wins)
+# if nothing matches it answers "action game"
+def fake_llm_label(prompt):
+    stats["calls"] += 1
+    text = prompt.split("Item:")[1].lower()
+    rules = [("first-person shooter", "first-person shooter"),
+             ("shoot 'em up", "shoot 'em up"), ("shmup", "shoot 'em up"),
+             ("role-playing", "role-playing video game"),
+             ("puzzle", "puzzle video game"), ("racing", "racing video game"),
+             ("action-adventure", "action-adventure game"),
+             ("adventure", "adventure video game"), ("action", "action game")]
+    for word, label in rules:
+        if word in text:
+            return label
     return "action game"
 
 
-# MODELLO VERO (Ollama) E CACHE
+# REAL MODEL (Ollama) AND CACHE
 
-if os.path.exists(FILE_CACHE):
-    with open(FILE_CACHE, encoding="utf-8") as f:
+# the cache is read ONCE, when the module is imported
+if os.path.exists(CACHE_FILE):
+    with open(CACHE_FILE, encoding="utf-8") as f:
         cache = json.load(f)
 else:
     cache = {}
 
-# manda un prompt a Ollama e restituisce True/False (o None se la risposta è rotta)
-# la chiama solo llm_vero, e solo se la risposta NON è già in cache
-def chiama_modello(prompt, campo, tipo):
-    stats["chiamate"] += 1
-    # corpo della richiesta, temperature 0 (stessa domanda -> stessa risposta)
-    corpo = {"model": MODELLO, "temperature": 0,
-             "messages": [{"role": "user", "content": prompt}],
-             "response_format": {"type": "json_object"}}
-    # json.dumps = dizionario -> stringa JSON;  .encode() = stringa -> byte
-    richiesta = urllib.request.Request(URL, data=json.dumps(corpo).encode(),
-                                       headers={"Content-Type": "application/json"})
+# sends a prompt to Ollama and returns the value of the field `field` (checked to be of type `kind`),
+# or None if the answer is broken
+# only called by _cached_answer, and only when the answer is NOT already in the cache
+def call_model(prompt, field, kind):
+    stats["calls"] += 1
+    # request body, temperature 0 (same question -> same answer)
+    body = {"model": MODEL, "temperature": 0,
+            "messages": [{"role": "user", "content": prompt}],
+            "response_format": {"type": "json_object"}}
+    # json.dumps = dictionary -> JSON string;  .encode() = string -> bytes
+    request = urllib.request.Request(URL, data=json.dumps(body).encode(),
+                                     headers={"Content-Type": "application/json"})
     start = time.time()
-    with urllib.request.urlopen(richiesta, timeout=300) as r:   # invia e aspetta (max 300 s)
-        risposta = json.loads(r.read())                         # byte -> dizionario
-    stats["secondi"] += time.time() - start
-    # risposta ha forma {"choices": [{"message": {"content": '{"answer": true}'}}], ...}
-    testo = risposta["choices"][0]["message"]["content"]        # stringa '{"answer": true}'
+    with urllib.request.urlopen(request, timeout=300) as r:     # send and wait (max 300 s)
+        response = json.loads(r.read())                         # bytes -> dictionary
+    stats["seconds"] += time.time() - start
+    # response has the form {"choices": [{"message": {"content": '{"answer": true}'}}], ...}
+    text = response["choices"][0]["message"]["content"]         # string '{"answer": true}'
     try:
-        valore = json.loads(testo)[campo]                       # -> True
-        if isinstance(valore, tipo):                            # es. un vero True/False, non "false"
-            return valore
+        value = json.loads(text)[field]                         # -> True
+        if isinstance(value, kind):                             # a real True/False, not the string "false"
+            return value
     except Exception:
         pass
-    print("   !! risposta non valida:", testo)
-    stats["non_valide"] += 1
-    return None             # None = "risposta rotta": NON si salva in cache
+    print("   !! invalid answer:", text)
+    stats["invalid"] += 1
+    return None             # None = "broken answer": NOT saved in the cache
 
-# prima guarda la cache, se non c'è chiede al modello e salva.
-def _risposta_con_cache(prompt, campo, tipo):
-    chiave = hashlib.sha256((MODELLO + "\n" + prompt).encode()).hexdigest()
-    if chiave in cache:                      
+# first looks in the cache; if the answer is not there, asks the model and saves it
+def _cached_answer(prompt, field, kind):
+    key = hashlib.sha256((MODEL + "\n" + prompt).encode()).hexdigest()
+    if key in cache:
         stats["cache"] += 1
-        return cache[chiave]
-    risposta = chiama_modello(prompt, campo, tipo)
-    if risposta is None:
+        return cache[key]
+    answer = call_model(prompt, field, kind)
+    if answer is None:
         return None
-    cache[chiave] = risposta
-    with open(FILE_CACHE, "w", encoding="utf-8") as f:
-        json.dump(cache, f)                   
-    return risposta
+    cache[key] = answer
+    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cache, f)
+    return answer
 
-# la chiama sem_filter per ogni riga, se lanci con --llm vero
-def llm_vero(prompt):
-    risposta = _risposta_con_cache(prompt, "answer", bool)
-    return False if risposta is None else risposta
+# called by sem_filter for every row, with --llm real
+def real_llm(prompt):
+    answer = _cached_answer(prompt, "answer", bool)
+    return False if answer is None else answer
 
-# la chiama sem_classify per ogni riga, se lanci con --tipo classifica --llm vero
-def llm_vero_etichetta(prompt):
-    return _risposta_con_cache(prompt, "label", str)
+# called by sem_classify for every row, with --type classify --llm real
+def real_llm_label(prompt):
+    return _cached_answer(prompt, "label", str)
 
 
 # sem_filter (Q1-Q3)
 
-# trasforma true/false di Python nel valore booleano di SPARQL, l'unico che la FILTER capisce
+# turns Python true/false into the SPARQL boolean value, the only one FILTER understands
 # _bool(True) -> "true"^^xsd:boolean
-def _bool(valore):
-    return ox.Literal("true" if valore else "false", datatype=XSD_BOOL)
+def _bool(value):
+    return ox.Literal("true" if value else "false", datatype=XSD_BOOL)
 
-def crea_funzioni(llm):
-    def sem_filter(label, lead, criterio):
-        ok = llm(costruisci_prompt(criterio.value, tau(label.value, lead.value)))
-        print(f"  [chiamate {stats['chiamate']}, cache {stats['cache']}] {label.value}: {ok}")
-        return _bool(ok)     # dai la risposta alla FILTER
-    
-    # il dizionario dice a Oxigraph: "quando vedi ex:sem_filter, chiama questa funzione"
+# builds the dictionary for Oxigraph; `llm` is the function that decides (fake_llm or real_llm)
+def make_functions(llm):
+    def sem_filter(label, lead, criterion):
+        ok = llm(build_prompt(criterion.value, tau(label.value, lead.value)))
+        print(f"  [calls {stats['calls']}, cache {stats['cache']}] {label.value}: {ok}")
+        return _bool(ok)     # hand the answer to FILTER
+
+    # the dictionary tells Oxigraph: "when you see ex:sem_filter, call this function"
     return {ox.NamedNode(EX + "sem_filter"): sem_filter}
 
-# sem_filter dice sempre vero e non costa nulla
-# run.py la usa nel passo 1 per sapere quali giochi arrivano alla FILTER (i candidati) senza interrogare nessun modello
-def funzioni_sempre_vero():
-    def sem_filter(label, lead, criterio):
+# sem_filter that always says true and costs nothing
+# run.py uses it in the first pass to find which games reach the FILTER (the candidates) without calling any model
+def always_true_functions():
+    def sem_filter(label, lead, criterion):
         return _bool(True)
     return {ox.NamedNode(EX + "sem_filter"): sem_filter}
 
 
 # sem_classify (Q4)
 
-# per confrontare le etichette: toglie spazi e punto finale, tutto minuscolo
-def normalizza(testo):
-    return testo.strip().rstrip(".").lower()
+# to compare labels: strip spaces and final dot, lowercase
+def normalize(text):
+    return text.strip().rstrip(".").lower()
 
-def crea_funzioni_classifica(llm):
-    nomi = list(ETICHETTE_Q4.values())
-    def sem_classify(label, lead, criterio):
-        prompt = costruisci_prompt_classifica(criterio.value, tau(label.value, lead.value), nomi)
-        risposta = llm(prompt)
-        if risposta is None:                         # risposta rotta (già contata in non_valide)
-            risposta = ""
-        elif normalizza(risposta) not in NOME_A_QID:
-            stats["fuori_lista"] += 1
-        print(f"  [chiamate {stats['chiamate']}, cache {stats['cache']}] {label.value}: {risposta!r}")
-        return ox.Literal(risposta)
+def make_classify_functions(llm):
+    names = list(Q4_LABELS.values())
+    def sem_classify(label, lead, criterion):
+        prompt = build_prompt_classify(criterion.value, tau(label.value, lead.value), names)
+        answer = llm(prompt)
+        if answer is None:                           # broken answer (already counted in `invalid`)
+            answer = ""
+        elif normalize(answer) not in NAME_TO_QID:
+            stats["out_of_list"] += 1
+        print(f"  [calls {stats['calls']}, cache {stats['cache']}] {label.value}: {answer!r}")
+        return ox.Literal(answer)
     return {ox.NamedNode(EX + "sem_classify"): sem_classify}
 
-# sem_classify che restituisce stringa vuota e non costa nulla (per vedere i candidati)
-def funzioni_classifica_vuote():
-    def sem_classify(label, lead, criterio):
+# sem_classify that returns an empty string and costs nothing (to see the candidates)
+def empty_classify_functions():
+    def sem_classify(label, lead, criterion):
         return ox.Literal("")
     return {ox.NamedNode(EX + "sem_classify"): sem_classify}
 
 
-# ESEGUIRE UNA QUERY E VALUTARE
+# RUN A QUERY AND EVALUATE
 
-# da indirizzo completo a codice breve
-# la chiama esegui per ogni riga del risultato
+# from full address to short code
+# called by the run_* functions for every result row
 # qid(NamedNode("http://www.wikidata.org/entity/Q101243107")) -> "Q101243107"
-# nodo.value = il testo dell'indirizzo; 
-# rsplit("/", 1) lo taglia dall'ultimo "/" in due pezzi; [-1] prende l'ultimo pezzo
-def qid(nodo):
-    return nodo.value.rsplit("/", 1)[-1]
+# node.value = the address text;
+# rsplit("/", 1) cuts it at the last "/" in two pieces; [-1] takes the last piece
+def qid(node):
+    return node.value.rsplit("/", 1)[-1]
 
-# legge il .rq e sostituisce "LIMIT __N__" con "LIMIT 60" (se n=60) o lo toglie (n=0)
-def _leggi_query(file_query, n):
-    with open(file_query, encoding="utf-8") as f:
+# reads the .rq and replaces "LIMIT __N__" with "LIMIT 60" (if n=60) or removes it (n=0)
+def _read_query(query_file, n):
+    with open(query_file, encoding="utf-8") as f:
         q = f.read()
     return q.replace("LIMIT __N__", ("LIMIT " + str(n)) if n else "")
 
-# esegue una query e restituisce {codice_gioco: nome}
-# run.py la chiama prima con funzioni_sempre_vero (candidati), poi con crea_funzioni(llm)
-# 1. legge il testo della query dal file
-# 2. sostituisce "LIMIT __N__" con "LIMIT 60" (se n=60) oppure lo toglie (n=0)
-# 3. store.query(...) esegue la query; 
-# 4. ogni riga (binding) ha ?e e ?label: riga["e"] -> indirizzo, riga["label"] -> nome
-def esegui(store, file_query, n, funzioni):
-    q = _leggi_query(file_query, n)
+# runs a query and returns {game_code: name}
+# run.py calls it first with always_true_functions (candidates), then with make_functions(llm)
+# 1. reads the query text from the file
+# 2. replaces "LIMIT __N__" with "LIMIT 60" (if n=60) or removes it (n=0)
+# 3. store.query(...) runs the query
+# 4. each row (binding) has ?e and ?label: row["e"] -> address, row["label"] -> name
+def run_query(store, query_file, n, functions):
+    q = _read_query(query_file, n)
     return {qid(r["e"]): r["label"].value
-            for r in store.query(q, custom_functions=funzioni)}
+            for r in store.query(q, custom_functions=functions)}
 
-def esegui_classifica(store, file_query, n, funzioni):
-    q = _leggi_query(file_query, n)
-    risultati = {}
-    for r in store.query(q, custom_functions=funzioni):
-        genere = r["genre"]
-        risultati[qid(r["e"])] = genere.value if genere is not None else ""
-    return risultati
+# same for Q4: returns {game_code: label_answered_by_the_model}
+def run_classify(store, query_file, n, functions):
+    q = _read_query(query_file, n)
+    results = {}
+    for r in store.query(q, custom_functions=functions):
+        genre = r["genre"]
+        results[qid(r["e"])] = genre.value if genre is not None else ""
+    return results
 
-# confronta le risposte del modello con la soluzione ufficiale
-# run.py la chiama solo se hai scritto --gt <file>
-# candidati  {qid: nome} di tutti i giochi valutati
-# predetti   {qid: nome} di quelli per cui il modello ha detto True
-# se i veri platformer sono A, B, C e il modello dice A, B, D:
-# giusti = A, B | falso positivo = D | falso negativo = C
-# precision = giusti / trovati = 2/3,  recall = giusti / positivi veri = 2/3
-def valuta(file_gt, candidati, predetti):
-    with open(file_gt, encoding="utf-8") as f:
-        # DictReader: ogni riga del CSV diventa un dizionario con le intestazioni come chiavi
+# compares the model answers with the official solution
+# run.py calls it only if you passed --gt <file>
+# candidates  {qid: name} of all evaluated games
+# predicted   {qid: name} of those for which the model said True
+# if the true platformers are A, B, C and the model says A, B, D:
+# correct = A, B | false positive = D | false negative = C
+# precision = correct / found = 2/3,  recall = correct / true positives = 2/3
+def evaluate(gt_file, candidates, predicted):
+    with open(gt_file, encoding="utf-8") as f:
+        # DictReader: each CSV row becomes a dictionary keyed by the header names
         # gt = {"Q170003": {"qid": "Q170003", "direct": "1", "path": "1"}, ...}
-        gt = {riga["qid"]: riga for riga in csv.DictReader(f)}
-    for colonna in ("direct", "path"):          # lo stesso confronto, due volte
-        giusti, fp, fn = [], [], []
-        for codice in candidati:
-            if codice not in gt:
-                print("ATTENZIONE: non in", file_gt, ":", codice)
+        gt = {row["qid"]: row for row in csv.DictReader(f)}
+    for column in ("direct", "path"):          # the same comparison, twice
+        correct, fp, fn = [], [], []
+        for code in candidates:
+            if code not in gt:
+                print("WARNING: not in", gt_file, ":", code)
                 continue
-            vero = gt[codice][colonna] == "1"
-            dice_si = codice in predetti
-            if dice_si and vero:
-                giusti.append(codice)
-            elif dice_si and not vero:
-                fp.append(codice)
-            elif vero:
-                fn.append(codice)
-        trovati = len(giusti) + len(fp)
-        positivi = len(giusti) + len(fn)
-        prec = len(giusti) / trovati if trovati else 0.0
-        rec = len(giusti) / positivi if positivi else 0.0
-        print(f"\nconfronto con '{colonna}': positivi veri {positivi} | trovati {trovati} | giusti {len(giusti)}")
+            truth = gt[code][column] == "1"
+            says_yes = code in predicted
+            if says_yes and truth:
+                correct.append(code)
+            elif says_yes and not truth:
+                fp.append(code)
+            elif truth:
+                fn.append(code)
+        found = len(correct) + len(fp)
+        positives = len(correct) + len(fn)
+        prec = len(correct) / found if found else 0.0
+        rec = len(correct) / positives if positives else 0.0
+        print(f"\ncomparison with '{column}': true positives {positives} | found {found} | correct {len(correct)}")
         print("  precision: %.2f   recall: %.2f" % (prec, rec))
         for c in fp:
-            print("  falso positivo:", candidati[c])
+            print("  false positive:", candidates[c])
         for c in fn:
-            print("  falso negativo:", candidati[c])
+            print("  false negative:", candidates[c])
 
-# hit rate, accuracy e macro-F1 contro gt/q4.csv
-def valuta_q4(file_gt, risposte, nomi_giochi):
-    # gt.csv ha colonne qid,labels,label_names,k; labels può avere più codici separati da "|"
-    vere = {}
-    with open(file_gt, encoding="utf-8") as f:
-        for riga in csv.DictReader(f):
-            if riga["qid"] in risposte:               # solo i giochi che abbiamo valutato
-                vere[riga["qid"]] = {x.rsplit("/", 1)[-1] for x in riga["labels"].split("|")}
-    # etichetta del modello -> codice (None se fuori lista o vuota)
-    pred = {e: NOME_A_QID.get(normalizza(risposte[e])) for e in vere}
-    n = len(vere)
-    hit = sum(1 for e in vere if pred[e] in vere[e])
-    singole = {e: next(iter(ls)) for e, ls in vere.items() if len(ls) == 1}
-    acc = sum(1 for e, l in singole.items() if pred[e] == l)
+# hit rate, accuracy and macro-F1 against gt/q4.csv
+def evaluate_q4(gt_file, answers, game_names):
+    # gt csv has columns qid,labels,label_names,k; `labels` may hold several codes separated by "|"
+    truth = {}
+    with open(gt_file, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if row["qid"] in answers:                 # only the games we evaluated
+                truth[row["qid"]] = {x.rsplit("/", 1)[-1] for x in row["labels"].split("|")}
+    # model label -> code (None if out of list or empty)
+    pred = {e: NAME_TO_QID.get(normalize(answers[e])) for e in truth}
+    n = len(truth)
+    hit = sum(1 for e in truth if pred[e] in truth[e])
+    single = {e: next(iter(ls)) for e, ls in truth.items() if len(ls) == 1}
+    acc = sum(1 for e, l in single.items() if pred[e] == l)
     f1s = []
-    print("\nQ4: etichetta | veri (singoli) | tp | fp | fn | F1")
-    for l in sorted(set(singole.values()) | {p for e, p in pred.items() if e in singole and p}):
-        tp = sum(1 for e, g in singole.items() if g == l and pred[e] == l)
-        fp = sum(1 for e, g in singole.items() if g != l and pred[e] == l)
-        fn = sum(1 for e, g in singole.items() if g == l and pred[e] != l)
+    print("\nQ4: label | true (single) | tp | fp | fn | F1")
+    for l in sorted(set(single.values()) | {p for e, p in pred.items() if e in single and p}):
+        tp = sum(1 for e, g in single.items() if g == l and pred[e] == l)
+        fp = sum(1 for e, g in single.items() if g != l and pred[e] == l)
+        fn = sum(1 for e, g in single.items() if g == l and pred[e] != l)
         f1 = 0.0 if tp == 0 else 2 * tp / (2 * tp + fp + fn)
         f1s.append(f1)
-        print(f"  {ETICHETTE_Q4[l]} | {tp + fn} | {tp} | {fp} | {fn} | {f1:.2f}")
-    fuori = sum(1 for e in vere if risposte[e] and pred[e] is None)
-    vuote = sum(1 for e in vere if not risposte[e])
-    print(f"\n  giochi valutati: {n} (con una sola etichetta vera: {len(singole)})")
+        print(f"  {Q4_LABELS[l]} | {tp + fn} | {tp} | {fp} | {fn} | {f1:.2f}")
+    out_of_list = sum(1 for e in truth if answers[e] and pred[e] is None)
+    empty = sum(1 for e in truth if not answers[e])
+    print(f"\n  games evaluated: {n} (with a single true label: {len(single)})")
     print("  hit rate: %.2f" % (hit / n if n else 0.0))
-    print("  accuracy: %.2f" % (acc / len(singole) if singole else 0.0))
+    print("  accuracy: %.2f" % (acc / len(single) if single else 0.0))
     print("  macro-F1: %.2f" % (sum(f1s) / len(f1s) if f1s else 0.0))
-    print(f"  risposte fuori lista: {fuori} | risposte vuote/rotte: {vuote}")
+    print(f"  answers out of list: {out_of_list} | empty/broken answers: {empty}")
 
 
-# Q8: CONTEGGIO PER DECENNIO (nessuna nuova chiamata al modello)
+# Q8: COUNT PER DECADE (no new model calls)
 
-# conta per decennio i giochi che il modello ha accettato in Q1
-# run.py la chiama se hai scelto --q8 <file>, usa i predetti di Q1
-# Q8 non fa nuove richieste, riusa le decisioni già prese
-# una query normale prende l'anno (ex:firstYear) di ogni gioco del set principale
-# per quelli che il modello ha accettato calcola il decennio
-# esempio: anno 1993 -> 1993 // 10 = 199 (divisione intera) -> 199 * 10 = 1990
-# risultato, ad esempio: {1980: 31, 1990: 55, 2000: 48}
-def conta_per_decennio(store, predetti):
-    conteggi = {}
+# counts, per decade, the games the model accepted in Q1
+# run.py calls it if you chose --q8 <file>, using the Q1 predictions
+# Q8 makes no new calls, it reuses the decisions already taken
+# a normal query takes the year (ex:firstYear) of every game in the main set;
+# for the accepted ones it computes the decade
+# example: year 1993 -> 1993 // 10 = 199 (integer division) -> 199 * 10 = 1990
+# result, for instance: {1980: 31, 1990: 55, 2000: 48}
+def count_per_decade(store, predicted):
+    counts = {}
     q = ("PREFIX ex: <http://example.org/semop/> "
          "SELECT ?e ?y WHERE { ?e ex:inSet ex:set-main ; ex:firstYear ?y }")
     for r in store.query(q):
-        if qid(r["e"]) in predetti:
-            decennio = (int(r["y"].value) // 10) * 10
-            conteggi[decennio] = conteggi.get(decennio, 0) + 1
-    return conteggi
+        if qid(r["e"]) in predicted:
+            decade = (int(r["y"].value) // 10) * 10
+            counts[decade] = counts.get(decade, 0) + 1
+    return counts
 
-# confronta i conteggi per decennio con la soluzione (gt/q8.csv)
-# run.py la chiama subito dopo conta_per_decennio
-# metrica: errore relativo medio sui decenni in cui i veri positivi sono > 0
-# esempio: veri 33, predetti 40 -> errore |40 - 33| / 33 = 0.21
-# i decenni con 0 veri positivi non entrano nella media: si stampa solo cosa ha predetto il modello
-def valuta_q8(file_gt, conteggi):
-    with open(file_gt, encoding="utf-8") as f:
-        righe = list(csv.DictReader(f))
-    errori = []
-    print("\nQ8: decennio | veri | predetti | errore relativo")
-    for riga in righe:
-        decennio = int(riga["decade"])
-        veri = int(riga["positives"])
-        pred = conteggi.get(decennio, 0)
-        if veri > 0:
-            errore = abs(pred - veri) / veri
-            errori.append(errore)
-            print(f"  {decennio}s | {veri} | {pred} | {errore:.2f}")
+# compares the per-decade counts with the solution (gt/q8.csv)
+# run.py calls it right after count_per_decade
+# metric: mean relative error over the decades where the true positives are > 0
+# example: true 33, predicted 40 -> error |40 - 33| / 33 = 0.21
+# decades with 0 true positives are not in the mean: we only print what the model predicted
+def evaluate_q8(gt_file, counts):
+    with open(gt_file, encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    errors = []
+    print("\nQ8: decade | true | predicted | relative error")
+    for row in rows:
+        decade = int(row["decade"])
+        true = int(row["positives"])
+        pred = counts.get(decade, 0)
+        if true > 0:
+            error = abs(pred - true) / true
+            errors.append(error)
+            print(f"  {decade}s | {true} | {pred} | {error:.2f}")
         else:
-            print(f"  {decennio}s | 0 | {pred} | (non nella media)")
-    if errori:
-        print("  errore relativo medio: %.2f" % (sum(errori) / len(errori)))
+            print(f"  {decade}s | 0 | {pred} | (not in the mean)")
+    if errors:
+        print("  mean relative error: %.2f" % (sum(errors) / len(errors)))
