@@ -1,0 +1,29 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q6 --tau A --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q6-tauexp-tauA-1123134428 --yes --n 5 --instr J2
+
+triples loaded: 53963 | tau: A
+run id: g00-dev-q6-tauexp-tauA-1123134428 | model: local/qwen2.5:3b | instructions: J2
+pairs to evaluate: 500
+  ... 100 calls
+  ... 200 calls
+  [call 285] YES: Tomb Raider Reloaded  ~  Super Robot Wars
+  ... 300 calls
+  ... 400 calls
+  ... 500 calls
+
+pairs accepted by the model: 1
+
+Q6: pairs evaluated 500 | true pairs among them 5 | accepted by the model 1 | correct 0
+  precision: 0.00   recall: 0.00   F1: 0.00
+
+  examples of FALSE POSITIVES (game ~ series):
+     Tomb Raider Reloaded ~ Super Robot Wars
+
+  examples of FALSE NEGATIVES (game ~ series):
+     Tomb Raider Reloaded ~ Tomb Raider
+     Brothers in Arms 2: Global Front ~ Brothers in Arms
+     R.B.I. Baseball 14 ~ R.B.I. Baseball
+     Snake's Revenge ~ Metal Gear
+     EA Sports College Football 25 ~ EA Sports College Football
+
+function calls: 500 | broken answers: 0 | out of list: 0
+gateway requests: 500 | parse failures: 0 | time waiting for the model: 406s

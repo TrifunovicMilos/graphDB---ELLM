@@ -16,6 +16,11 @@ GATEWAY_LOG = os.environ.get("SEMOPS_GATEWAY_LOG", os.path.expanduser("~/llm-gat
 DEFAULT_MODEL = "local/qwen2.5:3b"      # public model name from the gateway's models.toml
 CACHE_NAMESPACE = os.environ.get("SEMOPS_CACHE_NAMESPACE", "llme-v1")
 
+# tau, the text of an entity (prompts.tau): frozen to variant A, label + lead cut at TAU_MAX_CHARS.
+# Each variant has its own cache namespace, <CACHE_NAMESPACE>-tau<variant> (see run.py).
+DEFAULT_TAU = "A"
+TAU_MAX_CHARS = 1200
+
 EX = "http://example.org/semop/"        # prefix of our predicates (ex:)
 WD = "http://www.wikidata.org/entity/"  # prefix of Wikidata entities
 

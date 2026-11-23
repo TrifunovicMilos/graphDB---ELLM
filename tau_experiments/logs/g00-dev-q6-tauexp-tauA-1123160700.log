@@ -1,0 +1,43 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q6 --tau A --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q6-tauexp-tauA-1123160700 --yes --n 5 --instr J4
+
+triples loaded: 53963 | tau: A
+run id: g00-dev-q6-tauexp-tauA-1123160700 | model: local/qwen2.5:3b | instructions: J4
+pairs to evaluate: 500
+  ... 100 calls
+  ... 200 calls
+  [call 251] YES: EA Sports College Football 25  ~  Compati Hero Series
+  ... 300 calls
+  [call 301] YES: EA Sports College Football 25  ~  EA Sports College Football
+  [call 338] YES: R.B.I  ~  R.B.I
+  [call 344] YES: Brothers in Arms 2: Global Front  ~  Brothers in Arms
+  [call 353] YES: R.B.I  ~  Civilization
+  [call 354] YES: Brothers in Arms 2: Global Front  ~  Civilization
+  [call 355] YES: Tomb Raider Reloaded  ~  Civilization
+  ... 400 calls
+  [call 430] YES: Tomb Raider Reloaded  ~  Kingdom Hearts
+  [call 435] YES: Tomb Raider Reloaded  ~  Deus Ex
+  [call 440] YES: Tomb Raider Reloaded  ~  Saints Row
+  [call 460] YES: Tomb Raider Reloaded  ~  Gex
+  [call 490] YES: Tomb Raider Reloaded  ~  Tomb Raider
+  [call 497] YES: Snake's Revenge  ~  Metal Gear
+  ... 500 calls
+
+pairs accepted by the model: 13
+
+Q6: pairs evaluated 500 | true pairs among them 5 | accepted by the model 13 | correct 5
+  precision: 0.38   recall: 1.00   F1: 0.56
+
+  examples of FALSE POSITIVES (game ~ series):
+     Tomb Raider Reloaded ~ Civilization
+     Tomb Raider Reloaded ~ Gex
+     Tomb Raider Reloaded ~ Saints Row
+     Tomb Raider Reloaded ~ Deus Ex
+     Tomb Raider Reloaded ~ Kingdom Hearts
+     Brothers in Arms 2: Global Front ~ Civilization
+     R.B.I. Baseball 14 ~ Civilization
+     EA Sports College Football 25 ~ Compati Hero Series
+
+  examples of FALSE NEGATIVES (game ~ series):
+
+function calls: 500 | broken answers: 0 | out of list: 0
+gateway requests: 500 | parse failures: 0 | time waiting for the model: 427s

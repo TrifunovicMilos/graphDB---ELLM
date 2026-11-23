@@ -3,6 +3,6 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?e ?label WHERE {
   { SELECT ?e WHERE { ?e a ex:VideoGame ; ex:inSet ex:set-main . } ORDER BY ?e LIMIT __N__ }
   ?e rdfs:label ?label .
-  OPTIONAL { ?e ex:lead ?lead }
-  FILTER( ex:sem_filter(?label, COALESCE(?lead, ""), "the game is a visual novel") )
+  ?e ex:tau ?tau .
+  FILTER( ex:sem_filter(?tau, "the game is a visual novel") )
 }

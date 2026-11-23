@@ -1,18 +1,35 @@
 """Loading the graph and running the .rq queries.
 
+Every entity carries its text as ex:tau (built in load_graph); the queries pass ?tau to the
+semantic functions.
+
 Placeholders inside the .rq files (replaced here before the query runs):
   LIMIT __N__                 first N inputs (removed when N = 0)
   __VALUES_L__ __VALUES_R__   restrict the two sides of the join (Q6)
 """
+import csv
+import os
+
 import pyoxigraph as ox
 
-from . import config
+from . import config, prompts
 
 
-def load_graph(path):
-    """Reads an .nt file into an in-memory Oxigraph store."""
+def load_graph(path, tau_variant=config.DEFAULT_TAU):
+    """Reads an .nt file into an in-memory Oxigraph store and adds one ex:tau literal per entity.
+
+    tau is built from entities.csv next to the .nt file (label, description_screened, lead), never
+    from the raw schema:description of graph.nt, which can name the hidden genre.
+    """
     store = ox.Store()
     store.bulk_load(path=path, format=ox.RdfFormat.N_TRIPLES)
+    tau_pred = ox.NamedNode(config.EX + "tau")
+    quads = []
+    with open(os.path.join(os.path.dirname(path), "entities.csv"), encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            text = prompts.tau(tau_variant, row["label"], row["description_screened"], row["lead"])
+            quads.append(ox.Quad(ox.NamedNode(config.WD + row["qid"]), tau_pred, ox.Literal(text)))
+    store.bulk_extend(quads)
     return store
 
 def qid(node):

@@ -1,0 +1,354 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q2 --tau A --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q2-tauexp-tauA-1123153732 --yes --inputs notes/tau/sample_dev_q2.txt --instr F3
+
+triples loaded: 53963 | tau: A
+run id: g00-dev-q2-tauexp-tauA-1123153732 | model: local/qwen2.5:3b | instructions: F3
+candidate games: 300
+  [call 1] The Benza RPG: False
+  [call 2] Maid of Sker: False
+  [call 3] Convergence: A League of Legends Story: False
+  [call 4] The Coma: Cutting Class: False
+  [call 5] 30XX: False
+  [call 6] AI: The Somnium Files - nirvanA Initiative: True
+  [call 7] Rainbow Billy: The Curse of the Leviathan: False
+  [call 8] Flynn: Son of Crimson: False
+  [call 9] Bugs Bunny in Crazy Castle 4: False
+  [call 10] Never 7: The End of Infinity: True
+  [call 11] Iron Lung: False
+  [call 12] Sayonara O Oshiete: True
+  [call 13] Jump Bug: False
+  [call 14] Spriggan Mark 2: Re-Terraform Project: False
+  [call 15] No One Can Stop Mr: False
+  [call 16] Magical Drop: False
+  [call 17] Stargate: Timekeepers: False
+  [call 18] Rise of the Rōnin: False
+  [call 19] Yaku: Yūjō Dangi: True
+  [call 20] Tick! Tack!: True
+  [call 21] Shin Kamaitachi no Yoru: Jyuichi-nin-me no Suspect: True
+  [call 22] Sucker for Love: First Date: True
+  [call 23] EA Sports PGA Tour: False
+  [call 24] DarkStar One: False
+  [call 25] Majokko Daisakusen: Little Witching Mischiefs: True
+  [call 26] Lucky Luna: False
+  [call 27] The Light Brigade: True
+  [call 28] Klonoa: Door to Phantomile: False
+  [call 29] Goodboy Galaxy: False
+  [call 30] Motor Mash: False
+  [call 31] Tax Heaven 3000: False
+  [call 32] Icycle: On Thin Ice: False
+  [call 33] Crash Twinsanity: False
+  [call 34] Quick Step: False
+  [call 35] Saeko: Giantess Dating Sim: True
+  [call 36] Constance: False
+  [call 37] Tides of Tomorrow: False
+  [call 38] Duke Nukem: False
+  [call 39] Madden NFL 25: False
+  [call 40] Psychonauts: False
+  [call 41] LOK Digital: False
+  [call 42] Major Title: False
+  [call 43] Museum of All Things: True
+  [call 44] Neverway: False
+  [call 45] Nano Assault Neo: False
+  [call 46] Tomb Raider: Legacy of Atlantis: False
+  [call 47] Gex 3: Deep Pocket Gecko: False
+  [call 48] Bomb Jack Twin: False
+  [call 49] Lover Pretend: True
+  [call 50] H.E.R.O.: False
+  [call 51] Soldier of Fortune: False
+  [call 52] Teeworlds: False
+  [call 53] Aero Fighters Assault: False
+  [call 54] Out of the Shadows: False
+  [call 55] Haunting Ground: False
+  [call 56] Joust: False
+  [call 57] Cookie Run: False
+  [call 58] Netrek: False
+  [call 59] Harley-Davidson & L.A: False
+  [call 60] Samurai Taisen: True
+  [call 61] Sengoku Basara 4: False
+  [call 62] Table Top Racing: False
+  [call 63] War of the Vikings: False
+  [call 64] Chill Manor: False
+  [call 65] Child of Light: False
+  [call 66] Counter-Strike: False
+  [call 67] The Bugs Bunny Birthday Blowout: False
+  [call 68] Fast Food: False
+  [call 69] Stakes Winner: False
+  [call 70] Zarathrusta: False
+  [call 71] Lara Croft and the Temple of Osiris: False
+  [call 72] Strider: False
+  [call 73] Nintendogs + Cats: False
+  [call 74] Civilization Revolution 2: False
+  [call 75] Penumbra: Overture: False
+  [call 76] Rules!: False
+  [call 77] Drawn to Death: False
+  [call 78] Time Hollow: True
+  [call 79] Nebulus: False
+  [call 80] Bomberman GB: False
+  [call 81] The Last of Us: False
+  [call 82] CSI: Miami: False
+  [call 83] Langrisser: False
+  [call 84] Tokyo Dark: False
+  [call 85] First Kiss Story: True
+  [call 86] MegaRace: False
+  [call 87] Star Soldier: Vanishing Earth: False
+  [call 88] The Solus Project: False
+  [call 89] State of Emergency: False
+  [call 90] Dragon Ball Kai: Ultimate Butoden: False
+  [call 91] Tower of Heaven: False
+  [call 92] Wargame: European Escalation: False
+  [call 93] Daxter: False
+  [call 94] I Am Setsuna: False
+  [call 95] BattleTech: False
+  [call 96] F1 ROC: Race of Champions: False
+  [call 97] Beaky and the Egg Snatchers: False
+  [call 98] Zool: False
+  [call 99] EyeToy: Groove: False
+  [call 100] We Love Katamari: False
+  [call 101] Secret Agent Clank: False
+  [call 102] Highlander: The Last of the MacLeods: False
+  [call 103] Ty the Tasmanian Tiger 4: False
+  [call 104] Crash Nitro Kart: False
+  [call 105] Devil Daggers: False
+  [call 106] DEADBOLT: False
+  [call 107] Cool World: False
+  [call 108] Gods & Heroes: Rome Rising: False
+  [call 109] Ray Gigant: False
+  [call 110] Taz in Escape from Mars: False
+  [call 111] Gunvalkyrie: False
+  [call 112] Road Redemption: False
+  [call 113] Uşas: False
+  [call 114] NHL 2002: False
+  [call 115] TerraTech: False
+  [call 116] Anna's Quest: True
+  [call 117] Bandit Kings of Ancient China: False
+  [call 118] Tecmo World Wrestling: False
+  [call 119] Disciples: Sacred Lands: False
+  [call 120] Senren Banka: True
+  [call 121] Vendetta: False
+  [call 122] Godzilla: Kaijuu no Daishingeki: True
+  [call 123] Aero Fighters: False
+  [call 124] Imperium Romanum: False
+  [call 125] Mickey Mousecapade: False
+  [call 126] Europa Universalis IV: False
+  [call 127] E.V.O.: Search for Eden: True
+  [call 128] Sword of Vermilion: False
+  [call 129] Blaster Master 2: False
+  [call 130] Ratchet & Clank: Full Frontal Assault: False
+  [call 131] Tears to Tiara: False
+  [call 132] Beholder: False
+  [call 133] Amazing Tater: False
+  [call 134] Aero Fighters 2: False
+  [call 135] 101st Airborne In Normandy: False
+  [call 136] What Remains of Edith Finch: False
+  [call 137] Anetto Futatabi: False
+  [call 138] Pinkie: False
+  [call 139] Bakushō Jinsei 64: Mezase! Resort Ō: False
+  [call 140] Bionic Commando Rearmed: False
+  [call 141] Everything: False
+  [call 142] Blueberry Garden: False
+  [call 143] 100ft Robot Golf: False
+  [call 144] Nexus: The Jupiter Incident: False
+  [call 145] Sunday vs Magazine: Shūketsu! Chōjō Daikessen: False
+  [call 146] Grand Slam Tennis: False
+  [call 147] Last Resort: False
+  [call 148] NASCAR Thunder 2003: False
+  [call 149] FIFA Soccer 64: False
+  [call 150] Fantasy Empires: False
+  [call 151] My Talking Hank: Islands: False
+  [call 152] Juiced: Eliminator: False
+  [call 153] Last Action Hero: False
+  [call 154] Madden NFL '94: False
+  [call 155] Bubble Bath Babes: False
+  [call 156] F1 2000: False
+  [call 157] Alpine Racer: False
+  [call 158] Octodad: True
+  [call 159] Ace of Aces: False
+  [call 160] Strider 2: False
+  [call 161] Super Volleyball: False
+  [call 162] Singles 2: Triple Trouble: False
+  [call 163] Throne of Darkness: False
+  [call 164] Tintin on the Moon: False
+  [call 165] Sword of the Berserk: Guts' Rage: False
+  [call 166] Tigger's Honey Hunt: False
+  [call 167] Disney Sing It! – High School Musical 3: Senior Year: False
+  [call 168] The Great Battles of Alexander: False
+  [call 169] Lunar: Dragon Song: False
+  [call 170] Major League Baseball 2K7: False
+  [call 171] Outpost: False
+  [call 172] Space Rangers: False
+  [call 173] The 25th Ward: The Silver Case: False
+  [call 174] The Banner Saga: False
+  [call 175] Shrek: False
+  [call 176] Skulls of the Shogun: False
+  [call 177] Super Robot Taisen: Original Generation 2: False
+  [call 178] Super Robot Wars R: False
+  [call 179] White Knight Chronicles II: True
+  [call 180] Word Rescue: False
+  [call 181] Dustforce: False
+  [call 182] Top Gun: Combat Zones: False
+  [call 183] Steins;Gate Elite: True
+  [call 184] Stargate: False
+  [call 185] Battle Chef Brigade: False
+  [call 186] APOX: False
+  [call 187] A Kappa's Trail: False
+  [call 188] Acrojet: False
+  [call 189] Wheels of Aurelia: True
+  [call 190] Avalon Hill's Advanced Civilization: False
+  [call 191] Blasto: False
+  [call 192] BloodRayne: Betrayal: False
+  [call 193] Dark Ages: False
+  [call 194] Breach: False
+  [call 195] Build-A-Bear Workshop: False
+  [call 196] Ion Fury: False
+  [call 197] Crash: Mind over Mutant: False
+  [call 198] Emperor: Rise of the Middle Kingdom: False
+  [call 199] Culdcept Saga: False
+  [call 200] Chronovolt: False
+  [call 201] Cyberun: False
+  [call 202] Dark Horizon: False
+  [call 203] Darkwind: War on Wheels: False
+  [call 204] Death Jr: False
+  [call 205] Jak II: False
+  [call 206] F1 Race Stars: False
+  [call 207] Fade: False
+  [call 208] Flyable Heart: True
+  [call 209] Food Network: Cook or Be Cooked: False
+  [call 210] Generations Lost: False
+  [call 211] UFO: Aftermath: False
+  [call 212] Fu-un Bakumatsu-den: True
+  [call 213] Furifuri: True
+  [call 214] GT Advance 2: Rally Racing: False
+  [call 215] GT Advance 3: Pro Concept Racing: False
+  [call 216] Gem'X: False
+  [call 217] Judge Dredd: False
+  [call 218] Deathmaze 5000: False
+  [call 219] Sdorica: False
+  [call 220] GoatUp: False
+  [call 221] Circlet Princess: False
+  [call 222] Butterfly Soup: True
+  [call 223] Wandersong: False
+  [call 224] Ratchet & Clank: Going Commando: False
+  [call 225] High School Musical 2: Work This Out!: False
+  [call 226] Hoard: False
+  [call 227] Justice League Heroes: The Flash: False
+  [call 228] Crystar: False
+  [call 229] Icebreaker: False
+  [call 230] NFL GameDay 2004: False
+  [call 231] In the Hunt: False
+  [call 232] HarmoKnight: False
+  [call 233] Kid Vid Grid: False
+  [call 234] Juka and the Monophonic Menace: False
+  [call 235] Crystal Kingdom Dizzy: False
+  [call 236] King of Dragon Pass: False
+  [call 237] Knights Contract: False
+  [call 238] LIT: False
+  [call 239] Scooby-Doo! Unmasked: False
+  [call 240] Genshin Impact: False
+  [call 241] Unit 13: False
+  [call 242] Superman Returns: False
+  [call 243] Lux-Pain: True
+  [call 244] Mark Davis' The Fishing Master: False
+  [call 245] Shadows: Awakening: False
+  [call 246] Monato Esprit: False
+  [call 247] Mr: False
+  [call 248] Mr: False
+  [call 249] NCAA College Basketball 2K3: False
+  [call 250] Nike+ Kinect Training: False
+  [call 251] Off the Wall: False
+  [call 252] PQ: Practical Intelligence Quotient: False
+  [call 253] Pac-In-Time: True
+  [call 254] Patton Versus Rommel: False
+  [call 255] Postal 4: No Regerts: False
+  [call 256] People Power: The Game of Civil Resistance: False
+  [call 257] Pocket MuuMuu: False
+  [call 258] Puzzle De Pon: False
+  [call 259] RPG Maker 3: False
+  [call 260] Rebel Raiders: Operation Nighthawk: False
+  [call 261] Rugrats: Studio Tour: False
+  [call 262] Sanctum: False
+  [call 263] Scene It? Box Office Smash!: False
+  [call 264] Shaman King: Master of Spirits 2: True
+  [call 265] Shinseiki Odysselya: False
+  [call 266] Shrek n' Roll: False
+  [call 267] Manic Miner: False
+  [call 268] Steel Beasts: False
+  [call 269] Die Hard Trilogy: False
+  [call 270] Super Invader: False
+  [call 271] Superior Soldiers: False
+  [call 272] CityVille 2: False
+  [call 273] Target: Terror: False
+  [call 274] Rapid Racer: False
+  [call 275] Driver 76: False
+  [call 276] Time Leap: True
+  [call 277] Titan: False
+  [call 278] Touch My Katamari: True
+  [call 279] Truxton II: False
+  [call 280] Tunnels of Doom: False
+  [call 281] Un Juego de Huevos: False
+  [call 282] World League Soccer: False
+  [call 283] Worms?: False
+  [call 284] YU-NO: A girl who chants love at the bound of this world: True
+  [call 285] Counter-Strike: Global Offensive: False
+  [call 286] Night Call: False
+  [call 287] Remember 11: The Age of Infinity: True
+  [call 288] Toy Defense: False
+  [call 289] Crash of the Titans: False
+  [call 290] Clubhouse Games: 51 Worldwide Classics: False
+  [call 291] Desperados: Wanted Dead or Alive: False
+  [call 292] The Legend of Kage 2: False
+  [call 293] Looney Tunes: Galactic Sports: False
+  [call 294] Ever 17: The Out of Infinity: True
+  [call 295] Ape Escape: False
+  [call 296] Alpine Racer 3: False
+  [call 297] Jones in the Fast Lane: False
+  [call 298] Killer Instinct: False
+  [call 299] Candleman: False
+  [call 300] Your Turn To Die -Death Game By Majority-: False
+
+games accepted by the model: 35
+
+comparison with 'direct': true positives 30 | found 35 | correct 23
+  precision: 0.66   recall: 0.77
+  false positive: Majokko Daisakusen: Little Witching Mischiefs
+  false positive: The Light Brigade
+  false positive: Museum of All Things
+  false positive: Anna's Quest
+  false positive: Godzilla: Kaijuu no Daishingeki
+  false positive: E.V.O.: Search for Eden
+  false positive: Octodad
+  false positive: White Knight Chronicles II
+  false positive: Fu-un Bakumatsu-den
+  false positive: Pac-In-Time
+  false positive: Shaman King: Master of Spirits 2
+  false positive: Touch My Katamari
+  false negative: Tax Heaven 3000
+  false negative: Tokyo Dark
+  false negative: Ray Gigant
+  false negative: Tears to Tiara
+  false negative: The 25th Ward: The Silver Case
+  false negative: Night Call
+  false negative: Your Turn To Die -Death Game By Majority-
+
+comparison with 'path': true positives 30 | found 35 | correct 23
+  precision: 0.66   recall: 0.77
+  false positive: Majokko Daisakusen: Little Witching Mischiefs
+  false positive: The Light Brigade
+  false positive: Museum of All Things
+  false positive: Anna's Quest
+  false positive: Godzilla: Kaijuu no Daishingeki
+  false positive: E.V.O.: Search for Eden
+  false positive: Octodad
+  false positive: White Knight Chronicles II
+  false positive: Fu-un Bakumatsu-den
+  false positive: Pac-In-Time
+  false positive: Shaman King: Master of Spirits 2
+  false positive: Touch My Katamari
+  false negative: Tax Heaven 3000
+  false negative: Tokyo Dark
+  false negative: Ray Gigant
+  false negative: Tears to Tiara
+  false negative: The 25th Ward: The Silver Case
+  false negative: Night Call
+  false negative: Your Turn To Die -Death Game By Majority-
+
+function calls: 300 | broken answers: 0 | out of list: 0
+gateway requests: 300 | parse failures: 0 | time waiting for the model: 195s

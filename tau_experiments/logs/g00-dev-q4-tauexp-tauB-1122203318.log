@@ -1,0 +1,224 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q4 --tau B --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q4-tauexp-tauB-1122203318 --yes --inputs notes/tau/sample_dev_q4.txt
+
+triples loaded: 53963 | tau: B
+run id: g00-dev-q4-tauexp-tauB-1122203318 | model: local/qwen2.5:3b
+games to classify: 200
+  [call 1] Batman: The Brave and the Bold – The Videogame: 'action game'
+  [call 2] Pigs in Space: 'adventure video game'
+  [call 3] AI: The Somnium Files - nirvanA Initiative: 'adventure video game'
+  [call 4] Zaccaria Pinball: 'puzzle video game'
+  [call 5] We Are OFK: 'adventure video game'
+  [call 6] No One Can Stop Mr: 'puzzle video game'
+  [call 7] The Last of Us Part I: 'action-adventure game'
+  [call 8] Magical Drop: 'puzzle video game'
+  [call 9] Strikers 1945: "shoot 'em up"
+  [call 10] GreedFall: The Dying World: 'action game'
+  [call 11] Dallas Quest: 'adventure video game'
+  [call 12] LifeSigns: Surgical Unit: 'adventure video game'
+  [call 13] The Light Brigade: 'role-playing video game'
+  [call 14] Magical Drop F: 'puzzle video game'
+  [call 15] Blaster Master: Blasting Again: 'action-adventure game'
+  [call 16] Broken Spectre: 'adventure video game'
+  [call 17] The World Is Not Enough: 'first-person shooter'
+  [call 18] Motor Mash: 'racing video game'
+  [call 19] Moonstone Island: 'role-playing video game'
+  [call 20] Splitgate 2: 'first-person shooter'
+  [call 21] Snatcher: 'adventure video game'
+  [call 22] RoadCraft: 'action game'
+  [call 23] Neverway: 'role-playing video game'
+  [call 24] MTV: Club Dead: 'adventure video game'
+  [call 25] Deadpool VR: 'action-adventure game'
+  [call 26] Escape from Ever After: 'role-playing video game'
+  [call 27] Where's My Perry?: 'puzzle video game'
+  [call 28] Soldier of Fortune: 'first-person shooter'
+  [call 29] Monty Is Innocent: 'adventure video game'
+  [call 30] Out of the Shadows: 'action-adventure game'
+  [call 31] War of the Monsters: 'action game'
+  [call 32] Where in the World Is Carmen Sandiego?: 'adventure video game'
+  [call 33] Netrek: 'role-playing video game'
+  [call 34] Thrash Rally: 'racing video game'
+  [call 35] Mighty Switch Force! 2: 'puzzle video game'
+  [call 36] Table Top Racing: 'racing video game'
+  [call 37] Mercenary Kings: 'action game'
+  [call 38] War of the Vikings: 'action game'
+  [call 39] The Dark Eye: 'adventure video game'
+  [call 40] Stakes Winner: 'racing video game'
+  [call 41] Freedom Planet: 'action game'
+  [call 42] Modern Combat 5: Blackout: 'first-person shooter'
+  [call 43] The Legend of Spyro: Dawn of the Dragon: 'action-adventure game'
+  [call 44] Gunman Clive: 'action game'
+  [call 45] CSI: Crime Scene Investigation: 'action game'
+  [call 46] C.O.P: 'action-adventure game'
+  [call 47] Rules!: 'puzzle video game'
+  [call 48] Necrodome: 'first-person shooter'
+  [call 49] NASCAR 99: 'racing video game'
+  [call 50] Bomberman GB: 'puzzle video game'
+  [call 51] The Last of Us: 'action-adventure game'
+  [call 52] CSI: Miami: 'adventure video game'
+  [call 53] Lunar: The Silver Star: 'role-playing video game'
+  [call 54] Targhan: 'action game'
+  [call 55] MegaRace: 'racing video game'
+  [call 56] Urban Chaos: Riot Response: 'first-person shooter'
+  [call 57] TrackMania Turbo: 'racing video game'
+  [call 58] Lara Croft: Relic Run: 'action-adventure game'
+  [call 59] Primal Carnage: 'action game'
+  [call 60] Ni no Kuni: Wrath of the White Witch: 'role-playing video game'
+  [call 61] Fantasy Zone II: The Tears of Opa-Opa: "shoot 'em up"
+  [call 62] S.T.A.L.K.E.R.: Shadow of Chernobyl: 'first-person shooter'
+  [call 63] The Hunt for Red October: 'action game'
+  [call 64] ZombiU: 'action-adventure game'
+  [call 65] We Love Katamari: 'action game'
+  [call 66] DEADBOLT: 'action game'
+  [call 67] Metal Max 3: 'role-playing video game'
+  [call 68] Tom Clancy's Rainbow Six: Shadow Vanguard: 'first-person shooter'
+  [call 69] Anna's Quest: 'adventure video game'
+  [call 70] Samorost 2: 'adventure video game'
+  [call 71] Call of Juarez: The Cartel: 'first-person shooter'
+  [call 72] The Real Ghostbusters: "shoot 'em up"
+  [call 73] Juiced 2: Hot Import Nights: 'action game'
+  [call 74] Dead Space: Extraction: "shoot 'em up"
+  [call 75] Ty the Tasmanian Tiger 2: Bush Rescue: 'action game'
+  [call 76] Lumino City: 'puzzle video game'
+  [call 77] Kameo: 'action-adventure game'
+  [call 78] Beholder: 'adventure video game'
+  [call 79] Amazing Tater: 'action game'
+  [call 80] 007: The World Is Not Enough: 'first-person shooter'
+  [call 81] Ghost 1.0: 'action game'
+  [call 82] Kazooloo: 'action game'
+  [call 83] What Remains of Edith Finch: 'adventure video game'
+  [call 84] Archer Maclean's Mercury: 'puzzle video game'
+  [call 85] Bio-ship Paladin: "shoot 'em up"
+  [call 86] Bug Too!: 'action game'
+  [call 87] Vexx: 'role-playing video game'
+  [call 88] Dead Head Fred: 'action-adventure game'
+  [call 89] Last Resort: "shoot 'em up"
+  [call 90] Fantasy Empires: 'role-playing video game'
+  [call 91] Fantasy: 'action game'
+  [call 92] Gley Lancer: "shoot 'em up"
+  [call 93] Goldrunner: "shoot 'em up"
+  [call 94] Last Action Hero: 'action game'
+  [call 95] High School Musical 3: Senior Year Dance: 'action game'
+  [call 96] Deflektor: 'puzzle video game'
+  [call 97] Bubble Bath Babes: 'puzzle video game'
+  [call 98] Turok 3: Shadow of Oblivion: 'first-person shooter'
+  [call 99] Paperboy 2: 'action game'
+  [call 100] MegaRace 3: 'racing video game'
+  [call 101] ÜberSoldier: 'first-person shooter'
+  [call 102] Over Top: 'racing video game'
+  [call 103] Blast Corps: 'action game'
+  [call 104] Second Samurai: 'action game'
+  [call 105] Shin Onigashima: 'adventure video game'
+  [call 106] Space Wars: "shoot 'em up"
+  [call 107] Thunder Ceptor: 'first-person shooter'
+  [call 108] Troddlers: 'puzzle video game'
+  [call 109] DONKEY.BAS: 'racing video game'
+  [call 110] Sword of the Berserk: Guts' Rage: 'action game'
+  [call 111] Tigger's Honey Hunt: 'action game'
+  [call 112] Blake Stone: Planet Strike: 'first-person shooter'
+  [call 113] Carnivores Ice Age: 'action game'
+  [call 114] Ford Racing 2: 'racing video game'
+  [call 115] Soldier of Fortune II: Double Helix: 'first-person shooter'
+  [call 116] Lunar: Dragon Song: 'role-playing video game'
+  [call 117] Betrayal in Antara: 'role-playing video game'
+  [call 118] Space Rangers: 'role-playing video game'
+  [call 119] The 25th Ward: The Silver Case: 'adventure video game'
+  [call 120] Scarabaeus: 'adventure video game'
+  [call 121] Tempest 4000: "shoot 'em up"
+  [call 122] Ninja Hattori-kun: 'action game'
+  [call 123] Ace Driver: 'racing video game'
+  [call 124] Alex Rider: Stormbreaker: 'action game'
+  [call 125] Art of Murder: Hunt for the Puppeteer: 'adventure video game'
+  [call 126] B.A.T: 'adventure video game'
+  [call 127] Bear Bovver: 'action game'
+  [call 128] Beast Busters: "shoot 'em up"
+  [call 129] Alice Gear Aegis: 'action game'
+  [call 130] BloodRayne: Betrayal: 'action game'
+  [call 131] Bonnie's Bookstore: 'puzzle video game'
+  [call 132] Ion Fury: 'first-person shooter'
+  [call 133] Cap'n Magneto: 'adventure video game'
+  [call 134] Casper: 'action-adventure game'
+  [call 135] Cradle of Rome: 'puzzle video game'
+  [call 136] Dark Fusion: "shoot 'em up"
+  [call 137] Defcon 5: 'action-adventure game'
+  [call 138] Dennis the Menace: 'action game'
+  [call 139] Downtown Run: 'racing video game'
+  [call 140] Eggomania: 'action game'
+  [call 141] Food Fight: 'action game'
+  [call 142] Fu-un Bakumatsu-den: 'role-playing video game'
+  [call 143] Judge Dredd: "shoot 'em up"
+  [call 144] Sdorica: 'role-playing video game'
+  [call 145] Gloom 3: 'first-person shooter'
+  [call 146] Quarantine Circular: 'adventure video game'
+  [call 147] Hidden Invasion: 'action game'
+  [call 148] Super Fantasy Zone: "shoot 'em up"
+  [call 149] SpellForce: The Order of Dawn: 'action-adventure game'
+  [call 150] Hoshi wo Miru Hito: 'role-playing video game'
+  [call 151] Crash Team Racing Nitro-Fueled: 'racing video game'
+  [call 152] Duke Nukem: Land of the Babes: 'first-person shooter'
+  [call 153] The House of the Dead: "shoot 'em up"
+  [call 154] Super Star Soldier: "shoot 'em up"
+  [call 155] Crystal Kingdom Dizzy: 'adventure video game'
+  [call 156] Kwik Snax: 'puzzle video game'
+  [call 157] No More Heroes III: 'action-adventure game'
+  [call 158] Laura's Happy Adventures: 'adventure video game'
+  [call 159] ZeroRanger: "shoot 'em up"
+  [call 160] GhostWire: Tokyo: 'action-adventure game'
+  [call 161] Trailblazer: 'racing video game'
+  [call 162] Hell Let Loose: 'action game'
+  [call 163] Lightspeed: 'action-adventure game'
+  [call 164] Metal Gear Solid: 'role-playing video game'
+  [call 165] Tomb Raider: Legend: 'action-adventure game'
+  [call 166] Looney Tunes: Marvin Strikes Back!: 'action game'
+  [call 167] Lux-Pain: 'adventure video game'
+  [call 168] Little Town Hero: 'role-playing video game'
+  [call 169] Mr: 'puzzle video game'
+  [call 170] The Legend of Bum-bo: 'role-playing video game'
+  [call 171] Piglet's Big Game: 'action-adventure game'
+  [call 172] Pocket MuuMuu: 'action game'
+  [call 173] Blaster Master: Enemy Below: 'action game'
+  [call 174] Puzzle De Pon: 'puzzle video game'
+  [call 175] Rain: 'adventure video game'
+  [call 176] Sanvein: "shoot 'em up"
+  [call 177] Shaman King: Master of Spirits 2: 'role-playing video game'
+  [call 178] Shinseiki Odysselya: 'role-playing video game'
+  [call 179] Shrek: Treasure Hunt: 'adventure video game'
+  [call 180] Super Invader: 'action game'
+  [call 181] Tail of the Sun: 'action game'
+  [call 182] Touch My Katamari: 'action game'
+  [call 183] Auto Club Revolution: 'racing video game'
+  [call 184] Tube Slider: 'racing video game'
+  [call 185] Tunnels of Doom: 'role-playing video game'
+  [call 186] Ugly Americans: Apocalypsegeddon: "shoot 'em up"
+  [call 187] Worms?: 'puzzle video game'
+  [call 188] BloodRayne 2: 'action game'
+  [call 189] Black: 'first-person shooter'
+  [call 190] Heroes of the Lance: 'role-playing video game'
+  [call 191] The Legend of Kage 2: 'action-adventure game'
+  [call 192] Zaxxon: "shoot 'em up"
+  [call 193] Crimson Gem Saga: 'role-playing video game'
+  [call 194] Colour Cross: 'puzzle video game'
+  [call 195] Metal Gear Rising: Revengeance: 'action-adventure game'
+  [call 196] Spirit of the North: 'adventure video game'
+  [call 197] Alpine Racer 3: 'racing video game'
+  [call 198] Stray: 'adventure video game'
+  [call 199] Jones in the Fast Lane: 'role-playing video game'
+  [call 200] Shark Jaws: 'action game'
+
+Q4: label | true (single) | tp | fp | fn | F1
+  shoot 'em up | 23 | 18 | 2 | 5 | 0.84
+  first-person shooter | 19 | 15 | 2 | 4 | 0.83
+  adventure video game | 29 | 23 | 6 | 6 | 0.79
+  action game | 32 | 22 | 18 | 10 | 0.61
+  action-adventure game | 26 | 14 | 6 | 12 | 0.61
+  puzzle video game | 19 | 13 | 4 | 6 | 0.72
+  role-playing video game | 18 | 16 | 8 | 2 | 0.76
+  racing video game | 19 | 17 | 1 | 2 | 0.92
+
+  games evaluated: 200 (with a single true label: 185)
+  hit rate: 0.76
+  accuracy: 0.75
+  macro-F1: 0.76
+  answers out of list: 0 | empty/broken answers: 0
+
+function calls: 200 | broken answers: 0 | out of list: 0
+gateway requests: 200 | parse failures: 0 | time waiting for the model: 229s

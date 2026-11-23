@@ -5,6 +5,8 @@ and the criterion, and answer directly. Their mistakes are rule artifacts, not m
 """
 import re
 
+from . import prompts
+
 class FakeBackend:
     def filter(self, text, criterion):
         word = "visual novel" if "visual novel" in criterion.lower() else "platform"
@@ -28,7 +30,7 @@ class FakeBackend:
         return m.group(1).rstrip(".") if m else ""
 
     def join(self, text_left, text_right, criterion):
-        series = text_right.split(". ")[0].strip().lower()   # tau starts with the series name
+        series = prompts.tau_name(text_right).lower()        # tau starts with the series name
         return len(series) > 2 and series in text_left.lower()
 
 

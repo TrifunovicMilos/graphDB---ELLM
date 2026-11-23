@@ -1,0 +1,77 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q6 --tau A --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q6-tauexp-tauA-1123155906 --yes --n 5 --instr J3
+
+triples loaded: 53963 | tau: A
+run id: g00-dev-q6-tauexp-tauA-1123155906 | model: local/qwen2.5:3b | instructions: J3
+pairs to evaluate: 500
+  [call 21] YES: EA Sports College Football 25  ~  RealSports
+  [call 30] YES: Tomb Raider Reloaded  ~  Culdcept
+  [call 40] YES: Tomb Raider Reloaded  ~  Dishonored
+  [call 45] YES: Tomb Raider Reloaded  ~  Monster Energy Supercross: The Official Videogame
+  [call 60] YES: Tomb Raider Reloaded  ~  Dragon Ball Z: Budokai Tenkaichi
+  [call 91] YES: EA Sports College Football 25  ~  God Eater
+  [call 95] YES: Tomb Raider Reloaded  ~  God Eater
+  [call 100] YES: Tomb Raider Reloaded  ~  Shadow Warrior
+  [call 105] YES: Tomb Raider Reloaded  ~  Bayonetta
+  [call 115] YES: Tomb Raider Reloaded  ~  Dead Island
+  [call 141] YES: EA Sports College Football 25  ~  NFL GameDay
+  [call 166] YES: EA Sports College Football 25  ~  Luminous Arc
+  [call 176] YES: EA Sports College Football 25  ~  Picross
+  [call 180] YES: Tomb Raider Reloaded  ~  Picross
+  [call 196] YES: EA Sports College Football 25  ~  TimeSplitters
+  ... 200 calls
+  [call 216] YES: EA Sports College Football 25  ~  NHL FaceOff
+  [call 225] YES: Tomb Raider Reloaded  ~  Tom Clancy's Rainbow Six
+  [call 235] YES: Tomb Raider Reloaded  ~  Katamari
+  [call 240] YES: Tomb Raider Reloaded  ~  Ape Escape
+  [call 241] YES: EA Sports College Football 25  ~  Zoo Tycoon
+  [call 260] YES: Tomb Raider Reloaded  ~  Carmen Sandiego
+  [call 270] YES: Tomb Raider Reloaded  ~  BioShock
+  [call 285] YES: Tomb Raider Reloaded  ~  Super Robot Wars
+  [call 291] YES: EA Sports College Football 25  ~  Killer Instinct
+  [call 296] YES: EA Sports College Football 25  ~  Exile
+  ... 300 calls
+  [call 301] YES: EA Sports College Football 25  ~  EA Sports College Football
+  [call 306] YES: EA Sports College Football 25  ~  Agatha Christie
+  [call 310] YES: Tomb Raider Reloaded  ~  Agatha Christie
+  [call 326] YES: EA Sports College Football 25  ~  Lunar
+  [call 330] YES: Tomb Raider Reloaded  ~  Lunar
+  [call 336] YES: EA Sports College Football 25  ~  R.B.I
+  [call 338] YES: R.B.I  ~  R.B.I
+  [call 341] YES: EA Sports College Football 25  ~  Brothers in Arms
+  [call 344] YES: Brothers in Arms 2: Global Front  ~  Brothers in Arms
+  [call 345] YES: Tomb Raider Reloaded  ~  Brothers in Arms
+  [call 346] YES: EA Sports College Football 25  ~  Madden NFL
+  [call 366] YES: EA Sports College Football 25  ~  NHL
+  [call 381] YES: EA Sports College Football 25  ~  Beatmania IIDX
+  [call 391] YES: EA Sports College Football 25  ~  Taiko no Tatsujin
+  ... 400 calls
+  [call 416] YES: EA Sports College Football 25  ~  Thief
+  [call 435] YES: Tomb Raider Reloaded  ~  Deus Ex
+  [call 455] YES: Tomb Raider Reloaded  ~  Crash Bandicoot
+  [call 460] YES: Tomb Raider Reloaded  ~  Gex
+  [call 470] YES: Tomb Raider Reloaded  ~  Trainz
+  [call 475] YES: Tomb Raider Reloaded  ~  The King of Fighters
+  [call 490] YES: Tomb Raider Reloaded  ~  Tomb Raider
+  [call 496] YES: EA Sports College Football 25  ~  Metal Gear
+  [call 497] YES: Snake's Revenge  ~  Metal Gear
+  [call 500] YES: Tomb Raider Reloaded  ~  Metal Gear
+
+pairs accepted by the model: 49
+
+Q6: pairs evaluated 500 | true pairs among them 5 | accepted by the model 49 | correct 5
+  precision: 0.10   recall: 1.00   F1: 0.19
+
+  examples of FALSE POSITIVES (game ~ series):
+     Tomb Raider Reloaded ~ Culdcept
+     Tomb Raider Reloaded ~ Picross
+     Tomb Raider Reloaded ~ Dead Island
+     Tomb Raider Reloaded ~ Bayonetta
+     Tomb Raider Reloaded ~ Brothers in Arms
+     Tomb Raider Reloaded ~ Shadow Warrior
+     Tomb Raider Reloaded ~ God Eater
+     Tomb Raider Reloaded ~ Metal Gear
+
+  examples of FALSE NEGATIVES (game ~ series):
+
+function calls: 500 | broken answers: 0 | out of list: 0
+gateway requests: 500 | parse failures: 0 | time waiting for the model: 474s

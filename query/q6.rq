@@ -5,8 +5,8 @@ SELECT ?l ?r ?llabel ?rlabel WHERE {
   __VALUES_L__
   __VALUES_R__
   ?l ex:inSet ex:set-q6_left ; rdfs:label ?llabel .
-  OPTIONAL { ?l ex:lead ?llead }
+  ?l ex:tau ?ltau .
   ?r ex:inSet ex:set-q6_right ; rdfs:label ?rlabel .
-  OPTIONAL { ?r ex:lead ?rlead }
-  FILTER( ex:sem_join(?llabel, COALESCE(?llead, ""), ?rlabel, COALESCE(?rlead, ""), "the game is part of the series") )
+  ?r ex:tau ?rtau .
+  FILTER( ex:sem_join(?ltau, ?rtau, "the game is part of the series") )
 }

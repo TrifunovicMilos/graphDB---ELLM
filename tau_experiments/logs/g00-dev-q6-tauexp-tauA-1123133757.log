@@ -1,0 +1,48 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q6 --tau A --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q6-tauexp-tauA-1123133757 --yes --n 5 --instr J1
+
+triples loaded: 53963 | tau: A
+run id: g00-dev-q6-tauexp-tauA-1123133757 | model: local/qwen2.5:3b | instructions: J1
+pairs to evaluate: 500
+  [call 40] YES: Tomb Raider Reloaded  ~  Dishonored
+  [call 60] YES: Tomb Raider Reloaded  ~  Dragon Ball Z: Budokai Tenkaichi
+  ... 100 calls
+  ... 200 calls
+  [call 251] YES: EA Sports College Football 25  ~  Compati Hero Series
+  [call 260] YES: Tomb Raider Reloaded  ~  Carmen Sandiego
+  [call 270] YES: Tomb Raider Reloaded  ~  BioShock
+  [call 285] YES: Tomb Raider Reloaded  ~  Super Robot Wars
+  ... 300 calls
+  [call 301] YES: EA Sports College Football 25  ~  EA Sports College Football
+  [call 338] YES: R.B.I  ~  R.B.I
+  [call 344] YES: Brothers in Arms 2: Global Front  ~  Brothers in Arms
+  [call 355] YES: Tomb Raider Reloaded  ~  Civilization
+  [call 365] YES: Tomb Raider Reloaded  ~  Halo
+  ... 400 calls
+  [call 430] YES: Tomb Raider Reloaded  ~  Kingdom Hearts
+  [call 435] YES: Tomb Raider Reloaded  ~  Deus Ex
+  [call 440] YES: Tomb Raider Reloaded  ~  Saints Row
+  [call 455] YES: Tomb Raider Reloaded  ~  Crash Bandicoot
+  [call 475] YES: Tomb Raider Reloaded  ~  The King of Fighters
+  [call 490] YES: Tomb Raider Reloaded  ~  Tomb Raider
+  [call 500] YES: Tomb Raider Reloaded  ~  Metal Gear
+
+pairs accepted by the model: 18
+
+Q6: pairs evaluated 500 | true pairs among them 5 | accepted by the model 18 | correct 4
+  precision: 0.22   recall: 0.80   F1: 0.35
+
+  examples of FALSE POSITIVES (game ~ series):
+     Tomb Raider Reloaded ~ Halo
+     Tomb Raider Reloaded ~ Civilization
+     Tomb Raider Reloaded ~ Metal Gear
+     Tomb Raider Reloaded ~ The King of Fighters
+     Tomb Raider Reloaded ~ Super Robot Wars
+     Tomb Raider Reloaded ~ BioShock
+     Tomb Raider Reloaded ~ Carmen Sandiego
+     Tomb Raider Reloaded ~ Crash Bandicoot
+
+  examples of FALSE NEGATIVES (game ~ series):
+     Snake's Revenge ~ Metal Gear
+
+function calls: 500 | broken answers: 0 | out of list: 0
+gateway requests: 500 | parse failures: 0 | time waiting for the model: 390s

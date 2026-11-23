@@ -1,0 +1,77 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q1 --tau C-900 --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q1-tauexp-tauC-900-1122195128 --yes --n 50
+
+triples loaded: 53963 | tau: C-900
+run id: g00-dev-q1-tauexp-tauC-900-1122195128 | model: local/qwen2.5:3b
+candidate games: 50
+  [call 1] The Benza RPG: False
+  [call 2] Maid of Sker: False
+  [call 3] Ghost Lion: False
+  [call 4] Convergence: A League of Legends Story: False
+  [call 5] Mass Effect Legendary Edition: False
+  [call 6] Batman: The Brave and the Bold – The Videogame: True
+  [call 7] Nanotale: False
+  [call 8] Golden Axe: False
+  [call 9] The Coma: Cutting Class: False
+  [call 10] 30XX: True
+  [call 11] Pigs in Space: False
+  [call 12] Brunswick Circuit Pro Bowling 2: False
+  [call 13] Virtua Fighter: False
+  [call 14] OlliOlli World: False
+  [call 15] Easy Come Easy Golf: False
+  [call 16] Discoveries of the Deep: False
+  [call 17] Garden Story: False
+  [call 18] An Airport for Aliens Currently Run by Dogs: False
+  [call 19] The King of Fighters '97: False
+  [call 20] The King of Fighters '95: False
+  [call 21] Arsenal of Democracy: False
+  [call 22] AI: The Somnium Files - nirvanA Initiative: False
+  [call 23] Star Trek: The Game Show: False
+  [call 24] NHL 23: False
+  [call 25] Soulstice: False
+  [call 26] Rainbow Billy: The Curse of the Leviathan: True
+  [call 27] Flynn: Son of Crimson: True
+  [call 28] Captain Comic: True
+  [call 29] Poppy Playtime: False
+  [call 30] Bugs Bunny in Crazy Castle 4: True
+  [call 31] Hextech Mayhem: A League of Legends Story: False
+  [call 32] Zaccaria Pinball: False
+  [call 33] Nightingale: False
+  [call 34] Never 7: The End of Infinity: False
+  [call 35] Stacklands: False
+  [call 36] We Are OFK: False
+  [call 37] Predecessor: False
+  [call 38] Dragon Ball: Revenge of King Piccolo: True
+  [call 39] Iron Lung: False
+  [call 40] Drums Rock: False
+  [call 41] Sayonara O Oshiete: False
+  [call 42] Lips: False
+  [call 43] Jump Bug: True
+  [call 44] Spriggan Mark 2: Re-Terraform Project: False
+  [call 45] Escape Academy: False
+  [call 46] No One Can Stop Mr. Domino!: False
+  [call 47] Smuta: False
+  [call 48] The Last of Us Part I: False
+  [call 49] Magical Drop: False
+  [call 50] Frogun: False
+
+games accepted by the model: 8
+
+comparison with 'direct': true positives 7 | found 8 | correct 5
+  precision: 0.62   recall: 0.71
+  false positive: Batman: The Brave and the Bold – The Videogame
+  false positive: Captain Comic
+  false positive: Bugs Bunny in Crazy Castle 4
+  false negative: Convergence: A League of Legends Story
+  false negative: Frogun
+
+comparison with 'path': true positives 10 | found 8 | correct 6
+  precision: 0.75   recall: 0.60
+  false positive: Batman: The Brave and the Bold – The Videogame
+  false positive: Bugs Bunny in Crazy Castle 4
+  false negative: Convergence: A League of Legends Story
+  false negative: Hextech Mayhem: A League of Legends Story
+  false negative: No One Can Stop Mr. Domino!
+  false negative: Frogun
+
+function calls: 50 | broken answers: 0 | out of list: 0
+gateway requests: 50 | parse failures: 0 | time waiting for the model: 10s

@@ -1,0 +1,123 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q6 --tau A --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q6-tauexp-tauA-1122201333 --yes --n 5
+
+triples loaded: 53963 | tau: A
+run id: g00-dev-q6-tauexp-tauA-1122201333 | model: local/qwen2.5:3b
+pairs to evaluate: 500
+  [call 1] YES: EA Sports College Football 25  ~  GTI Club
+  [call 10] YES: Tomb Raider Reloaded  ~  Sky Force
+  [call 14] YES: Brothers in Arms 2: Global Front  ~  Deca Sports
+  [call 25] YES: Tomb Raider Reloaded  ~  RealSports
+  [call 40] YES: Tomb Raider Reloaded  ~  Dishonored
+  [call 41] YES: EA Sports College Football 25  ~  Monster Energy Supercross: The Official Videogame
+  [call 44] YES: Brothers in Arms 2: Global Front  ~  Monster Energy Supercross: The Official Videogame
+  [call 45] YES: Tomb Raider Reloaded  ~  Monster Energy Supercross: The Official Videogame
+  [call 60] YES: Tomb Raider Reloaded  ~  Dragon Ball Z: Budokai Tenkaichi
+  [call 62] YES: Snake's Revenge  ~  Rebelstar
+  [call 79] YES: Brothers in Arms 2: Global Front  ~  Reader Rabbit's Reading Development Library
+  [call 80] YES: Tomb Raider Reloaded  ~  Reader Rabbit's Reading Development Library
+  [call 94] YES: Brothers in Arms 2: Global Front  ~  God Eater
+  [call 95] YES: Tomb Raider Reloaded  ~  God Eater
+  [call 100] YES: Tomb Raider Reloaded  ~  Shadow Warrior
+  [call 105] YES: Tomb Raider Reloaded  ~  Bayonetta
+  [call 129] YES: Brothers in Arms 2: Global Front  ~  Modern Combat
+  [call 141] YES: EA Sports College Football 25  ~  NFL GameDay
+  [call 144] YES: Brothers in Arms 2: Global Front  ~  NFL GameDay
+  [call 145] YES: Tomb Raider Reloaded  ~  NFL GameDay
+  [call 155] YES: Tomb Raider Reloaded  ~  Drakengard
+  [call 156] YES: EA Sports College Football 25  ~  Counter-Strike
+  [call 159] YES: Brothers in Arms 2: Global Front  ~  Counter-Strike
+  [call 169] YES: Brothers in Arms 2: Global Front  ~  Luminous Arc
+  [call 170] YES: Tomb Raider Reloaded  ~  Luminous Arc
+  [call 175] YES: Tomb Raider Reloaded  ~  Boktai
+  [call 179] YES: Brothers in Arms 2: Global Front  ~  Picross
+  ... 200 calls
+  [call 224] YES: Brothers in Arms 2: Global Front  ~  Tom Clancy's Rainbow Six
+  [call 229] YES: Brothers in Arms 2: Global Front  ~  Samurai Shodown
+  [call 234] YES: Brothers in Arms 2: Global Front  ~  Katamari
+  [call 235] YES: Tomb Raider Reloaded  ~  Katamari
+  [call 239] YES: Brothers in Arms 2: Global Front  ~  Ape Escape
+  [call 240] YES: Tomb Raider Reloaded  ~  Ape Escape
+  [call 257] YES: Snake's Revenge  ~  Carmen Sandiego
+  [call 260] YES: Tomb Raider Reloaded  ~  Carmen Sandiego
+  [call 266] YES: EA Sports College Football 25  ~  BioShock
+  [call 269] YES: Brothers in Arms 2: Global Front  ~  BioShock
+  [call 270] YES: Tomb Raider Reloaded  ~  BioShock
+  [call 284] YES: Brothers in Arms 2: Global Front  ~  Super Robot Wars
+  [call 285] YES: Tomb Raider Reloaded  ~  Super Robot Wars
+  [call 294] YES: Brothers in Arms 2: Global Front  ~  Killer Instinct
+  ... 300 calls
+  [call 301] YES: EA Sports College Football 25  ~  EA Sports College Football
+  [call 303] YES: R.B.I  ~  EA Sports College Football
+  [call 304] YES: Brothers in Arms 2: Global Front  ~  EA Sports College Football
+  [call 306] YES: EA Sports College Football 25  ~  Agatha Christie
+  [call 309] YES: Brothers in Arms 2: Global Front  ~  Agatha Christie
+  [call 310] YES: Tomb Raider Reloaded  ~  Agatha Christie
+  [call 324] YES: Brothers in Arms 2: Global Front  ~  Baldur's Gate
+  [call 325] YES: Tomb Raider Reloaded  ~  Baldur's Gate
+  [call 336] YES: EA Sports College Football 25  ~  R.B.I
+  [call 338] YES: R.B.I  ~  R.B.I
+  [call 339] YES: Brothers in Arms 2: Global Front  ~  R.B.I
+  [call 340] YES: Tomb Raider Reloaded  ~  R.B.I
+  [call 344] YES: Brothers in Arms 2: Global Front  ~  Brothers in Arms
+  [call 345] YES: Tomb Raider Reloaded  ~  Brothers in Arms
+  [call 346] YES: EA Sports College Football 25  ~  Madden NFL
+  [call 350] YES: Tomb Raider Reloaded  ~  Madden NFL
+  [call 351] YES: EA Sports College Football 25  ~  Civilization
+  [call 354] YES: Brothers in Arms 2: Global Front  ~  Civilization
+  [call 355] YES: Tomb Raider Reloaded  ~  Civilization
+  [call 361] YES: EA Sports College Football 25  ~  Halo
+  [call 364] YES: Brothers in Arms 2: Global Front  ~  Halo
+  [call 365] YES: Tomb Raider Reloaded  ~  Halo
+  [call 369] YES: Brothers in Arms 2: Global Front  ~  NHL
+  [call 370] YES: Tomb Raider Reloaded  ~  NHL
+  [call 390] YES: Tomb Raider Reloaded  ~  Kunio-kun
+  [call 394] YES: Brothers in Arms 2: Global Front  ~  Taiko no Tatsujin
+  ... 400 calls
+  [call 410] YES: Tomb Raider Reloaded  ~  Summon Night
+  [call 414] YES: Brothers in Arms 2: Global Front  ~  Duke Nukem
+  [call 426] YES: EA Sports College Football 25  ~  Kingdom Hearts
+  [call 428] YES: R.B.I  ~  Kingdom Hearts
+  [call 429] YES: Brothers in Arms 2: Global Front  ~  Kingdom Hearts
+  [call 430] YES: Tomb Raider Reloaded  ~  Kingdom Hearts
+  [call 434] YES: Brothers in Arms 2: Global Front  ~  Deus Ex
+  [call 435] YES: Tomb Raider Reloaded  ~  Deus Ex
+  [call 439] YES: Brothers in Arms 2: Global Front  ~  Saints Row
+  [call 440] YES: Tomb Raider Reloaded  ~  Saints Row
+  [call 441] YES: EA Sports College Football 25  ~  Gran Turismo
+  [call 443] YES: R.B.I  ~  Gran Turismo
+  [call 444] YES: Brothers in Arms 2: Global Front  ~  Gran Turismo
+  [call 445] YES: Tomb Raider Reloaded  ~  Gran Turismo
+  [call 449] YES: Brothers in Arms 2: Global Front  ~  Clock Tower
+  [call 450] YES: Tomb Raider Reloaded  ~  Clock Tower
+  [call 455] YES: Tomb Raider Reloaded  ~  Crash Bandicoot
+  [call 457] YES: Snake's Revenge  ~  Gex
+  [call 460] YES: Tomb Raider Reloaded  ~  Gex
+  [call 469] YES: Brothers in Arms 2: Global Front  ~  Trainz
+  [call 470] YES: Tomb Raider Reloaded  ~  Trainz
+  [call 475] YES: Tomb Raider Reloaded  ~  The King of Fighters
+  [call 484] YES: Brothers in Arms 2: Global Front  ~  StarCraft
+  [call 485] YES: Tomb Raider Reloaded  ~  StarCraft
+  [call 490] YES: Tomb Raider Reloaded  ~  Tomb Raider
+  [call 495] YES: Tomb Raider Reloaded  ~  Max Payne
+  [call 497] YES: Snake's Revenge  ~  Metal Gear
+  [call 500] YES: Tomb Raider Reloaded  ~  Metal Gear
+
+pairs accepted by the model: 95
+
+Q6: pairs evaluated 500 | true pairs among them 5 | accepted by the model 95 | correct 5
+  precision: 0.05   recall: 1.00   F1: 0.10
+
+  examples of FALSE POSITIVES (game ~ series):
+     Tomb Raider Reloaded ~ RealSports
+     Tomb Raider Reloaded ~ Boktai
+     Tomb Raider Reloaded ~ Luminous Arc
+     Tomb Raider Reloaded ~ Kunio-kun
+     Tomb Raider Reloaded ~ Sky Force
+     Tomb Raider Reloaded ~ Drakengard
+     Tomb Raider Reloaded ~ NHL
+     Tomb Raider Reloaded ~ NFL GameDay
+
+  examples of FALSE NEGATIVES (game ~ series):
+
+function calls: 500 | broken answers: 0 | out of list: 0
+gateway requests: 500 | parse failures: 0 | time waiting for the model: 429s

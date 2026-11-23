@@ -12,11 +12,19 @@ Before using the gateway: `start server` in the gateway folder (see README).
 """
 import argparse
 import os
+import runpy
+import tempfile
 import time
 
-from semops import config, engine, fake, operators, pipelines, runfiles
+from semops import config, engine, fake, operators, pipelines, prompts, runfiles
 from semops.gateway import Gateway, GatewayError
 from semops.operators import ModelCallError
+
+# The experiments in tau_experiments/ register the tau and instruction variants they tested this way;
+# without the variable only the frozen ones (prompts.PROMPT_VERSION) exist.
+if os.environ.get("SEMOPS_VARIANTS"):
+    runpy.run_path(os.environ["SEMOPS_VARIANTS"])
+INSTR_IDS = prompts.instruction_ids()
 
 p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 p.add_argument("query_id", choices=sorted(config.QUERY_KIND), help="Q1..Q6 or Q8")
@@ -25,6 +33,11 @@ p.add_argument("--set", dest="set_name", choices=["dev", "eval"], default="dev")
 p.add_argument("--data-root", default="data/games", help="folder holding dev/ and eval/")
 p.add_argument("--llm", choices=["fake", "gateway"], default="fake")
 p.add_argument("--model", default=config.DEFAULT_MODEL, help="public model name in the gateway's models.toml")
+p.add_argument("--tau", choices=sorted(prompts.TAU_BUILDERS), default=config.DEFAULT_TAU,
+               help="text of an entity (default %(default)s, the frozen one)")
+p.add_argument("--instr", choices=sorted(INSTR_IDS),
+               help="instructions for the operator of this query (default: the frozen ones, prompts.INSTR_DEFAULT)")
+p.add_argument("--inputs", help="file with one game code (Q...) per line: run only on these (tests, no --write-run)")
 p.add_argument("--n", type=int, default=0, help="only the first N inputs (0 = all)")
 p.add_argument("--m", type=int, default=0, help="Q6 tests only: M series on the right (0 = all)")
 p.add_argument("--plan", default="ref", help="plan id for the run file (ref = reference plan)")
@@ -41,28 +54,53 @@ a.repo_root = os.getcwd()
 a.data_dir = os.path.join(a.data_root, a.set_name)
 a.query_file = a.query_file or config.QUERY_FILES.get(a.query_id)
 kind = config.QUERY_KIND[a.query_id]
+operator = {"extract": "map"}.get(kind, kind)
+if a.instr and INSTR_IDS[a.instr] != operator:
+    raise SystemExit("--instr %s is for %s, but %s is a %s query" % (a.instr, INSTR_IDS[a.instr], a.query_id, operator))
+a.instr = a.instr or prompts.INSTR_DEFAULT.get(operator, "")
+frozen = a.tau == config.DEFAULT_TAU and a.instr == prompts.INSTR_DEFAULT.get(operator, "")
 stamp = time.strftime("%m%d%H%M%S")
-a.run_id = a.run_id or f"{config.GROUP_ID}-{a.set_name}-{a.query_id.lower()}-{a.plan}-{stamp}"
+a.run_id = a.run_id or f"{config.GROUP_ID}-{a.set_name}-{a.query_id.lower()}-{a.plan}-tau{a.tau}{'-' + a.instr if a.instr else ''}-{stamp}"
 
 if a.write_run and a.llm != "gateway" and kind != "count":
     raise SystemExit("--write-run needs --llm gateway (the calls come from the gateway log)")
+if a.inputs:
+    # restrict the query to the listed games: a temporary copy of the .rq with VALUES ?e { ... }
+    if a.write_run:
+        raise SystemExit("--inputs is for tests: it cannot be used with --write-run")
+    with open(a.inputs, encoding="utf-8") as f:
+        codes = [x.strip() for x in f if x.strip() and not x.startswith("#")]
+    with open(a.query_file, encoding="utf-8") as f:
+        text = f.read()
+    marker = "{ SELECT ?e WHERE {"
+    if kind == "join":
+        a.left_inputs = codes                       # the join takes these games on the left side
+    elif marker not in text:
+        raise SystemExit("--inputs needs a query with '%s' (Q1, Q2, Q4, Q5) or the join" % marker)
+    else:
+        values = " VALUES ?e { " + " ".join("<%s%s>" % (config.WD, c) for c in codes) + " }"
+        tmp = tempfile.NamedTemporaryFile("w", suffix=".rq", delete=False, encoding="utf-8")
+        tmp.write(text.replace(marker, marker + values, 1))
+        tmp.close()
+        a.query_file = tmp.name
 if a.write_run and a.m:
     raise SystemExit("--write-run cannot be used with --m (a restricted right side is not a valid sample)")
 if a.llm == "gateway" and kind != "count" and kind != "join" and (a.n == 0 or a.n > 100) and not a.yes:
     if input("Many model calls. Continue? (y/n) ") != "y":
         raise SystemExit("cancelled")
 
-store = engine.load_graph(os.path.join(a.data_dir, "graph.nt"))
-print("triples loaded:", len(store))
+store = engine.load_graph(os.path.join(a.data_dir, "graph.nt"), a.tau)
+print("triples loaded:", len(store), "| tau:", a.tau)
 
 stats = operators.Stats()
 gateway = None
 if a.llm == "fake":
     backend = fake.FakeBackend()
 else:
-    gateway = Gateway(a.model, a.run_id)
-    backend = operators.GatewayBackend(gateway)
-    print("run id:", a.run_id, "| model:", a.model)
+    gateway = Gateway(a.model, a.run_id, namespace=f"{config.CACHE_NAMESPACE}-tau{a.tau}")
+    backend = operators.GatewayBackend(gateway, {operator: prompts.INSTRUCTIONS[operator][a.instr]}
+                                       if a.instr else None)
+    print("run id:", a.run_id, "| model:", a.model, "| instructions:", a.instr)
 
 try:
     if kind == "filter":
@@ -90,5 +128,7 @@ if a.write_run:
         a.repo_root, query_id=a.query_id, data_set=a.set_name, run_id=a.run_id, plan_id=a.plan,
         model=a.model, answer=out.answer, n_input=out.n_input, sample=out.sample,
         started=out.started, finished=out.finished, wallclock=out.finished - out.started,
-        prices_path=a.prices, reference_run_id=a.reference_run, source_run_id=a.source_run, labels=out.labels)
+        prices_path=a.prices, reference_run_id=a.reference_run, source_run_id=a.source_run, labels=out.labels,
+        plan_params={"prompt_version": prompts.PROMPT_VERSION if frozen else "experimental",
+                     "tau": a.tau, "instructions": a.instr})
     print("run file written:", path)

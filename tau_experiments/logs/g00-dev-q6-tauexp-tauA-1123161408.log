@@ -1,0 +1,37 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q6 --tau A --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q6-tauexp-tauA-1123161408 --yes --n 5 --instr J5
+
+triples loaded: 53963 | tau: A
+run id: g00-dev-q6-tauexp-tauA-1123161408 | model: local/qwen2.5:3b | instructions: J5
+pairs to evaluate: 500
+  [call 21] YES: EA Sports College Football 25  ~  RealSports
+  ... 100 calls
+  ... 200 calls
+  [call 251] YES: EA Sports College Football 25  ~  Compati Hero Series
+  ... 300 calls
+  [call 301] YES: EA Sports College Football 25  ~  EA Sports College Football
+  [call 336] YES: EA Sports College Football 25  ~  R.B.I
+  [call 338] YES: R.B.I  ~  R.B.I
+  [call 344] YES: Brothers in Arms 2: Global Front  ~  Brothers in Arms
+  ... 400 calls
+  [call 428] YES: R.B.I  ~  Kingdom Hearts
+  [call 443] YES: R.B.I  ~  Gran Turismo
+  [call 490] YES: Tomb Raider Reloaded  ~  Tomb Raider
+  [call 497] YES: Snake's Revenge  ~  Metal Gear
+  ... 500 calls
+
+pairs accepted by the model: 10
+
+Q6: pairs evaluated 500 | true pairs among them 5 | accepted by the model 10 | correct 5
+  precision: 0.50   recall: 1.00   F1: 0.67
+
+  examples of FALSE POSITIVES (game ~ series):
+     R.B.I. Baseball 14 ~ Gran Turismo
+     R.B.I. Baseball 14 ~ Kingdom Hearts
+     EA Sports College Football 25 ~ RealSports
+     EA Sports College Football 25 ~ R.B.I. Baseball
+     EA Sports College Football 25 ~ Compati Hero Series
+
+  examples of FALSE NEGATIVES (game ~ series):
+
+function calls: 500 | broken answers: 0 | out of list: 0
+gateway requests: 500 | parse failures: 0 | time waiting for the model: 469s

@@ -1,9 +1,9 @@
 """The semantic operators, as functions that Oxigraph calls from inside a SPARQL query.
 
 How it fits together:
-  .rq query    FILTER( ex:sem_filter(?label, ?lead, "the game is a platformer") )
+  .rq query    FILTER( ex:sem_filter(?tau, "the game is a platformer") )
   Oxigraph     calls our Python function once per row (this is `custom_functions`)
-  operators    builds tau, asks a *backend*, returns the answer to Oxigraph
+  operators    passes the text (tau, built at load time) to a *backend*, returns the answer to Oxigraph
   backend      decides: GatewayBackend (real model), FakeBackend or AlwaysTrueBackend (fake.py)
 
 A backend has four methods: filter, classify, map, join. They return the decision, or
@@ -46,26 +46,29 @@ def raise_if_failed(stats):
 class GatewayBackend:
     """Real model, through the gateway. `gateway` is a semops.gateway.Gateway."""
 
-    def __init__(self, gateway):
+    def __init__(self, gateway, instructions=None):
+        """`instructions`: {operator: text} overriding prompts.INSTR_DEFAULT (see run.py --instr)."""
         self.gw = gateway
+        self.instr = {op: prompts.INSTRUCTIONS[op][i] for op, i in prompts.INSTR_DEFAULT.items()}
+        self.instr.update(instructions or {})
 
     def filter(self, text, criterion):
-        v = self.gw.ask(prompts.INSTR_FILTER, prompts.filter_text(criterion, text),
+        v = self.gw.ask(self.instr["filter"], prompts.filter_text(criterion, text),
                         "boolean_answer", prompts.BOOL_SCHEMA)
         return None if v is None else v["answer"]
 
     def classify(self, text, criterion, labels):
-        v = self.gw.ask(prompts.INSTR_CLASSIFY, prompts.classify_text(criterion, text, labels),
+        v = self.gw.ask(self.instr["classify"], prompts.classify_text(criterion, text, labels),
                         "genre_label", prompts.classify_schema(labels))
         return None if v is None else v["label"]
 
     def map(self, text, criterion):
-        v = self.gw.ask(prompts.INSTR_MAP, prompts.map_text(criterion, text),
+        v = self.gw.ask(self.instr["map"], prompts.map_text(criterion, text),
                         "extracted_value", prompts.MAP_SCHEMA)
         return None if v is None else v["value"]
 
     def join(self, text_left, text_right, criterion):
-        v = self.gw.ask(prompts.INSTR_JOIN, prompts.join_text(criterion, text_left, text_right),
+        v = self.gw.ask(self.instr["join"], prompts.join_text(criterion, text_left, text_right),
                         "boolean_answer", prompts.BOOL_SCHEMA)
         return None if v is None else v["answer"]
 
@@ -96,24 +99,24 @@ def make_functions(backend, stats, quiet=False):
             print("\n  !! ERROR in the model call, the remaining calls are skipped:", stats.first_error)
             return FAILED
 
-    def log(label, answer):
+    def log(text, answer):
         if not quiet:
-            print(f"  [call {stats.calls}] {label}: {answer!r}")
+            print(f"  [call {stats.calls}] {prompts.tau_name(text)}: {answer!r}")
 
-    def sem_filter(label, lead, criterion):
+    def sem_filter(tau, criterion):
         stats.calls += 1
-        ok = guarded(lambda: backend.filter(prompts.tau(label.value, lead.value), criterion.value))
+        ok = guarded(lambda: backend.filter(tau.value, criterion.value))
         if ok is FAILED:
             return _bool(False)
         if ok is None:                     # broken answer: counted apart, treated as "no"
             stats.broken += 1
             ok = False
-        log(label.value, ok)
+        log(tau.value, ok)
         return _bool(ok)
 
-    def sem_classify(label, lead, criterion):
+    def sem_classify(tau, criterion):
         stats.calls += 1
-        answer = guarded(lambda: backend.classify(prompts.tau(label.value, lead.value), criterion.value, labels))
+        answer = guarded(lambda: backend.classify(tau.value, criterion.value, labels))
         if answer is FAILED:
             return ox.Literal("")
         if answer is None:
@@ -121,31 +124,30 @@ def make_functions(backend, stats, quiet=False):
             answer = ""
         elif answer != "" and answer.strip().rstrip(".").lower() not in config.NAME_TO_QID:
             stats.out_of_list += 1
-        log(label.value, answer)
+        log(tau.value, answer)
         return ox.Literal(answer)
 
-    def sem_map(label, lead, criterion):
+    def sem_map(tau, criterion):
         stats.calls += 1
-        answer = guarded(lambda: backend.map(prompts.tau(label.value, lead.value), criterion.value))
+        answer = guarded(lambda: backend.map(tau.value, criterion.value))
         if answer is FAILED:
             return ox.Literal("")
         if answer is None:
             stats.broken += 1
             answer = ""
-        log(label.value, answer)
+        log(tau.value, answer)
         return ox.Literal(answer)
 
-    def sem_join(llabel, llead, rlabel, rlead, criterion):
+    def sem_join(ltau, rtau, criterion):
         stats.calls += 1
-        ok = guarded(lambda: backend.join(prompts.tau(llabel.value, llead.value),
-                                          prompts.tau(rlabel.value, rlead.value), criterion.value))
+        ok = guarded(lambda: backend.join(ltau.value, rtau.value, criterion.value))
         if ok is FAILED:
             return _bool(False)
         if ok is None:
             stats.broken += 1
             ok = False
         if ok and not quiet:
-            print(f"  [call {stats.calls}] YES: {llabel.value}  ~  {rlabel.value}")
+            print(f"  [call {stats.calls}] YES: {prompts.tau_name(ltau.value)}  ~  {prompts.tau_name(rtau.value)}")
         elif stats.calls % 100 == 0 and not quiet:
             print(f"  ... {stats.calls} calls")
         return _bool(ok)

@@ -1,0 +1,54 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q4 --tau C --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q4-tauexp-tauC-1122194950 --yes --n 30
+
+triples loaded: 53963 | tau: C
+run id: g00-dev-q4-tauexp-tauC-1122194950 | model: local/qwen2.5:3b
+games to classify: 30
+  [call 1] Ghost Lion: 'role-playing video game'
+  [call 2] Convergence: A League of Legends Story: 'adventure video game'
+  [call 3] Batman: The Brave and the Bold – The Videogame: 'action game'
+  [call 4] Pigs in Space: 'adventure video game'
+  [call 5] Garden Story: 'action game'
+  [call 6] An Airport for Aliens Currently Run by Dogs: 'adventure video game'
+  [call 7] AI: The Somnium Files - nirvanA Initiative: 'adventure video game'
+  [call 8] Poppy Playtime: 'puzzle video game'
+  [call 9] Bugs Bunny in Crazy Castle 4: 'action game'
+  [call 10] Zaccaria Pinball: 'puzzle video game'
+  [call 11] We Are OFK: 'adventure video game'
+  [call 12] Drums Rock: 'action game'
+  [call 13] Escape Academy: 'puzzle video game'
+  [call 14] No One Can Stop Mr. Domino!: 'puzzle video game'
+  [call 15] The Last of Us Part I: 'action-adventure game'
+  [call 16] Magical Drop: 'puzzle video game'
+  [call 17] Crazy Taxi: 'racing video game'
+  [call 18] The Godfather: 'action-adventure game'
+  [call 19] You Suck at Parking: 'action game'
+  [call 20] Kokuga: "shoot 'em up"
+  [call 21] Strikers 1945: "shoot 'em up"
+  [call 22] GreedFall: The Dying World: 'action game'
+  [call 23] Black Future '88: 'role-playing video game'
+  [call 24] Vietcong: 'first-person shooter'
+  [call 25] Pentapus: "shoot 'em up"
+  [call 26] Dallas Quest: 'adventure video game'
+  [call 27] LifeSigns: Surgical Unit: 'adventure video game'
+  [call 28] Vengeful Guardian: Moonrider: 'action game'
+  [call 29] DarkStar One: 'action game'
+  [call 30] Bucket Detective: 'adventure video game'
+
+Q4: label | true (single) | tp | fp | fn | F1
+  shoot 'em up | 4 | 3 | 0 | 1 | 0.86
+  first-person shooter | 1 | 1 | 0 | 0 | 1.00
+  adventure video game | 6 | 6 | 2 | 0 | 0.86
+  action game | 5 | 3 | 3 | 2 | 0.55
+  action-adventure game | 3 | 2 | 0 | 1 | 0.80
+  puzzle video game | 3 | 3 | 1 | 0 | 0.86
+  role-playing video game | 2 | 1 | 0 | 1 | 0.67
+  racing video game | 2 | 1 | 0 | 1 | 0.67
+
+  games evaluated: 30 (with a single true label: 26)
+  hit rate: 0.73
+  accuracy: 0.77
+  macro-F1: 0.78
+  answers out of list: 0 | empty/broken answers: 0
+
+function calls: 30 | broken answers: 0 | out of list: 0
+gateway requests: 30 | parse failures: 0 | time waiting for the model: 24s

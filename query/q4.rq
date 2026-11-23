@@ -3,6 +3,6 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?e ?label ?genre WHERE {
   { SELECT ?e WHERE { ?e a ex:VideoGame ; ex:inSet ex:set-q4_input . } ORDER BY ?e LIMIT __N__ }
   ?e rdfs:label ?label .
-  OPTIONAL { ?e ex:lead ?lead }
-  BIND( ex:sem_classify(?label, COALESCE(?lead, ""), "the genre that describes the game best") AS ?genre )
+  ?e ex:tau ?tau .
+  BIND( ex:sem_classify(?tau, "the genre that describes the game best") AS ?genre )
 }

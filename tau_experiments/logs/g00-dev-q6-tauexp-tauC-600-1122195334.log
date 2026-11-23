@@ -1,0 +1,75 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q6 --tau C-600 --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q6-tauexp-tauC-600-1122195334 --yes --n 1
+
+triples loaded: 53963 | tau: C-600
+run id: g00-dev-q6-tauexp-tauC-600-1122195334 | model: local/qwen2.5:3b
+pairs to evaluate: 100
+  [call 4] YES: Tomb Raider Reloaded  ~  PlanetSide
+  [call 9] YES: Tomb Raider Reloaded  ~  Monster Energy Supercross: The Official Videogame
+  [call 10] YES: Tomb Raider Reloaded  ~  Horizon
+  [call 11] YES: Tomb Raider Reloaded  ~  Mushroom Men
+  [call 12] YES: Tomb Raider Reloaded  ~  Dragon Ball Z: Budokai Tenkaichi
+  [call 17] YES: Tomb Raider Reloaded  ~  Heavy Fire
+  [call 19] YES: Tomb Raider Reloaded  ~  God Eater
+  [call 20] YES: Tomb Raider Reloaded  ~  Shadow Warrior
+  [call 21] YES: Tomb Raider Reloaded  ~  Bayonetta
+  [call 23] YES: Tomb Raider Reloaded  ~  Dead Island
+  [call 27] YES: Tomb Raider Reloaded  ~  Sniper Elite
+  [call 29] YES: Tomb Raider Reloaded  ~  NFL GameDay
+  [call 30] YES: Tomb Raider Reloaded  ~  Borderlands
+  [call 32] YES: Tomb Raider Reloaded  ~  Counter-Strike
+  [call 33] YES: Tomb Raider Reloaded  ~  BlazBlue
+  [call 34] YES: Tomb Raider Reloaded  ~  Luminous Arc
+  [call 36] YES: Tomb Raider Reloaded  ~  Picross
+  [call 40] YES: Tomb Raider Reloaded  ~  TimeSplitters
+  [call 44] YES: Tomb Raider Reloaded  ~  NHL FaceOff
+  [call 49] YES: Tomb Raider Reloaded  ~  Zoo Tycoon
+  [call 52] YES: Tomb Raider Reloaded  ~  Carmen Sandiego
+  [call 53] YES: Tomb Raider Reloaded  ~  Wild Arms
+  [call 57] YES: Tomb Raider Reloaded  ~  Super Robot Wars
+  [call 59] YES: Tomb Raider Reloaded  ~  Killer Instinct
+  [call 61] YES: Tomb Raider Reloaded  ~  EA Sports College Football
+  [call 63] YES: Tomb Raider Reloaded  ~  Konami Antiques MSX Collection
+  [call 64] YES: Tomb Raider Reloaded  ~  .hack//G.U.
+  [call 66] YES: Tomb Raider Reloaded  ~  Lunar
+  [call 68] YES: Tomb Raider Reloaded  ~  R.B.I. Baseball
+  [call 69] YES: Tomb Raider Reloaded  ~  Brothers in Arms
+  [call 70] YES: Tomb Raider Reloaded  ~  Madden NFL
+  [call 71] YES: Tomb Raider Reloaded  ~  Civilization
+  [call 72] YES: Tomb Raider Reloaded  ~  Monopoly
+  [call 73] YES: Tomb Raider Reloaded  ~  Halo
+  [call 77] YES: Tomb Raider Reloaded  ~  Beatmania IIDX
+  [call 82] YES: Tomb Raider Reloaded  ~  Summon Night
+  [call 83] YES: Tomb Raider Reloaded  ~  Duke Nukem
+  [call 84] YES: Tomb Raider Reloaded  ~  Thief
+  [call 86] YES: Tomb Raider Reloaded  ~  Kingdom Hearts
+  [call 87] YES: Tomb Raider Reloaded  ~  Deus Ex
+  [call 89] YES: Tomb Raider Reloaded  ~  Gran Turismo
+  [call 91] YES: Tomb Raider Reloaded  ~  Crash Bandicoot
+  [call 92] YES: Tomb Raider Reloaded  ~  Gex
+  [call 94] YES: Tomb Raider Reloaded  ~  Trainz
+  [call 95] YES: Tomb Raider Reloaded  ~  The King of Fighters
+  [call 96] YES: Tomb Raider Reloaded  ~  Ace Combat
+  [call 97] YES: Tomb Raider Reloaded  ~  StarCraft
+  [call 98] YES: Tomb Raider Reloaded  ~  Tomb Raider
+  [call 99] YES: Tomb Raider Reloaded  ~  Max Payne
+  [call 100] YES: Tomb Raider Reloaded  ~  Metal Gear
+
+pairs accepted by the model: 50
+
+Q6: pairs evaluated 100 | true pairs among them 1 | accepted by the model 50 | correct 1
+  precision: 0.02   recall: 1.00   F1: 0.04
+
+  examples of FALSE POSITIVES (game ~ series):
+     Tomb Raider Reloaded ~ PlanetSide
+     Tomb Raider Reloaded ~ Picross
+     Tomb Raider Reloaded ~ Luminous Arc
+     Tomb Raider Reloaded ~ Beatmania IIDX
+     Tomb Raider Reloaded ~ BlazBlue
+     Tomb Raider Reloaded ~ Counter-Strike
+     Tomb Raider Reloaded ~ Borderlands
+     Tomb Raider Reloaded ~ NFL GameDay
+
+  examples of FALSE NEGATIVES (game ~ series):
+
+function calls: 100 | broken answers: 0 | out of list: 0
+gateway requests: 100 | parse failures: 0 | time waiting for the model: 54s

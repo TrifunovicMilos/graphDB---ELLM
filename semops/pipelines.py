@@ -98,6 +98,8 @@ def run_join(opts, store, backend, stats):
     gt = _gt(opts, "q6")
     true_pairs = metrics.read_pairs(gt) if gt else None
     left, right = engine.pick_sample(store, opts.n, opts.m, true_pairs)
+    if getattr(opts, "left_inputs", None):          # run.py --inputs: only these games on the left
+        left = opts.left_inputs
     candidates = engine.run_pairs(store, opts.query_file, operators.make_functions(
         fake.AlwaysTrueBackend(), operators.Stats(), quiet=True), left, right)
     print("pairs to evaluate:", len(candidates))

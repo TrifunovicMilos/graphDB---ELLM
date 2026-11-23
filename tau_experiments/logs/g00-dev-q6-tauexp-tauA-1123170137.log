@@ -1,0 +1,31 @@
+/Users/laszlokosa/Desktop/UniPD CE/Semester 3/Graph databases/Official Project/.venv/bin/python run.py Q6 --tau A --set dev --llm gateway --model local/qwen2.5:3b --run-id g00-dev-q6-tauexp-tauA-1123170137 --yes --inputs notes/instr/holdout_dev_q6_left.txt --instr J5
+
+triples loaded: 53963 | tau: A
+run id: g00-dev-q6-tauexp-tauA-1123170137 | model: local/qwen2.5:3b | instructions: J5
+pairs to evaluate: 500
+  ... 100 calls
+  [call 126] YES: Modern Combat 2: Black Pegasus  ~  Modern Combat
+  [call 130] YES: Modern Combat 3: Fallen Nation  ~  Modern Combat
+  ... 200 calls
+  [call 234] YES: Katamari Damacy Rolling Live  ~  Katamari
+  ... 300 calls
+  [call 328] YES: Lunar: Silver Star Story Complete  ~  Lunar
+  [call 341] YES: Modern Combat 2: Black Pegasus  ~  Brothers in Arms
+  [call 345] YES: Modern Combat 3: Fallen Nation  ~  Brothers in Arms
+  ... 400 calls
+  [call 437] YES: Saints Row  ~  Saints Row
+  ... 500 calls
+
+pairs accepted by the model: 7
+
+Q6: pairs evaluated 500 | true pairs among them 5 | accepted by the model 7 | correct 5
+  precision: 0.71   recall: 1.00   F1: 0.83
+
+  examples of FALSE POSITIVES (game ~ series):
+     Modern Combat 3: Fallen Nation ~ Brothers in Arms
+     Modern Combat 2: Black Pegasus ~ Brothers in Arms
+
+  examples of FALSE NEGATIVES (game ~ series):
+
+function calls: 500 | broken answers: 0 | out of list: 0
+gateway requests: 500 | parse failures: 0 | time waiting for the model: 368s

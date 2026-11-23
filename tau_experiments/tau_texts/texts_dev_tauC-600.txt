@@ -1,0 +1,140 @@
+tau C-600, dev set: 20 Q1 positives (seed 42). Check by hand that no field we ADD names
+the hidden genre. Naming it in the label or the lead is legitimate evidence.
+
+====================================================================================================
+Q42266798  (hidden genre: puzzle video game, platformer)
+
+Name: Typoman
+Description: 2015 video game
+Article: Typoman is an independent video game developed by German indie studio Brainseed Factory for Nintendo Switch, Wii U, Xbox One, PlayStation 4 and PC, and mobile. The game follows a hero named HERO who crafts words to alter the environment around him.
+
+====================================================================================================
+Q1142344  (hidden genre: platformer)
+
+Name: Crystal Caves
+Description: 1991 video game
+Article: Crystal Caves is a side-scrolling platform game developed and published by Apogee Software for IBM PC compatibles. The game is divided into three episodes with the first distributed as shareware and the other two available for purchase. Designer Frank Maddin said the method worked "pretty well" for the time. Crystal Caves was inspired by the 1982 game Miner 2049er for Atari 8-bit computers.
+
+====================================================================================================
+Q507396  (hidden genre: platformer)
+
+Name: Crash: Mind over Mutant
+Description: 2008 video game
+Article: Crash: Mind over Mutant is a 2008 platform game developed by Radical Entertainment for the PlayStation 2, PlayStation Portable (ported by Virtuos), Wii and Xbox 360. It was released in North America on October 7, 2008, and was later released in Europe and Australia on October 30 and October 31, respectively. A separate version for the Nintendo DS was developed by Tose.
+
+====================================================================================================
+Q126390778  (hidden genre: 3D platform game)
+
+Name: Frogun Encore
+Description: 2024 video game
+Article: Frogun Encore is a 2024 3D platform video game developed by Molegato and published by Top Hat Studios. It is a sequel to 2022's Frogun. In the game, players control Renata and her friend Jake as they work to thwart the evil Fly Bois. It was released for consoles on June 25, 2024.
+
+====================================================================================================
+Q2645302  (hidden genre: platformer)
+
+Name: Ty the Tasmanian Tiger
+Article: Ty the Tasmanian Tiger (stylized as TY the Tasmanian Tiger) is a 2002 platform video game developed by Krome Studios and published by Electronic Arts for the GameCube, PlayStation 2 and Xbox systems. The game was remastered in HD for Windows and was made available through Steam in 2016. A remastered version published by Krome Studios was also developed for the Nintendo Switch, PlayStation 4, Xbox One, and Xbox Series X/S. The Nintendo Switch version released in North America in March 2020, and in Europe, Australia, and New Zealand the following month.
+
+====================================================================================================
+Q2414752  (hidden genre: platformer)
+
+Name: Toy Story
+Description: 1995 video game
+Article: Toy Story is a 1995 platform game developed by Traveller's Tales and published by Disney Interactive for the Sega Genesis, Super Nintendo Entertainment System, Game Boy, and Microsoft Windows. It is based on the 1995 computer-animated Pixar film of the same name.
+
+====================================================================================================
+Q2292483  (hidden genre: third-person shooter, platformer)
+
+Name: Ratchet & Clank: Up Your Arsenal
+Article: Ratchet & Clank: Up Your Arsenal (known as Ratchet & Clank 3 in Europe and Africa and Ratchet & Clank 3: Up Your Arsenal in Australia) is a 2004 third-person shooter platform video game developed by Insomniac Games and published by Sony Computer Entertainment for the PlayStation 2. It is the third installment in the Ratchet & Clank series. The gameplay is similar to previous games in the series and introduce features such as a new control system and more levels in the upgrade system for weapons.
+
+====================================================================================================
+Q1316321  (hidden genre: platformer)
+
+Name: Klonoa 2: Lunatea's Veil
+Description: 2001 video game
+Article: Klonoa 2: Lunatea's Veil is a 2001 platform game developed and published by Namco for the PlayStation 2. It is the third installment in the Klonoa series and a sequel to Klonoa: Moonlight Museum (1999). The game puts players in the role of Klonoa, who, along with a new cast of friends, has stumbled into another adventure, this time to save the world of Lunatea and help unveil the mysteries of the enchanted world. The game features gameplay inspired by the original Klonoa with 2D side-scrolling in a 3D-rendered environment.
+
+====================================================================================================
+Q124333359  (hidden genre: platformer)
+
+Name: Speedy Gonzales: Aztec Adventure
+Description: 1999 video game developed by SunSoft
+Article: Speedy Gonzales: Aztec Adventure is a 2000 video game developed and published by Sunsoft for the Game Boy Color. The game is a licensed platformer depicting the Looney Tunes animated cartoon character Speedy Gonzales, who the player controls across six stages set in Mexico. Upon release, Speedy Gonzales received average to mixed reviews, with critics praising the visual presentation of the game but faulting its platform gameplay mechanics, difficulty, and performance.
+
+====================================================================================================
+Q1089369  (hidden genre: Metroidvania)
+
+Name: Captain Comic
+Description: 1988 video game
+Article: The Adventures of Captain Comic is a platform game written by Michael Denio for MS-DOS compatible operating systems and released as shareware in 1988. It was one of the first side-scrolling games for IBM PC compatibles comparable to those on the Nintendo Entertainment System, and it presaged a trend of shareware platform games in the early 1990s. A version for the NES was later published by Color Dreams as an unlicensed title. A sequel, Captain Comic II: Fractured Reality, was released in 1990.
+
+====================================================================================================
+Q93360657  (hidden genre: adventure video game, platformer)
+
+Name: Spirit of the North
+Description: 2019 video game
+Article: Spirit of the North is a third-person adventure game developed by Infuse Studio and published by Merge Games. It was released on November 1, 2019 for PlayStation 4, then on May 7, 2020 for Windows and Nintendo Switch. It was re-released as Spirit of the North: Enhanced Edition for PlayStation 5 and Xbox Series X/S on November 26, 2020 and June 29, 2021 respectively. The game contains no dialog or narrative, and is about a fox that gains the powers of a spirit after collapsing from exhaustion.
+
+====================================================================================================
+Q12057242  (hidden genre: platformer)
+
+Name: Super Robin Hood
+Description: 1985 video game
+Article: Super Robin Hood is a 1986 platform game developed by brothers Andrew and Philip Oliver and published by Codemasters as a budget title for home computers in the United Kingdom. Based on the folklore of Robin Hood, the game takes place in the Sheriff of Nottingham's castle where Maid Marian is held captive. The player controls the eponymous hero, encountering enemies and navigating through the castle's ladders and platforms to rescue Marian.
+
+====================================================================================================
+Q869532  (hidden genre: platformer)
+
+Name: Crash of the Titans
+Description: 2007 video game
+Article: Crash of the Titans is a 2007 platform game developed by Radical Entertainment and published by Vivendi Games for the PlayStation 2, PlayStation Portable, Wii and Xbox 360. The sixth mainline game in the Crash Bandicoot series, it was the last to be published by Vivendi Games before Activision merged with the company the following year. Amaze Entertainment developed two separate versions of the game: one for the Nintendo DS and one for the Game Boy Advance.
+
+====================================================================================================
+Q18150896  (hidden genre: platformer)
+
+Name: GoatUp 2
+Description: 2013 video game
+Article: GoatUp 2 is a platform game for iOS developed by Jeff Minter and Ivan Zorzin of Llamasoft and published via the App Store in 2013. It is the only Llamasoft game so far to include a level editor. The title screen gives the game's full name as "Buck! The story of GoatUp 2", a reference to the arcade game Rainbow Islands, and the game's interface and appearance resemble that platform with the exception that the font is the same Namco Galaga font used in Super Ox Wars.
+
+====================================================================================================
+Q5196783  (hidden genre: platformer)
+
+Name: Cuthbert Goes Digging
+Description: 1983 video game
+Article: Cuthbert Goes Digging is a 1983 video game for the Dragon 32 home computer. Written by Steve Bak at Microdeal, the game features the hero Cuthbert, who also appears in Cuthbert Goes Walkabout and Cuthbert in the Mines. In the game, the player guides Cuthbert through levels of girders, avoiding 'moronians' fatal to the touch. The gameplay closely resembles that of Space Panic: Cuthbert defeats moronians by digging holes, causing them to fall through the platforms.
+
+====================================================================================================
+Q544667  (hidden genre: cinematic platformer)
+
+Name: Heart of Darkness
+Article: Heart of Darkness is a cinematic platform video game developed by French developer Amazing Studio for the PlayStation and Microsoft Windows. The game places players in the role of a child named Andy as he attempts to rescue his dog who has been kidnapped by shadow-like spectres. The game has about half an hour of storytelling cinematic sequences and thousands of 2D animated frames, and uses pre-rendered background scenery. The game was supervised by game developer Éric Chahi, known for Another World, this time with a team of artists and developers.
+
+====================================================================================================
+Q526700  (hidden genre: post-apocalyptic video game, science fiction video game, cyberpunk video game, platformer)
+
+Name: Jak II
+Description: 2003 video game
+Article: Jak II is a 2003 platform video game developed by Naughty Dog and published by Sony Computer Entertainment for the PlayStation 2 (PS2). A sequel to Jak and Daxter: The Precursor Legacy (2001), it places the protagonist Jak in the dystopian Haven City, where he pursues vengeance against the tyrannical Baron Praxis after two years of torturous experiments. The gameplay features a seamless open world driven by non-linear missions, melee combat complemented by a firearm, and vehicular travel by hoverboard or hovercars.
+
+====================================================================================================
+Q943377  (hidden genre: platformer)
+
+Name: Spyro: Enter the Dragonfly
+Description: 2002 video game
+Article: Spyro: Enter the Dragonfly is a 2002 platform game developed by Equinoxe Digital Entertainment and Check Six Studios and published by Universal Interactive for the PlayStation 2 and GameCube. The first mainline installment in the Spyro series not to be developed by original developer Insomniac Games, it follows the titular purple dragon as he attempts to rescue magical dragonflies from the clutches of Ripto.
+
+====================================================================================================
+Q2276685  (hidden genre: platformer)
+
+Name: Secret Agent Clank
+Description: 2008 video game
+Article: Secret Agent Clank is a 2008 platform video game developed by High Impact Games and published by Sony Computer Entertainment for the PlayStation Portable. It is the second spin-off of the Ratchet & Clank series. A port developed by Sanzaru Games for the PlayStation 2 was released the following year, making it the last installment of the series to be released on the console. The theme of Secret Agent Clank is a spoof of the James Bond series, and is based on the Secret Agent Clank element of Up Your Arsenal (2004).
+
+====================================================================================================
+Q2330052  (hidden genre: platformer)
+
+Name: Billy Hatcher and the Giant Egg
+Description: 2003 video game
+Article: Billy Hatcher and the Giant Egg is a platform game developed by Sonic Team and published by Sega for the GameCube in 2003. A port for Microsoft Windows was released in Europe in 2006 by Mindscape. The game received mixed reviews.
+

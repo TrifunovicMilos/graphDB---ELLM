@@ -34,8 +34,21 @@ Everything is measured: quality against the official solutions, cost in model ca
 
 - Reference runs (`plan ref`) on dev and eval for Q1-Q6, with a cloud model (gateway route + credits).
 - Optimisations: cascade (proxy + oracle), blocking for joins, block prompts; frontier of at least three operating points.
-- Better τ and prompts; error analysis. Q5 matching beyond identical names.
+- Error analysis; Q5 matching beyond identical names. (τ and prompts: done, v1 frozen, see `tau_experiments/`.)
 - The 6 own queries (M2) with answer key under `keys/`, leakage check; design note and report.
+
+## τ and prompts: version v1 (frozen)
+
+What the model sees was chosen with two experiments on the development set (3B model, temperature 0); the method, all results and the reasons are in [`tau_experiments/README.md`](tau_experiments/README.md).
+
+| Part | Frozen choice |
+|---|---|
+| τ (text of an entity) | **A**: label + Wikipedia lead, cut at 1,200 characters (`prompts.tau_label_lead`) |
+| Filter instructions (Q1, Q2, Q3) | **F0**: the original text |
+| Join instructions (Q6, Q7) | **J5**: strict; "if neither text mentions the other item, answer false" |
+| Classify / map (Q4 / Q5) | **C0 / M0**: the original texts |
+
+τ is built once per entity when the graph is loaded and stored as `ex:tau`; the queries pass `?tau` to the operators. The criterion ℓ always goes in verbatim (`Criterion: <ℓ>`). Every run file records `prompt_version` (`v1`, or `experimental` when `--tau` / `--instr` select something else). Changing any of these texts means a new version, new reference runs and a new cascade calibration.
 
 ## Repository layout
 
@@ -46,7 +59,7 @@ Everything is measured: quality against the official solutions, cost in model ca
 ├── run.py               the program to launch
 ├── semops/
 │   ├── config.py        group id, gateway address, criteria, label set
-│   ├── prompts.py       τ, instructions, JSON schemas, prompt builders
+│   ├── prompts.py       frozen τ and instructions (v1), JSON schemas, prompt builders
 │   ├── gateway.py       HTTP client of the LLM gateway
 │   ├── fake.py          free fake models, for testing without any model
 │   ├── operators.py     sem_filter / classify / map / join as Oxigraph functions
@@ -54,7 +67,8 @@ Everything is measured: quality against the official solutions, cost in model ca
 │   ├── metrics.py       evaluation against gt/*.csv
 │   ├── runfiles.py      official run files
 │   └── pipelines.py     one function per query type
-├── query/               q1 q2 q4 q5 q6 and the three q3 plans (.rq)
+├── query/               q1 q2 q4 q5 q6 and the q3 plans (.rq)
+├── tau_experiments/     how τ and the instructions were chosen: scripts, results.csv, logs, README
 ├── runs/                official run files (committed)
 ├── keys/                answer keys of our own queries (committed)
 └── data/games/          NOT committed: course data package (dev/, eval/)
@@ -78,6 +92,7 @@ Everything is measured: quality against the official solutions, cost in model ca
 python run.py <Q1|Q2|Q3|Q4|Q5|Q6|Q8> [--llm fake|gateway] [--model NAME] [--set dev|eval]
               [--n N] [--m M] [--plan ID] [--run-id ID] [--reference-run ID]
               [--source-run ID] [--query-file FILE] [--write-run] [--yes]
+              [--tau ID] [--instr ID] [--inputs FILE]
 ```
 
 | Option | Meaning |
@@ -90,6 +105,8 @@ python run.py <Q1|Q2|Q3|Q4|Q5|Q6|Q8> [--llm fake|gateway] [--model NAME] [--set 
 | `--source-run` | Q8: run id of the Q1 run whose decisions are reused |
 | `--write-run` | write `runs/games/<set>/<query>/<run_id>.json` (needs `--llm gateway`, no `--m`) |
 | `--yes` | skip the confirmation on big runs |
+| `--tau`, `--instr` | another τ / instructions than the frozen ones (only those registered by `tau_experiments/variants.py`; experiments only) |
+| `--inputs` | file with one game code per line: run only on these games (tests and experiments; not with `--write-run`) |
 
 Examples:
 
@@ -111,7 +128,7 @@ run.py
  ├─ loads the graph (graph.nt) into Oxigraph
  ├─ runs the query once with an "always true" backend (free): the candidates
  └─ runs the query for real: Oxigraph calls our sem_* function per row
-        tau(row) -> text -> instructions + "Criterion: ℓ" + text + JSON schema
+        ex:tau of the row (built at load time) -> instructions + "Criterion: ℓ" + τ + JSON schema
         -> POST /v1/responses on the gateway (cache, validation, retries, log)
     then evaluates, and with --write-run builds the run file:
         answer (SPARQL JSON) + calls read from the gateway log + price list -> semops_check.write_run_file
@@ -119,7 +136,7 @@ run.py
 
 Notes:
 - `parse_ok: false` from the gateway means the model failed the schema; it is counted as a broken answer, not as a "no".
-- Cache hits and tokens are only in the gateway log. The cache is the gateway's (namespace `llme-v1`, see `config.py`); `run_id` is not part of the cache key.
+- Cache hits and tokens are only in the gateway log. The cache is the gateway's (namespace `llme-v1-tau<τ>`, see `config.py` and `run.py`); `run_id` is not part of the cache key.
 - The run id should be unique per execution (the default adds a timestamp): the log is read by run id.
 - Each query reads its fixed criterion from the `.rq` file; the instructions around it, τ and the model are ours.
 
@@ -128,6 +145,6 @@ Notes:
 - Group id (`g..`) to be set in `config.py`.
 - Which model is the oracle for the official runs, and prices of the cloud models in `prices.json`.
 - P178 (developer) in τ: allowed by the property catalogue but it is the Q5 solution; not used for now.
-- τ text: `ex:lead` as in `graph.nt`; comparison with `description_screened` still to do.
-- Q6 with the small local model accepts unrelated series (precision 0.21 on an easy sample): to improve with prompt, cascade or blocking.
+- `query/q3_naive.rq` is the default Q3 file in `config.py` but does not exist: `python run.py Q3` fails unless `--query-file` is given.
+- Q6: with the J5 instructions the 3B model reaches F1 0.74 on 10 dev games (it was 0.14); the wrong pairs left share a publisher with the game. Next: blocking (O2) or the cascade's oracle.
 - How cache hits count in the official costs: the checker records `cache_hit` for each call.
