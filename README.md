@@ -22,7 +22,7 @@ Everything is measured: quality against the official solutions, cost in model ca
 | Query | Status |
 |---|---|
 | Q1, Q2 filters | done |
-| Q3 restriction + filter | done, 3 plans (`q3_naive`, `q3_struttura_prima`, `q3_semantica_prima`) |
+| Q3 restriction + filter | done, 3 plans: `q3_struttura_prima` (default, reference: 259 calls on dev), `q3_naive` (one call per row: 272), `q3_semantica_prima` (1,000) |
 | Q4 classification | done (the 8 labels are an enum of the answer schema) |
 | Q5 extraction | done, simple matching |
 | Q6 join 50 x 100 | done, nested loop (5,000 pairs) |
@@ -142,9 +142,8 @@ Notes:
 
 ## Open points
 
-- Group id (`g..`) to be set in `config.py`.
+- Group id: the checker accepts only `g` + two digits (e.g. `g07`); our group name ELLM is not a valid id. Ask the course for the number and set it in `config.py` (or `SEMOPS_GROUP_ID`).
 - Which model is the oracle for the official runs, and prices of the cloud models in `prices.json`.
 - P178 (developer) in τ: allowed by the property catalogue but it is the Q5 solution; not used for now.
-- `query/q3_naive.rq` is the default Q3 file in `config.py` but does not exist: `python run.py Q3` fails unless `--query-file` is given.
 - Q6: with the J5 instructions the 3B model reaches F1 0.74 on 10 dev games (it was 0.14); the wrong pairs left share a publisher with the game. Next: blocking (O2) or the cascade's oracle.
 - How cache hits count in the official costs: the checker records `cache_hit` for each call.

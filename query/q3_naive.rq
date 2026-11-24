@@ -1,0 +1,15 @@
+PREFIX ex:   <http://example.org/semop/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wd:   <http://www.wikidata.org/entity/>
+PREFIX wdt:  <http://www.wikidata.org/prop/direct/>
+# Naive plan of Q3: the structural pattern and the semantic filter in the same group, with no DISTINCT.
+# A game with two Japanese developers gives two rows, so the filter can be evaluated once per ROW
+# (272 rows for 259 games on the dev set). Same answer set as the other two plans, more function calls:
+# it is the "naive" shape of the evaluation-order study. --n is not supported here (no subquery to limit).
+SELECT ?e ?label WHERE {
+  ?e a ex:VideoGame ; ex:inSet ex:set-main ; wdt:P178 ?dev .
+  ?dev wdt:P17 wd:Q17 .
+  ?e rdfs:label ?label .
+  ?e ex:tau ?tau .
+  FILTER( ex:sem_filter(?tau, "the game is a platformer") )
+}

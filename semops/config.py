@@ -27,7 +27,10 @@ WD = "http://www.wikidata.org/entity/"  # prefix of Wikidata entities
 # kind of operator of each common query, and the file with its default query
 QUERY_KIND = {"Q1": "filter", "Q2": "filter", "Q3": "filter", "Q4": "classify",
               "Q5": "extract", "Q6": "join", "Q8": "count"}
-QUERY_FILES = {"Q1": "query/q1.rq", "Q2": "query/q2.rq", "Q3": "query/q3_naive.rq",
+# Q3's default is the reference plan (one call per distinct game, 259 on dev). The other two plans of
+# the evaluation-order study are chosen with --query-file: query/q3_naive.rq (one call per row, 272)
+# and query/q3_semantica_prima.rq (semantic filter on all 1,000 main-set games first).
+QUERY_FILES = {"Q1": "query/q1.rq", "Q2": "query/q2.rq", "Q3": "query/q3_struttura_prima.rq",
                "Q4": "query/q4.rq", "Q5": "query/q5.rq", "Q6": "query/q6.rq"}
 # set of the data package that holds the inputs of each query (ex:inSet ex:set-<name>)
 INPUT_SET = {"Q1": "main", "Q2": "main", "Q3": "main", "Q4": "q4_input", "Q5": "main", "Q8": "main"}
