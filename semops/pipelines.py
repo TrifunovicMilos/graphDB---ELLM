@@ -52,9 +52,17 @@ def run_filter(opts, store, backend, stats):
     gt = _gt(opts, opts.query_id.lower())
     if gt:
         metrics.evaluate(gt, candidates, accepted_map)
-    members = engine.set_members(store, config.INPUT_SET[opts.query_id])
-    sample = _sample_codes(store, config.INPUT_SET[opts.query_id], opts.n)
-    return Outcome(runfiles.answer_filter(accepted_map), opts.n or len(members),
+    if opts.query_id == "Q3":
+        # Q3's inputs are the games that pass the structural restriction (259 on dev), not the whole
+        # main set: that is what the checker expects, whatever the plan (naive, structure-first or
+        # semantic-first). The candidates are exactly those games (one entry per game, no duplicates).
+        n_input = len(candidates)
+        sample = sorted(candidates) if opts.n else None
+    else:
+        members = engine.set_members(store, config.INPUT_SET[opts.query_id])
+        n_input = opts.n or len(members)
+        sample = _sample_codes(store, config.INPUT_SET[opts.query_id], opts.n)
+    return Outcome(runfiles.answer_filter(accepted_map), n_input,
                    runfiles.sample_of(sample), t0, t1, accepted=set(accepted_map))
 
 
