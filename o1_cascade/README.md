@@ -25,6 +25,38 @@ Not decided yet (calibration on dev, 24 Nov; see `calibration_dev_q1.md` for all
 - Proposed: report 0.90 / 0.96 / 0.99 and ship 0.96. The alternative is to ship 0.95 (21 fewer calls; the difference is within the confidence interval).
 - **Decide before running the official dev operating points**, and then keep the same thresholds for eval.
 
+## Results on dev (Q1, 24 Nov)
+
+**The reference.** Gemini 3.5 Flash-Lite on all 1,000 dev games (`runs/games/dev/Q1/g00-dev-q1-ref.json`):
+- precision 0.835, recall 0.885, **F1 0.859** against the answer key (direct key: 0.815);
+- 1,000 calls, 231,029 input and 5,000 output tokens, **$0.082**, 39 minutes;
+- 0 parse failures.
+
+The 3B model alone on the same games: F1 0.765 (precision 0.83, recall 0.71). The oracle's lead comes almost entirely from recall: it knows platformers whose text never says so.
+
+**The curve** (`frontier_dev_q1.png`, every point in `frontier_dev_q1.csv`). F1 against the reference rises steeply at first, then flattens:
+
+| Step | Extra oracle calls per +0.01 f1_ref |
+|---|---|
+| up to 0.96 (16.8% of the games) | 8–22 |
+| 0.96 → 0.97 → 0.98 → 0.99 | 110, 100, 251 |
+
+**Why the knee.** It depends on how often the oracle overrules the proxy's "no" at each confidence level:
+
+| Proxy "no" score | Games | Oracle says "yes" |
+|---|---|---|
+| −5 to 0 (unsure) | 17 | 53% |
+| −10 to −5 | 20 | 45% |
+| −15 to −10 | 31 | 19% |
+| −20 to −15 | 146 | 12% |
+| below −20 (extremely sure) | 615 | 2% |
+
+- The cascade first sends the unsure games, where the oracle overrules about half: big gains for few calls.
+- The last 13 disagreements hide among 615 extremely sure "no" answers. Catching them means asking about nearly all of those games: the flat, expensive tail.
+- The proxy's "yes" is rarely wrong (13 of 171), so θ_high stays low while θ_low is far below zero.
+
+The steps in the curve come from how densely the games sit in each band, not from ties: 902 of the 1,000 scores are distinct.
+
 ## How it decides (`semops/cascade.py`)
 
 The proxy's **score** is the log-odds that the answer is true, read from its top-5 token log-probabilities: `score = ln P(true) − ln P(false)`. When one side is not in the top 5, its probability is bounded by the smallest listed one, so the score is then a bound. On dev, 482 of 1,000 scores are exact.
@@ -42,19 +74,25 @@ The proxy's **score** is the log-odds that the answer is true, read from its top
    python run.py Q1 --llm gateway --model gemini-3.5-flash-lite --plan ref --run-id g00-dev-q1-ref --write-run --yes
    ```
 2. **Calibration on dev:** no paid calls. The proxy's answers come from the cache and the oracle's from the reference run file. The script computes the whole cost/agreement curve and picks the cheapest thresholds for each target.
+   The committed files were made with 14 targets and a fine curve:
    ```bash
-   python o1_cascade/calibrate.py --reference g00-dev-q1-ref
+   python o1_cascade/calibrate.py --reference g00-dev-q1-ref --targets 0.86 0.87 0.88 0.89 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 --curve-rows 60
    ```
-   It writes:
+   Options:
+   - `--targets`: the f1_ref values to find thresholds for (default 0.90 0.95 0.99)
+   - `--curve-rows`: about how many curve points to list in the report (default 25)
+   - `--rescore`: recompute the proxy scores through the gateway instead of reusing `scores_dev_q1.csv`
+
+   It writes (re-running replaces these files):
    - `calibration_dev_q1.md`: the operating points, the curve, and the ready commands for step 3
    - `frontier_dev_q1.csv`: every best point
    - `frontier_dev_q1.png`: the plot (needs `pip install matplotlib`)
    - `scores_dev_q1.csv`: the proxy score of every game
 3. **Operating points:** one official run file each, with the commands printed by step 2:
    ```bash
-   python run.py Q1 --plan o1-95 --model gemini-3.5-flash-lite --proxy-model local/qwen2.5:3b \
-       --theta-low <θ_low> --theta-high <θ_high> --target 0.95 --reference-run g00-dev-q1-ref \
-       --run-id g00-dev-q1-o1-95 --write-run --yes
+   python run.py Q1 --plan o1-<target> --model gemini-3.5-flash-lite --proxy-model local/qwen2.5:3b \
+       --theta-low <θ_low> --theta-high <θ_high> --target <target> --reference-run g00-dev-q1-ref \
+       --run-id g00-dev-q1-o1-<target> --write-run --yes
    ```
    The run file records `model_proxy`, the thresholds, the score method and the target in `plan_params`, and `reference_run_id`. The checker then reports `oracle_fraction` and the agreement with the reference (`precision_ref`, `recall_ref`, `f1_ref`).
 4. **Evaluation set, once:**

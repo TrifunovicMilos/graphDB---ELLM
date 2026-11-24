@@ -4,6 +4,7 @@ Usage, from the project folder, with the gateway running (Ollama only if a proxy
     python o1_cascade/calibrate.py --reference g00-dev-q1-ref
     python o1_cascade/calibrate.py --reference g00-dev-q1-ref --targets 0.90 0.95 0.99
     python o1_cascade/calibrate.py --reference g00-dev-q1-ref --rescore      # recompute the proxy scores
+    python o1_cascade/calibrate.py --reference g00-dev-q1-ref --curve-rows 60  # list more points of the curve
 
 How it works (semops/cascade.py has the decision rule):
   1. Proxy scores: the proxy (local/qwen2.5:3b) answers every input with the frozen prompt, through the
