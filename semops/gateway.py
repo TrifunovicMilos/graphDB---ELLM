@@ -54,6 +54,15 @@ class Gateway:
 
         Example: ask(INSTR_FILTER, "Criterion: ...", "boolean_answer", BOOL_SCHEMA) -> {"answer": True}
         """
+        return self.ask_response(instructions, text, schema_name, schema)[0]
+
+    def ask_response(self, instructions, text, schema_name, schema):
+        """Like ask(), but returns (parsed answer or None, the full gateway response).
+
+        The full response holds the provider's raw answer (provider_response), e.g. the token
+        log-probabilities that the cascade (semops/cascade.py) turns into a confidence score.
+        The request is exactly the one ask() sends, so both share the gateway cache.
+        """
         body = {"model": self.model, "temperature": 0, "instructions": instructions,
                 "input": [{"role": "user", "content": text}],
                 "text": {"format": {"type": "json_schema", "name": schema_name, "strict": True,
@@ -66,12 +75,12 @@ class Gateway:
         if response.get("parse_ok") is not True:
             self.parse_failures += 1
             print("   !! parse failure (parse_ok false):", response.get("error_type"))
-            return None
+            return None, response
         try:
-            return json.loads(response["output"][0]["content"][0]["text"])
+            return json.loads(response["output"][0]["content"][0]["text"]), response
         except (KeyError, IndexError, ValueError):
             self.parse_failures += 1
-            return None
+            return None, response
 
     def embed(self, texts, model):
         """Embeddings of a list of texts, in input order (for blocking in joins)."""

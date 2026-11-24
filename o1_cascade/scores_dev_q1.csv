@@ -1,0 +1,1001 @@
+qid,label,proxy_answer,score,exact
+Q100323714,The Benza RPG,False,-21.403643,False
+Q100568367,Maid of Sker,False,-21.441792,False
+Q1010202,Ghost Lion,False,-20.743692,False
+Q101243107,Convergence: A League of Legends Story,False,-20.521927,True
+Q101246186,Mass Effect Legendary Edition,False,-20.070799,False
+Q1029084,Batman: The Brave and the Bold – The Videogame,True,8.598627,True
+Q104376651,Nanotale,False,-20.711916,False
+Q1046574,Golden Axe,False,-21.723185,False
+Q104785226,The Coma: Cutting Class,False,-21.462332,True
+Q105430974,30XX,True,19.58465,True
+Q105637148,Pigs in Space,False,-8.476811,True
+Q105654625,Brunswick Circuit Pro Bowling 2,False,-19.916946,False
+Q1060660,Virtua Fighter,False,-21.611517,True
+Q106513250,OlliOlli World,False,-11.105645,True
+Q106634656,Easy Come Easy Golf,False,-20.598904,False
+Q106670051,Discoveries of the Deep,False,-11.573391,True
+Q106906279,Garden Story,False,-20.723474,False
+Q106918804,An Airport for Aliens Currently Run by Dogs,False,-21.710121,False
+Q1071378,The King of Fighters '97,False,-20.949059,True
+Q1071721,The King of Fighters '95,False,-19.81315,True
+Q1073447,Arsenal of Democracy,False,-20.573706,False
+Q107423158,AI: The Somnium Files - nirvanA Initiative,False,-20.890636,False
+Q107484762,Star Trek: The Game Show,False,-21.871058,True
+Q107492905,NHL 23,False,-20.803217,False
+Q108328618,Soulstice,False,-20.849611,False
+Q108775610,Rainbow Billy: The Curse of the Leviathan,True,18.969988,True
+Q108858775,Flynn: Son of Crimson,True,18.157057,True
+Q1089369,Captain Comic,True,17.744274,True
+Q109278524,Poppy Playtime,False,-20.825703,False
+Q109413037,Bugs Bunny in Crazy Castle 4,True,17.699953,True
+Q109648025,Hextech Mayhem: A League of Legends Story,False,-20.869993,True
+Q109655792,Zaccaria Pinball,False,-21.047318,False
+Q110028130,Nightingale,False,-20.958212,True
+Q11085992,Never 7: The End of Infinity,False,-21.183346,False
+Q111536196,Stacklands,False,-20.515728,False
+Q111982628,We Are OFK,False,-19.985048,False
+Q112061962,Predecessor,False,-20.134249,False
+Q1121493,Dragon Ball: Revenge of King Piccolo,False,-3.669689,True
+Q112153036,Iron Lung,False,-21.140453,False
+Q112265007,Drums Rock,False,-14.240908,True
+Q11268371,Sayonara O Oshiete,False,-21.067892,False
+Q1127068,Lips,False,-21.837572,False
+Q11310202,Jump Bug,False,-11.42476,True
+Q11312851,Spriggan Mark 2: Re-Terraform Project,False,-21.211882,True
+Q113140888,Escape Academy,False,-20.774551,True
+Q11322815,No One Can Stop Mr. Domino!,True,2.278919,True
+Q113329209,Smuta,False,-21.422728,False
+Q113377532,The Last of Us Part I,False,-13.701353,True
+Q11340195,Magical Drop,False,-17.608795,True
+Q113517545,Frogun,True,16.68697,True
+Q113543842,Stargate: Timekeepers,False,-20.964851,False
+Q1135847,SingStar,False,-20.459431,False
+Q113604067,Code Shifter,True,12.58098,True
+Q11362433,Darkfall Unholy Wars,False,-20.657001,False
+Q1139272,Crazy Taxi,False,-19.718441,False
+Q113961028,Rise of the Rōnin,False,-21.033543,False
+Q1139696,The Godfather,False,-20.236845,True
+Q113988483,You Suck at Parking,False,-13.794924,True
+Q11409199,Yaku: Yūjō Dangi,False,-20.241591,False
+Q11418465,Kokuga,False,-21.149729,False
+Q1142344,Crystal Caves,True,18.099386,True
+Q1145665,Strikers 1945,False,-20.627785,False
+Q114729594,GreedFall: The Dying World,False,-20.855171,False
+Q114852144,Before I Forget,False,-20.909237,False
+Q114944852,Black Future '88,False,-20.474455,True
+Q1152295,Snow Bros.: Nick and Tom,True,17.644383,True
+Q1155238,Tick! Tack!,False,-20.391737,False
+Q1155391,Vietcong,False,-20.657007,False
+Q115603866,Pool,False,-20.877728,False
+Q115615975,Pentapus,False,-19.910564,True
+Q1158003,Dallas Quest,False,-20.587408,False
+Q11582785,Shin Kamaitachi no Yoru: Jyuichi-nin-me no Suspect,False,-20.884195,True
+Q11587521,LifeSigns: Surgical Unit,False,-19.588125,False
+Q1159321,Cosmo's Cosmic Adventure,True,16.32097,True
+Q116165822,Sucker for Love: First Date,False,-20.501053,False
+Q116322558,Jimmy and the Pulsating Mass,False,-20.572409,False
+Q116369955,Vengeful Guardian: Moonrider,True,19.523909,True
+Q116452754,EA Sports PGA Tour,False,-21.586229,False
+Q1166316,DarkStar One,False,-20.771204,False
+Q116728538,Bucket Detective,False,-21.150164,False
+Q116728763,Pudding Monsters,False,-22.297693,False
+Q11673686,Majokko Daisakusen: Little Witching Mischiefs,False,-21.168829,False
+Q116784258,Lucky Luna,True,12.608597,True
+Q11698805,Franko: The Crazy Revenge,False,-19.814447,True
+Q117023451,The Light Brigade,True,1.057846,True
+Q117085254,Magical Drop F,False,-17.837017,True
+Q117706668,The Mageseeker: A League of Legends Story,False,-17.240343,True
+Q118143099,Gordon Ramsay: Chef Blast,False,-20.894159,False
+Q11854380,Blaster Master: Blasting Again,False,-21.045265,True
+Q118645627,Concord,False,-20.968922,False
+Q1196167,The Godfather II,False,-19.91366,True
+Q119668327,Shadow Gambit: The Cursed Crew,False,-20.630238,False
+Q1200940,Civilization Revolution,False,-20.413553,False
+Q1201015,Klonoa: Door to Phantomile,True,16.405903,True
+Q12057242,Super Robin Hood,True,16.706711,True
+Q120702510,Mega Man X DiVE,False,-4.805958,True
+Q1207763,Alien vs. Predator,False,-21.198214,False
+Q121335879,Palia,False,-20.353556,False
+Q121355912,Broken Spectre,False,-20.619747,False
+Q121450258,NHL 24,False,-20.947622,False
+Q1217501,The World Is Not Enough,False,-20.4629,True
+Q122189973,Goodboy Galaxy,False,-20.595119,False
+Q122384962,Motor Mash,False,-21.942007,True
+Q122821955,Moonstone Island,False,-21.251387,False
+Q122822616,"Mon-Yu: Defeat Monsters And Gain Strong Weapons And Armor. You May Be Defeated, But Don’t Give Up. Become Stronger. I Believe There Will Be A Day When The Heroes Defeat The Devil King.",False,-20.014261,True
+Q1229899,Super 3D Noah's Ark,False,-21.248188,False
+Q123172915,Blast Wind,False,-21.884214,False
+Q123404626,Fear the Spotlight,False,-20.382679,False
+Q123407134,Tax Heaven 3000,False,-20.658655,False
+Q124039143,Football Genius: The Ultimate Quiz,False,-21.253748,False
+Q124066883,Icycle: On Thin Ice,False,-20.052054,False
+Q124333359,Speedy Gonzales: Aztec Adventure,True,17.411131,True
+Q124628866,Endless Ocean Luminous,False,-21.005041,False
+Q1257775,Crash Twinsanity,True,14.858422,True
+Q126080176,Quick Step,True,14.391465,True
+Q126096671,Saeko: Giantess Dating Sim,False,-21.275532,False
+Q1263797,Faselei!,False,-20.752842,False
+Q126390778,Frogun Encore,True,14.877324,True
+Q126390808,Constance,False,-20.640863,True
+Q126427073,Tides of Tomorrow,False,-20.895807,False
+Q1264433,Duke Nukem,True,21.269472,True
+Q126477332,Cygni: All Guns Blazing,False,-20.511328,False
+Q126477358,Mixtape,False,-20.207768,True
+Q126520015,Madden NFL 25,False,-21.398621,False
+Q126762193,Gimmick! 2,True,18.907402,True
+Q1275724,Beyond Oasis,False,-19.641237,True
+Q127600093,Splitgate 2,False,-20.441042,False
+Q1277009,Psychonauts,True,12.889123,True
+Q1277597,Earth 2140,False,-21.078154,False
+Q1288651,Snatcher,False,-21.115892,False
+Q129438103,RoadCraft,False,-21.583115,False
+Q129676209,NHL 25,False,-21.428785,False
+Q1300159,Mercenaries 2: World in Flames,False,-20.82424,False
+Q130468974,Dystopika,False,-21.33366,False
+Q130641562,Dogz,False,-20.848932,False
+Q13077230,Game Dev Tycoon,False,-20.139463,False
+Q131427467,LOK Digital,False,-20.3554,False
+Q1316321,Klonoa 2: Lunatea's Veil,True,19.885134,True
+Q131952222,Ariana and the Elder Codex,False,-20.111113,False
+Q13218405,Major Title,False,-20.778067,False
+Q132202543,Bubble Ghost Remake,True,11.480188,True
+Q1328166,WALL-E,True,10.143777,True
+Q133040754,Museum of All Things,False,-21.302809,True
+Q133808355,Survival Kids,False,-13.073205,True
+Q133857914,Neverway,False,-20.984903,False
+Q133883850,Yōjūden,False,-20.800945,False
+Q13423115,Nano Assault Neo,False,-21.055902,False
+Q134604067,Maseylia: Echoes of the Past,True,18.762798,True
+Q134605589,MTV: Club Dead,False,-21.119314,True
+Q134723506,Deadpool VR,False,-19.763058,True
+Q134726413,Relooted,False,-21.848492,False
+Q134732146,Sleep Awake,False,-20.852736,False
+Q135017566,Escape from Ever After,False,-19.778818,True
+Q135051694,Egging On,True,19.243315,True
+Q13515776,Where's My Perry?,False,-18.130457,True
+Q135438721,Clive Barker's Hellraiser: Revival,False,-20.696831,False
+Q135509292,Turok: Evolution,False,-19.622595,True
+Q13596262,Iji,True,2.647446,True
+Q136109121,Icycle,True,19.559114,True
+Q137363685,Tomb Raider: Legacy of Atlantis,False,-17.802588,True
+Q137636614,Gex 3: Deep Pocket Gecko,True,19.627951,True
+Q137800705,Bomb Jack Twin,True,15.167237,True
+Q1385434,Dungeons & Dragons: Dragonshard,False,-20.342451,False
+Q138574242,Wikigacha,False,-21.159824,False
+Q138697912,Lover Pretend,False,-21.316076,False
+Q139721316,ShaoLin,False,-19.776112,True
+Q139847702,Pictonico!,False,-21.005907,True
+Q140096973,Spyro: A Realm Beyond,True,15.956342,True
+Q1422227,H.E.R.O.,True,12.681126,True
+Q1427606,Soldier of Fortune,False,-21.932837,False
+Q14622847,Guilty Gear Xrd,False,-20.283049,False
+Q1463680,Teeworlds,False,-12.787747,True
+Q1467531,Aces of the Deep,False,-18.8223,True
+Q14761493,Aero Fighters Assault,False,-21.52906,False
+Q15036917,Monty Is Innocent,False,-16.913475,True
+Q15036928,Out of the Shadows,False,-21.669991,False
+Q1512540,Haunting Ground,False,-15.912501,True
+Q1531218,Glest,False,-20.543531,False
+Q1535509,Rampart,False,-20.915237,False
+Q1547059,Jak and Daxter: The Lost Frontier,True,19.50012,True
+Q1563815,Blocks That Matter,False,-4.840347,True
+Q1565343,Q*bert,True,14.274777,True
+Q15665645,140,True,19.245766,True
+Q1567550,Joust,False,-5.017151,True
+Q15729139,Gunpoint,False,-17.73608,True
+Q1575181,Skate 2,False,-0.993759,True
+Q1605942,War of the Monsters,False,-21.856541,False
+Q1607833,Street Fighter EX3,False,-21.142603,False
+Q16177257,Cookie Run,False,-20.280859,True
+Q16205643,Where in the World Is Carmen Sandiego?,False,-20.67548,True
+Q16208558,B-17 Flying Fortress: The Mighty 8th,False,-21.193388,False
+Q162098,Netrek,False,-20.543015,False
+Q16252192,Harley-Davidson & L.A. Riders,False,-20.379587,False
+Q16259178,Samurai Taisen,False,-20.987288,False
+Q16259198,Sengoku Basara 4,False,-19.054045,True
+Q16259302,Strikers 1945 III,False,-20.476597,False
+Q16259447,Dream Chronicles: The Book of Water,False,-20.702076,True
+Q16259549,Fret Nice,True,18.499741,True
+Q16259705,Jack the Giantkiller,True,8.079789,True
+Q16266801,Hunter: The Reckoning – Redeemer,False,-20.95068,False
+Q16266812,NFL Head Coach,False,-21.065138,False
+Q16267184,NFL Head Coach 09,False,-21.301233,False
+Q16267227,Thrash Rally,False,-21.111868,False
+Q16267347,Mia's Math Adventure: Just in Time!,False,-19.564943,True
+Q16267579,Mighty Switch Force! 2,True,13.037495,True
+Q16267646,Table Top Racing,False,-20.188585,False
+Q16267664,Mercenary Kings,False,-13.365484,True
+Q16267705,War of the Vikings,False,-20.658766,True
+Q16267724,Chill Manor,False,-22.278771,False
+Q16267820,NASCAR '14,False,-20.60199,False
+Q16319370,Child of Light,True,17.044924,True
+Q1634991,Operation Thunderbolt,False,-20.439852,False
+Q163628,Counter-Strike,False,-20.027618,True
+Q1643499,The Dark Eye,False,-22.018002,True
+Q1648866,The Bugs Bunny Birthday Blowout,True,16.038585,True
+Q1655991,Fast Food,False,-19.241812,True
+Q16742668,Phineas and Ferb: Quest for Cool Stuff,True,4.288525,True
+Q16742869,Beam Breakers,False,-22.187786,False
+Q16743219,Betrayer,False,-20.047976,False
+Q16802185,Stakes Winner,False,-20.802586,False
+Q16927679,Criminal Case,False,-20.787119,False
+Q16927698,Jelly Splash,False,-20.834148,False
+Q170003,Ratchet & Clank,False,-18.717833,True
+Q17014280,Flying Dragon: The Secret Scroll,False,-4.468861,True
+Q17042282,Dhaka Racing,False,-20.642321,False
+Q17042817,The Return of Heracles,False,-21.933035,False
+Q17050901,Zarathrusta,False,-19.489222,True
+Q17102094,Neverending Nightmares,False,-20.044409,True
+Q17164075,Shining Resonance,False,-21.403912,False
+Q17181585,Lara Croft and the Temple of Osiris,False,-20.701227,False
+Q17182671,Freedom Planet,True,13.93234,True
+Q17281123,Hearts,False,-21.050476,False
+Q17477340,Modern Combat 5: Blackout,False,-20.950682,False
+Q17505226,1001 Spikes,True,19.812235,True
+Q17509508,Escape Dead Island,False,-20.451527,False
+Q1760248,Heart of the Alien,True,16.883743,True
+Q1775040,Formula 1 97,False,-20.036137,False
+Q1779348,The Legend of Spyro: Dawn of the Dragon,False,-1.758106,True
+Q1780344,Strider,True,10.738816,True
+Q1782851,Nintendogs + Cats,False,-20.901651,False
+Q1784103,Jak and Daxter: The Precursor Legacy,True,15.195485,True
+Q17986512,Civilization Revolution 2,False,-21.373901,False
+Q1800074,Lady Bug,False,-19.100235,True
+Q1812427,Legend of Grimrock,False,-6.251549,True
+Q1813552,Penumbra: Overture,False,-17.59823,True
+Q18150896,GoatUp 2,True,13.701352,True
+Q18205450,Beatmania IIDX 22: Pendual,False,-20.876888,False
+Q18347589,Gunman Clive,True,14.559254,True
+Q1835004,CSI: Crime Scene Investigation,False,-20.358784,False
+Q1835554,Fester's Quest,True,6.83755,True
+Q1846213,C.O.P. The Recruit,False,-21.847479,False
+Q18536876,Rules!,False,-20.513409,False
+Q1870692,Tempest 2000,False,-21.082081,True
+Q18758125,Drawn to Death,False,-21.849602,False
+Q1887736,Time Hollow,False,-20.333593,False
+Q18958561,Langrisser Re:Incarnation Tensei,False,-5.55426,True
+Q1928752,Necrodome,False,-21.194529,False
+Q1932615,Bladestorm: The Hundred Years' War,False,-20.576132,False
+Q19501007,The Book of Unwritten Tales 2,False,-20.08263,False
+Q19581550,Riddle of the Sphinx: An Egyptian Adventure,False,-21.109043,False
+Q1965664,Zero the Kamikaze Squirrel,True,4.147186,True
+Q1970425,Virtua Cop,False,-21.695385,True
+Q1973612,Nebulus,True,17.669914,True
+Q1977516,Genji: Days of the Blade,False,-19.086403,True
+Q19803492,Project X Zone 2,False,-20.722063,False
+Q1980794,NASCAR 99,False,-20.998873,False
+Q19850827,Bomberman GB,False,-17.344458,True
+Q1986744,The Last of Us,False,-18.159843,True
+Q1987436,Rosco McQueen Firefighter Extreme,False,-9.869221,True
+Q1987465,CSI: Miami,False,-20.584618,False
+Q1988494,Super Robot Wars 64,False,-21.972717,False
+Q1988886,LittleBigPlanet 2,True,6.418075,True
+Q1989029,Langrisser,False,-20.347075,True
+Q1991615,Lunar: The Silver Star,False,-20.419992,False
+Q19983557,Tokyo Dark,False,-20.206846,False
+Q2003101,First Kiss Story,False,-21.668241,False
+Q20113552,Mass Effect: Andromeda,False,-20.540646,True
+Q2015411,The Apprentice,True,10.826104,True
+Q2015866,Targhan,False,-21.001778,True
+Q2020334,WCW Backstage Assault,False,-20.294811,False
+Q2035941,Ratchet & Clank: Size Matters,False,-21.475311,True
+Q2036099,MegaRace,False,-21.754549,True
+Q2039398,Star Soldier: Vanishing Earth,False,-21.425165,False
+Q2052915,Fear Effect 2: Retro Helix,False,-18.779404,True
+Q20538692,The Solus Project,False,-19.944384,False
+Q2053920,State of Emergency,False,-21.387507,False
+Q2057596,Urban Chaos: Riot Response,False,-21.087807,False
+Q2057849,Dragon Ball Kai: Ultimate Butoden,False,-20.560387,False
+Q20656919,Final Lap R,False,-19.874693,False
+Q20669131,TrackMania Turbo,False,-20.295158,False
+Q2068615,Attack of the Killer Tomatoes,True,13.355172,True
+Q20712111,Alekhine's Gun,False,-20.334778,False
+Q20712544,Tower of Heaven,True,12.47382,True
+Q20714604,Blocksworld,False,-20.644117,False
+Q20747190,Lara Croft: Relic Run,True,13.502728,True
+Q2078645,Rise and Fall: Civilizations at War,False,-20.618084,True
+Q2084268,Primal Carnage,False,-20.336294,True
+Q2085997,Wargame: European Escalation,False,-21.028542,False
+Q20875630,Gender Wars,False,-21.585138,False
+Q2089087,Daxter,True,18.075527,True
+Q20963376,Street Sk8er 2,False,-0.625168,True
+Q20982904,13 Sentinels: Aegis Rim,False,-14.122355,True
+Q20983107,I Am Setsuna,False,-21.09976,True
+Q21039863,Albert & Otto,True,7.62365,True
+Q21043311,BattleTech,False,-21.101555,False
+Q2116167,F1 ROC: Race of Champions,False,-20.554684,False
+Q21170302,Ni no Kuni: Wrath of the White Witch,False,-21.29253,True
+Q21462888,Beaky and the Egg Snatchers,True,4.866253,True
+Q21479272,Los Justicieros,False,-21.564346,False
+Q2151598,Pit-Fighter,False,-20.807371,False
+Q2157521,Fantasy Zone II: The Tears of Opa-Opa,False,-20.817802,False
+Q215861,S.T.A.L.K.E.R.: Shadow of Chernobyl,False,-21.701117,False
+Q2169010,Guardian Heroes,False,-21.205835,True
+Q2169859,The Hunt for Red October,False,-20.861151,False
+Q219119,ZombiU,False,-20.926254,True
+Q2197045,Treasure Island Dizzy,False,-21.351929,False
+Q220174,Zool,True,3.50695,True
+Q2219421,Top Gun: The Second Mission,False,-20.906656,False
+Q2252902,StarTropics,False,-18.484632,True
+Q225912,Kingdom Hearts,False,-20.98513,False
+Q2261313,EyeToy: Groove,False,-17.048347,True
+Q2268510,We Love Katamari,False,-6.249585,True
+Q2276685,Secret Agent Clank,True,14.273117,True
+Q2285146,Highlander: The Last of the MacLeods,False,-19.168619,True
+Q2290750,Bio Menace,True,19.407238,True
+Q22909515,Ty the Tasmanian Tiger 4,True,13.271882,True
+Q2291321,Crash Nitro Kart,False,-21.158869,False
+Q2291864,Genji: Dawn of the Samurai,False,-19.829348,True
+Q2292483,Ratchet & Clank: Up Your Arsenal,False,-17.418623,True
+Q23013585,Devil Daggers,False,-20.183117,True
+Q23074354,DEADBOLT,False,-19.082043,True
+Q2328923,Cool World,True,19.455042,True
+Q2330052,Billy Hatcher and the Giant Egg,True,19.843308,True
+Q23303396,60 Seconds!,False,-18.386492,True
+Q2333589,Metal Max 3,False,-21.363249,True
+Q2335426,Gods & Heroes: Rome Rising,False,-21.051084,False
+Q2337997,Alone in the Dark 2,False,-20.051947,False
+Q2340381,Car Tycoon,False,-21.764095,False
+Q2358082,Zany Golf,False,-21.238894,False
+Q2360769,Fantastic Four,False,-21.068928,False
+Q2364724,Blaster Master,True,17.36137,True
+Q2366720,Super Pac-Man,False,-15.705752,True
+Q23679945,Ray Gigant,False,-20.612949,False
+Q2370489,Tom Clancy's Rainbow Six: Shadow Vanguard,False,-21.929796,False
+Q2373154,Taz in Escape from Mars,True,14.272808,True
+Q23762935,Madden NFL 17,False,-21.471581,False
+Q2385,Civilization V,False,-19.734802,False
+Q23895358,slither.io,False,-19.054279,True
+Q23911,Magicland Dizzy,True,3.242275,True
+Q23992,Gunvalkyrie,False,-20.90041,False
+Q2400280,Ratchet: Deadlocked,False,-16.571697,True
+Q24031923,Road Redemption,False,-20.348881,False
+Q2414752,Toy Story,False,-2.600373,True
+Q2418565,Uşas,True,13.268795,True
+Q2424241,NHL 2002,False,-21.059118,False
+Q24255847,TerraTech,False,-21.195808,False
+Q24255881,Anna's Quest,False,-19.801838,False
+Q2431192,Crazy Taxi 3: High Roller,False,-21.310555,False
+Q2439071,Bandit Kings of Ancient China,False,-21.133226,False
+Q2445332,Quik the Thunder Rabbit,True,13.838821,True
+Q2449283,The Transformers: Mystery of Convoy,False,-17.225084,True
+Q2449378,NASCAR: Dirt to Daytona,False,-21.316397,False
+Q24521514,Sneaky Sneaky,False,-17.911015,True
+Q2459946,Arkanoid: Revenge of Doh,False,-20.520393,False
+Q2461216,Madden NFL 11,False,-20.7428,False
+Q2462346,Twinworld,True,13.056649,True
+Q2466720,Tecmo World Wrestling,False,-19.351599,True
+Q2468272,Samorost 2,False,-19.567877,False
+Q2477594,Disciples: Sacred Lands,False,-20.850487,False
+Q24870257,Senren Banka,False,-20.979157,False
+Q24874859,Summer Lesson,False,-21.342423,False
+Q2527245,Call of Juarez: The Cartel,False,-21.248951,False
+Q2527624,Mercs,False,-18.381987,True
+Q2533304,Vendetta,False,-19.447433,False
+Q2534139,Godzilla: Kaijuu no Daishingeki,False,-15.907739,True
+Q2534891,Aero Fighters,False,-21.361351,False
+Q25437079,Admiral Sea Battles,False,-21.670317,False
+Q2547021,Godzilla: Monster of Monsters,False,-17.704611,True
+Q2547738,Imperium Romanum,False,-20.666431,False
+Q2569809,Spyro: Attack of the Rhynocs,True,17.141373,True
+Q2585558,The Legend of Kage,True,6.159515,True
+Q2592852,Big Nose the Caveman,True,18.433733,True
+Q2593819,Mickey Mousecapade,True,18.55821,True
+Q2605125,The Real Ghostbusters,False,-21.446964,True
+Q2605742,NHL 10,False,-20.740471,False
+Q2611392,Burnout Crash!,False,-17.850939,True
+Q2616525,Xena: Warrior Princess: The Talisman of Fate,False,-21.015816,False
+Q2620589,Juiced 2: Hot Import Nights,False,-20.875065,False
+Q2625075,Europa Universalis IV,False,-19.636126,False
+Q2628712,E.V.O.: Search for Eden,True,13.551884,True
+Q2630217,Guilty Gear Isuka,False,-20.600981,False
+Q2632387,Dead Space: Extraction,False,-19.734636,True
+Q2645036,Ty the Tasmanian Tiger 2: Bush Rescue,True,19.154728,True
+Q2645302,Ty the Tasmanian Tiger,True,15.616853,True
+Q2660069,Sword of Vermilion,False,-20.784243,False
+Q2686690,Utopia,False,-20.793501,False
+Q26964899,Odallus: The Dark Call,True,18.218357,True
+Q26966327,Lumino City,False,-20.630268,False
+Q2698836,The House of the Dead 4,False,-20.514166,True
+Q2702192,Disney Universe,False,-20.304106,False
+Q2708224,Aero the Acro-Bat,True,18.120613,True
+Q2709973,Ratchet & Clank: All 4 One,True,17.543817,True
+Q2712020,Kameo,False,-7.8816,True
+Q2740736,World Basketball Manager,False,-21.044249,False
+Q2742792,Blaster Master 2,False,-9.458798,True
+Q2750520,EyeToy: Play 2,False,-11.207574,True
+Q275122,Super Ghouls 'n Ghosts,True,12.07872,True
+Q2756548,Ratchet & Clank: Full Frontal Assault,True,17.090561,True
+Q27654288,Dark Train,False,-20.781294,False
+Q276744,Tears to Tiara,False,-21.199284,False
+Q27773357,Beholder,False,-20.45336,False
+Q278227,Amazing Tater,False,-14.320084,True
+Q28044889,Astroneer,True,5.682773,True
+Q28126593,Putt-Putt Enters the Race,False,-20.759197,False
+Q28126606,Jenny's Journeys,False,-16.891295,True
+Q28126741,Monster Boy and the Cursed Kingdom,True,20.373146,True
+Q28126935,AFL Evolution,False,-20.976587,False
+Q28126965,Double Dragon IV,False,-21.112171,False
+Q28127102,Lilo & Stitch: Trouble in Paradise,True,15.32689,True
+Q28127121,Shadowgun Legends,False,-20.269163,False
+Q28127159,Valdis Story: Abyssal City,True,15.501164,True
+Q28127282,Vikings: War of Clans,False,-20.401392,False
+Q28136682,007: The World Is Not Enough,False,-21.433868,False
+Q2818867,A-Train,False,-21.104673,False
+Q28230760,The Way,True,15.656537,True
+Q2825607,Aero Fighters 2,False,-20.707434,False
+Q2828259,101st Airborne In Normandy,False,-21.381618,False
+Q28324882,Ghost 1.0,False,-20.345644,False
+Q28325002,Kazooloo,True,2.761894,True
+Q28451186,What Remains of Edith Finch,False,-21.145149,True
+Q28451665,The Swindle,False,-21.664785,False
+Q28452472,Turok 2: Seeds of Evil,True,15.726811,True
+Q2851483,Anetto Futatabi,False,-21.590942,False
+Q2857370,Pinkie,True,12.002705,True
+Q2860051,Archer Maclean's Mercury,True,7.885063,True
+Q2880360,Bakushō Jinsei 64: Mezase! Resort Ō,False,-21.101387,False
+Q2882425,Bang Attack,False,-11.847561,True
+Q2904002,Bio-ship Paladin,False,-20.414076,False
+Q2904196,Bionic Commando Rearmed,False,-4.821007,True
+Q29057412,Everything,False,-20.885237,False
+Q2906295,BlazBlue: Chrono Phantasma,False,-20.650053,False
+Q2907279,Blueberry Garden,True,9.15741,True
+Q29257518,The Surge,False,-20.094578,False
+Q2927099,Brute Force,False,-21.718683,False
+Q2927686,Bug Too!,True,20.544317,True
+Q2944565,The Jetsons: Cogswell's Caper!,False,-18.509115,True
+Q29467882,The Sexy Brutale,False,-20.289509,False
+Q29564205,100ft Robot Golf,False,-19.709457,True
+Q29580179,Expeditions: Viking,False,-20.60956,False
+Q2962094,Fantasy Zone,False,-20.83033,True
+Q2996091,Nexus: The Jupiter Incident,False,-20.614923,False
+Q29962099,Second Front: Germany Turns East,False,-20.901798,False
+Q3009530,Vexx,True,20.196865,True
+Q3011972,Dahna: Megami Tanjō,True,14.571625,True
+Q3018092,Sunday vs Magazine: Shūketsu! Chōjō Daikessen,False,-16.771818,True
+Q3020540,Dead Head Fred,False,-17.983042,True
+Q3025455,Devilish,False,-16.83758,True
+Q3026107,Grand Slam Tennis,False,-21.585768,False
+Q3041949,Last Resort,False,-21.829676,False
+Q3046450,Earth Defense,False,-21.882059,False
+Q3046535,Ayrton Senna's Super Monaco GP II,False,-20.649326,True
+Q3056955,NASCAR Thunder 2003,False,-20.533913,False
+Q3062745,Eye of the Beholder III: Assault on Myth Drannor,False,-20.870358,False
+Q3063231,FIFA Soccer 64,False,-21.30035,False
+Q3066510,Fantage,False,-20.292589,False
+Q3066602,Fantasy Empires,False,-21.595581,False
+Q3066603,Fantasy,False,-18.019358,True
+Q3094543,Galaxy Force,False,-21.038538,False
+Q3094583,Galerians: Ash,False,-20.615866,False
+Q30975215,My Talking Hank: Islands,False,-21.047873,False
+Q3098037,Turok 2: Seeds of Evil,False,-20.479216,True
+Q3098364,Gargoyle's Quest II,True,17.151064,True
+Q3099263,Gateway to the Savage Frontier,False,-21.182842,False
+Q3107409,Pulseman,True,18.754776,True
+Q3108122,Lucky Dime Caper,True,18.010859,True
+Q3108852,Gley Lancer,False,-21.054434,True
+Q3110119,Goldrunner,False,-21.21394,True
+Q3114577,Jennifer Capriati Tennis,False,-21.164106,True
+Q3116405,Stargate: Resistance,False,-20.809897,False
+Q3127480,Harlequin,False,-18.412235,True
+Q3129145,Heavy Metal: Geomatrix,False,-21.046593,False
+Q3137430,Transformers: Dark of the Moon,False,-20.817272,False
+Q3166271,Hans Kloss,False,-0.055432,True
+Q3188153,Juiced: Eliminator,False,-19.895161,False
+Q3195037,"Ken Griffey, Jr.'s Slugfest",False,-21.118013,True
+Q3197897,Kaze no Klonoa: Moonlight Museum,True,15.51542,True
+Q3206049,LHX Attack Chopper,False,-20.939924,False
+Q3214559,Beyond the Labyrinth,False,-20.547918,False
+Q3218370,Last Action Hero,False,-21.463572,False
+Q3234183,High School Musical 3: Senior Year Dance,False,-21.501255,False
+Q3234659,The Last Airbender,False,-13.598897,True
+Q324871,Titan Quest,False,-19.235361,True
+Q3263157,Deflektor,False,-21.09865,False
+Q3275483,Madden NFL '94,False,-20.92675,False
+Q3275491,Madden NFL 98,False,-20.710602,True
+Q3275495,Madden NFL 2000,False,-21.011097,False
+Q3275502,Madden NFL 2003,False,-21.308815,True
+Q3275594,NeoGeo Battle Coliseum,False,-21.237102,False
+Q3276866,Bubble Bath Babes,False,-21.89855,False
+Q3277744,Mahjong,False,-21.736715,False
+Q3279577,Turok 3: Shadow of Oblivion,False,-22.238352,False
+Q3280741,F1 2000,False,-21.2339,False
+Q3280940,Legend of Ares,False,-21.05002,False
+Q3282603,Alpine Racer,False,-20.882755,False
+Q3283206,Dog's Life,False,-17.426434,True
+Q3283252,Paperboy 2,False,-2.754669,True
+Q3283471,Ontamarama,False,-21.112762,False
+Q3283971,Metal Gear Solid Mobile,False,-21.568069,True
+Q3284178,Kenseiden,True,15.496316,True
+Q32908378,Laser League,False,-20.693388,False
+Q3304200,MegaRace 3,False,-20.794123,False
+Q33103649,Turmoil,False,-21.107264,False
+Q3311823,Mickey's Dangerous Chase,True,18.840528,True
+Q3313495,Mike Piazza's Strike Zone,False,-21.78887,False
+Q3326170,Mouse Trap,False,-10.427468,True
+Q3334241,NBA Hangtime,False,-21.665573,False
+Q333813,ÜberSoldier,False,-21.445623,True
+Q3348979,Octodad,True,10.646332,True
+Q3356423,Ork,True,11.673992,True
+Q3358879,Over Top,False,-21.38983,False
+Q3359669,PGA Tour 96,False,-22.143168,True
+Q3374580,Pelé,False,-16.116455,True
+Q339222,Blast Corps,False,-13.129774,True
+Q340141,Ace of Aces,False,-21.655006,False
+Q3402862,Pride of Nations,False,-21.241783,False
+Q3416286,APEX,False,-20.370371,False
+Q3476647,SeaQuest DSV,False,-18.751251,True
+Q3477018,Second Samurai,False,-20.179194,False
+Q3477711,Xtreme Sports,False,-22.180046,False
+Q3480854,Sewer Shark,False,-20.968603,False
+Q3482155,Shin Onigashima,False,-21.654951,False
+Q3486326,Skitchin',False,-20.568632,True
+Q3492613,Space Wars,False,-21.199385,False
+Q3497140,Stargate,False,-17.402788,True
+Q3500403,Strider 2,False,-10.355862,True
+Q3504318,Super Volleyball,False,-20.657621,False
+Q3505438,Singles 2: Triple Trouble,False,-20.654329,False
+Q3519781,The Ancient Art of War at Sea,False,-21.037369,True
+Q3525986,Throne of Darkness,False,-21.288605,False
+Q3526048,Thunder Ceptor,False,-22.001068,False
+Q3529233,Tintin on the Moon,False,-18.960178,True
+Q3539815,Troddlers,False,-20.667912,False
+Q3540750,Bio Senshi Dan: Increaser to no Tatakai,False,-19.29454,True
+Q3543283,DONKEY.BAS,False,-19.681143,True
+Q3545637,Sword of the Berserk: Guts' Rage,False,-13.479925,True
+Q3554579,Vanguard Bandits,False,-20.951124,False
+Q3560853,Virtual Pro Wrestling 64,False,-20.991493,False
+Q3563096,Voodoo Vince,True,17.077295,True
+Q3569358,Party Time with Winnie the Pooh,False,-19.109396,True
+Q3569363,Tigger's Honey Hunt,True,19.100689,True
+Q3576040,Zool 2,True,13.180672,True
+Q3617718,Anna Kournikova's Smash Court Tennis,False,-21.062197,False
+Q3618399,Anteater,False,-2.968246,True
+Q3620667,Apocalypse,False,-18.56535,True
+Q3640821,Blade Kitten,True,10.95432,True
+Q3640838,Blake Stone: Planet Strike,False,-20.847391,False
+Q3660479,Carnivores Ice Age,False,-21.422024,False
+Q368286,Civilization,False,-20.265862,True
+Q3710122,Disney Sing It! – High School Musical 3: Senior Year,False,-20.936915,False
+Q372412,Sid Meier's Alpha Centauri,False,-21.088747,False
+Q374320,Disney's Hercules,True,6.143608,True
+Q3746637,Floating Runner: Quest for the 7 Crystals,True,15.949059,True
+Q3747978,Ford Racing 2,False,-20.83205,False
+Q3753640,Front Page Sports: Golf,False,-20.941889,False
+Q375962,Soldier of Fortune II: Double Helix,False,-19.663906,True
+Q3785564,Highlander,False,-21.830875,True
+Q38130146,The Great Battles of Alexander,False,-21.38364,True
+Q3840663,Lunar: Dragon Song,False,-20.313238,False
+Q3843602,Major League Baseball 2K7,False,-20.466045,False
+Q3862565,Monty on the Run,False,-7.705918,True
+Q3868742,Mutant Mudds,True,18.651022,True
+Q3873398,Navarone,False,-21.459343,False
+Q3874948,NetKar Pro,False,-21.53167,False
+Q3887574,Outpost,False,-21.452803,True
+Q389138,Betrayal in Antara,False,-19.861,True
+Q3893548,Space Rangers,False,-20.268604,True
+Q39045510,Zanki Zero,False,-20.35848,False
+Q39056004,The 25th Ward: The Silver Case,False,-19.840191,True
+Q391468,"Sheep, Dog 'n' Wolf",True,11.111336,True
+Q3932528,The Banner Saga,False,-21.147192,False
+Q3951583,Scarabaeus,False,-15.113189,True
+Q3959791,Shrek: Hassle at the Castle,False,-20.855112,False
+Q3959795,Shrek,True,16.133026,True
+Q3962602,Skulls of the Shogun,False,-21.472839,False
+Q3977600,Super Robot Taisen: Original Generation 2,False,-20.980742,False
+Q3977615,Super Robot Wars R,False,-21.28298,True
+Q3986142,The Bugs Bunny Crazy Castle 2,False,-6.175827,True
+Q3989380,The Sopranos: Road to Respect,False,-21.702719,False
+Q3990495,This is Football 2004,False,-21.702784,False
+Q3992452,Tom Clancy's Rainbow Six: Lone Wolf,False,-21.045826,False
+Q4016792,W.I.T.C.H.,True,6.032338,True
+Q4019530,White Knight Chronicles II,False,-21.141806,True
+Q4020810,Word Rescue,False,-9.5328,True
+Q4037091,Dead Space,False,-21.372086,False
+Q4037709,Dustforce,True,17.677221,True
+Q4042617,Laser Squad Nemesis,False,-21.237543,False
+Q4044538,Mortal Coil: Adrenalin Intelligence,False,-21.527948,False
+Q4048088,Recca,False,-21.139576,True
+Q4048341,Rising Kingdoms,False,-20.901129,False
+Q4049890,SpellForce 2: Shadow Wars,False,-21.193008,False
+Q4051592,Top Gun: Combat Zones,False,-21.198044,False
+Q40887622,Steins;Gate Elite,False,-20.851208,False
+Q40888533,Tempest 4000,False,-18.629683,True
+Q4184061,Ninja Hattori-kun,False,-11.870256,True
+Q42266798,Typoman,False,-12.218167,True
+Q4291957,The Stalin Subway,False,-20.133743,True
+Q4386452,Ghost Squad,False,-21.12883,False
+Q4424425,Death to Spies: Moment of Truth,False,-21.086453,False
+Q445221,Stargate,False,-21.019804,True
+Q45319444,Battle Chef Brigade,False,-20.687118,False
+Q4633923,2nd Super Robot Wars,False,-20.64716,False
+Q4642330,688,False,-21.574791,False
+Q4653375,APOX,False,-21.272114,False
+Q4657538,A Kappa's Trail,False,-12.523545,True
+Q4672971,Ace Driver,False,-20.278755,False
+Q4675779,Acrojet,False,-21.327997,False
+Q4717686,Alex Rider: Stormbreaker,False,-20.461685,True
+Q4732574,Allied General,False,-21.024723,False
+Q4735514,Alpine Racer 2,False,-21.039303,False
+Q474102,Night Driver,False,-21.575466,False
+Q47473847,Chemicus,False,-21.086702,False
+Q47473866,Wheels of Aurelia,False,-20.757244,True
+Q47474009,Seum: Speedrunners from Hell,True,10.45971,True
+Q47681610,Opus: Rocket of Whispers,False,-19.607641,False
+Q4780064,Apocalypse,False,-22.352642,False
+Q4783363,Arabian Fight,False,-21.554949,True
+Q4791665,Arkadian Warriors,False,-20.74786,False
+Q4797246,Art of Murder: Hunt for the Puppeteer,False,-20.351362,False
+Q4797735,Arthur: The Quest for Excalibur,False,-21.523888,False
+Q4822548,Otaku no Seiza: An Adventure in the Otaku Galaxy,False,-19.451254,True
+Q4827576,Avalon Hill's Advanced Civilization,False,-21.158266,False
+Q4833757,B.A.T. II – The Koshan Conspiracy,False,-20.435919,False
+Q4866420,Baseball,False,-20.706749,True
+Q4876224,Beamrider,False,-21.146841,False
+Q4876348,Bear Bovver,True,17.028885,True
+Q4876845,Beast Busters,False,-20.532228,False
+Q48938075,Alice Gear Aegis,False,-20.82729,True
+Q4906833,Bigfoot: Collision Course,False,-20.648737,False
+Q4925413,Blaster Master: Overdrive,True,18.063696,True
+Q4925443,Blasto,False,-21.272318,True
+Q4927533,BloodRayne: Betrayal,False,-0.567623,True
+Q493538,Dark Ages,False,-21.066011,False
+Q4942258,Bonnie's Bookstore,False,-20.782805,False
+Q4951720,Boxing,False,-20.57161,False
+Q4955741,Brain Buster Puzzle Pak,False,-20.603163,False
+Q4959098,Breach,False,-20.594133,False
+Q4986377,Build-A-Bear Workshop,False,-20.923237,False
+Q5002054,Bust-a-Move Pocket,False,-21.017601,True
+Q5012782,CLONES,False,-20.955933,False
+Q5015331,Cabela's Dangerous Hunts 2009,False,-20.518532,False
+Q50296442,Ion Fury,False,-20.903231,False
+Q5034400,Cap'n Magneto,False,-20.794546,True
+Q50424297,Ready or Not,False,-20.528845,False
+Q5049075,Casper,False,-20.550226,True
+Q507396,Crash: Mind over Mutant,True,16.361408,True
+Q510054,Emperor: Rise of the Middle Kingdom,False,-21.343103,False
+Q5101931,Culdcept Saga,False,-19.921446,True
+Q5114064,Chronicles of Mystery: The Tree of Life,False,-21.017723,False
+Q5114264,Chronovolt,True,11.553494,True
+Q5167368,Cool World,False,-17.76388,True
+Q51722205,Gravel,False,-20.968466,False
+Q5180492,Cradle of Rome,False,-20.573498,False
+Q5183127,Crazy Climber 2,False,-0.564217,True
+Q5196783,Cuthbert Goes Digging,True,11.004536,True
+Q5197863,Cyberun,False,-16.572992,True
+Q5215283,Dance on Broadway,False,-15.159493,True
+Q5223114,Dark Adventure,False,-20.336184,False
+Q5223238,Dark Fusion,True,8.602555,True
+Q5223259,Dark Horizon,False,-21.839567,False
+Q5223806,Darkwind: War on Wheels,False,-21.154613,False
+Q5230610,Monster Truck Madness 2,False,-21.01672,False
+Q5238546,Strikers 1945 II,False,-21.217161,False
+Q5247155,Death Jr. II: Root of Evil,False,-19.205732,True
+Q5248674,Deca Sports Extreme,False,-21.122848,False
+Q5251094,Defcon 5,False,-21.567949,False
+Q5259105,Dennis the Menace,True,16.581848,True
+Q526700,Jak II,True,16.653517,True
+Q5268359,Dexter's Laboratory: Mandark's Lab?,False,-16.747007,True
+Q5280947,Dirt Trax FX,False,-21.282644,False
+Q5282445,Disney Fantasy Online,False,-21.921137,False
+Q5288805,Dokuro,True,1.688919,True
+Q5303567,Downtown Run,False,-21.228733,False
+Q5308321,Drone Tactics,False,-21.206827,False
+Q5310157,Dual Blades,False,-21.221643,False
+Q5327047,Earth 2150: Lost Souls,False,-21.712698,False
+Q5347930,Eggomania,True,1.867424,True
+Q5397152,Eschalon: Book II,False,-20.655537,False
+Q5402754,Eternity's Child,True,5.739393,True
+Q5411843,Eurofighter Typhoon,False,-22.099629,False
+Q5424173,F1 Race Stars,False,-19.211515,True
+Q5429165,Fade,False,-20.482697,False
+Q544667,Heart of Darkness,True,0.483188,True
+Q545348,Twisted Edge Extreme Snowboarding,False,-19.003782,True
+Q5463271,Flyable Heart,False,-20.122734,False
+Q5465323,Food Fight,False,-16.634697,True
+Q5465341,Food Network: Cook or Be Cooked,False,-21.863674,False
+Q546623,Generations Lost,True,15.427808,True
+Q5467937,Ford Street Racing,False,-20.876648,False
+Q5473151,Forumwarz,False,-20.936888,True
+Q5476994,Hugo,False,-18.166716,True
+Q547991,UFO: Aftermath,False,-20.70318,False
+Q5506830,Fu-un Bakumatsu-den,False,-16.210474,True
+Q5509538,Furifuri,False,-19.48004,True
+Q55099480,Yoku's Island Express,False,-21.40424,False
+Q5514768,GT Advance 2: Rally Racing,False,-20.466068,False
+Q5514771,GT Advance 3: Pro Concept Racing,False,-20.990227,False
+Q55263779,Where the Water Tastes Like Wine,False,-20.513861,False
+Q5530533,Gem'X,False,-21.331629,True
+Q55353020,Judge Dredd,False,-6.790325,True
+Q55381966,Queers in Love at the End of the World,False,-20.987516,False
+Q55609254,Deathmaze 5000,True,1.312019,True
+Q55611427,"Fairy Tale About Father Frost, Ivan and Nastya",False,-10.132431,True
+Q55633379,Sniper Fury,False,-21.427648,True
+Q55707989,Sdorica,False,-20.319496,False
+Q5571266,Gloom 3,False,-21.434736,True
+Q5575262,GoatUp,True,16.660484,True
+Q5594930,Grand Prix Story,False,-20.200085,False
+Q56042889,Circlet Princess,False,-20.99403,False
+Q5607816,Gretzky NHL 2005,False,-21.509342,False
+Q56739543,Renai Bakumatsu Kareshi,False,-20.790024,False
+Q56808347,Butterfly Soup,False,-19.756409,False
+Q56808987,Wandersong,False,-19.399996,True
+Q568489,Adventure Island,True,16.215969,True
+Q569172,Neopets,False,-20.857798,True
+Q5693214,Heat Project,False,-21.413828,False
+Q5716978,Bakugan Battle Brawlers,False,-20.333317,True
+Q5725706,Ratchet & Clank: Going Commando,False,-18.545319,True
+Q57363780,Quarantine Circular,False,-19.855799,False
+Q57450502,Astro Bot Rescue Mission,True,19.908602,True
+Q5751838,Hidden Invasion,False,-20.078785,True
+Q5756542,High School Musical 2: Work This Out!,False,-21.005974,True
+Q579105,The Suffering,False,-21.662848,False
+Q581502,Super Fantasy Zone,False,-21.039797,False
+Q582419,SpellForce: The Order of Dawn,False,-20.821722,True
+Q583386,The Last Guy,False,-19.675041,True
+Q58619649,Bravo Team,False,-21.292519,False
+Q5874537,Hoard,False,-20.35042,False
+Q5888680,Home Run Battle 3D,False,-11.78291,True
+Q5908008,Hoshi wo Miru Hito,False,-19.948504,False
+Q5908017,Hoshigami Remix,False,-20.424383,False
+Q593897,Rocky,False,-20.648979,True
+Q5956754,Justice League Heroes: The Flash,False,-20.173216,True
+Q59594323,Crash Team Racing Nitro-Fueled,False,-21.494547,True
+Q59595234,Crystar,False,-19.962883,False
+Q5966657,I'm O.K – A Murder Simulator,False,-20.291075,False
+Q5985602,Icebreaker,False,-18.723232,True
+Q6015411,Incredibots,False,-17.402552,True
+Q6038377,Inspector Gadget,False,-1.79023,True
+Q60588760,NFL GameDay 2004,False,-21.944878,False
+Q606142,Duke Nukem: Land of the Babes,False,-21.704857,False
+Q60741958,Klonoa,True,15.836072,True
+Q60762483,When Ski Lifts Go Wrong,False,-20.34477,False
+Q60786556,Empire II: Interstellar Sharks,False,-21.430208,False
+Q60997576,Narita Boy,True,16.725632,True
+Q6113095,The House of the Dead,False,-20.080889,True
+Q614287,Primal Rage,False,-22.270391,False
+Q6148172,Super Star Soldier,False,-20.142771,False
+Q622115,In the Hunt,False,-20.805925,True
+Q626993,HarmoKnight,True,18.427639,True
+Q63049683,Kid Vid Grid,False,-21.555147,False
+Q6305392,Juka and the Monophonic Menace,False,-20.029039,True
+Q63224925,Freedom Planet 2,True,17.815948,True
+Q632632,Scurge: Hive,False,-18.987163,True
+Q63378765,Amid Evil,False,-21.563623,False
+Q63385692,Oninaki,False,-21.162926,True
+Q6344415,Kabuki Warriors,False,-21.496345,False
+Q6352793,Kalin no Tsurugi,False,-20.424364,False
+Q6375078,Katamari Amore,False,-18.577045,True
+Q637763,Chaos: The Battle of Wizards,False,-20.716734,False
+Q639080,Crystal Kingdom Dizzy,False,-16.824396,True
+Q6396663,Kevin Keegan's Player Manager,False,-21.139582,False
+Q639840,Beast Wars: Transformers,False,-21.496069,False
+Q64026226,World of Horror,False,-21.420923,False
+Q6406272,Kiki Trick,False,-20.464903,False
+Q6410673,Kinect Nat Geo TV,False,-21.075056,True
+Q6412224,King of Dragon Pass,False,-20.301733,False
+Q6412236,King of Fighters R-2,False,-21.139469,False
+Q6422395,Knights Contract,False,-17.741266,True
+Q6434742,Kousoku Card Battle: Card Hero,False,-20.938149,False
+Q64433358,Darksiders Genesis,False,-20.881897,False
+Q6450419,Kwik Snax,False,-17.704519,True
+Q64577198,No More Heroes III,False,-17.933512,True
+Q6458835,LIT,False,-20.14938,False
+Q647667,Scooby-Doo! Unmasked,True,17.168827,True
+Q6492983,Laser Chess,False,-21.131188,False
+Q6498545,Laura's Happy Adventures,False,-19.926806,False
+Q650278,Mighty Bomb Jack,True,18.373716,True
+Q65040570,ZeroRanger,False,-20.239052,True
+Q65040620,Cricket 19,False,-21.097815,False
+Q65046472,Knock-Knock,False,-12.210404,True
+Q65059474,Genshin Impact,False,-20.804873,False
+Q65073747,Zap! Snowboarding Trix,False,-18.439831,True
+Q65160471,GhostWire: Tokyo,False,-7.035764,True
+Q652377,Unit 13,False,-20.990293,False
+Q652436,Trailblazer,False,-21.002066,False
+Q65319932,Hell Let Loose,False,-20.4566,False
+Q6546573,Lightspeed,False,-21.057243,True
+Q655031,Superman Returns,False,-19.512539,True
+Q6582527,Metal Gear Solid,False,-19.538012,True
+Q65924635,Defender's Quest,False,-21.384649,False
+Q66438364,Rebel Galaxy Outlaw,False,-20.336849,False
+Q665393,Langrisser II,False,-20.314697,False
+Q665785,Tomb Raider: Legend,False,-6.599312,True
+Q6675663,Looney Tunes: Marvin Strikes Back!,False,-4.455166,True
+Q6690277,Love,False,-21.618918,True
+Q66912610,No Straight Roads,False,-19.819683,True
+Q6702750,Lula 3D,False,-20.645462,True
+Q6706152,Lux-Pain,False,-20.14773,False
+Q67122365,Blair Witch,False,-18.851952,True
+Q67138302,Little Town Hero,False,-20.782915,False
+Q6720303,MX Superfly,False,-21.132898,False
+Q674217,Horsez,False,-18.142675,True
+Q67482292,Nioh 2,False,-21.455935,False
+Q6767287,Mark Davis' The Fishing Master,False,-21.027866,False
+Q67739965,Rayman Mini,True,17.700426,True
+Q68354852,Shadows: Awakening,False,-20.911244,False
+Q6844121,Mighty Flip Champs!,True,13.290299,True
+Q6849871,Mikie,True,3.282692,True
+Q6852072,Military Madness: Nectaris,False,-20.469456,False
+Q6898435,Monato Esprit,False,-20.929766,False
+Q6902830,Monster Trux: Arenas,False,-9.941018,True
+Q6928606,Mr. Driller Drill Spirits,False,-14.768347,True
+Q6929139,Mr. Robot and His Robot Factory,True,17.163994,True
+Q6937120,Muppet Monster Adventure,True,18.43988,True
+Q6942591,Musician,False,-21.632214,False
+Q6952912,NCAA College Basketball 2K3,False,-21.361742,False
+Q6953593,NEStalgia,False,-20.476305,False
+Q6953723,NFL Fever 2002,False,-21.202063,False
+Q6980285,Natsuki Crisis Battle,False,-8.217893,True
+Q7033604,Night at the Museum: Battle of the Smithsonian,False,-19.755198,False
+Q7034758,Nike+ Kinect Training,False,-21.372887,False
+Q7039169,Nintendo PowerFest '94,False,-6.328316,True
+Q7071321,NyxQuest: Kindred Spirits,True,19.683065,True
+Q7078998,Off the Wall,False,-16.315416,True
+Q7079471,Officers,False,-20.983858,False
+Q70967583,The Legend of Bum-bo,False,-20.566511,False
+Q71050042,The Adventure Pals,True,19.931557,True
+Q7108566,Othello,False,-21.416725,False
+Q7120225,PQ: Practical Intelligence Quotient,False,-21.390223,False
+Q7121840,Pac-In-Time,True,14.613297,True
+Q7132023,Panzer General: Allied Assault,False,-20.715441,False
+Q7132353,Papa Sangre,False,-21.987982,False
+Q7133250,Papuwa,False,-20.064959,False
+Q7148651,Patton Versus Rommel,False,-20.58898,False
+Q71576564,Postal 4: No Regerts,False,-20.142548,False
+Q7165914,People Power: The Game of Civil Resistance,False,-20.031952,True
+Q717600,Metal Gear Solid V: The Phantom Pain,False,-16.140169,True
+Q719176,Crash Bandicoot,True,12.798085,True
+Q7193394,Piglet's Big Game,False,-13.664006,True
+Q7197457,Pipo Saru 2001,False,-9.260136,True
+Q7206410,Pocket MuuMuu,False,-15.989907,True
+Q7206416,Pocket Pool,False,-21.054321,False
+Q723623,Blaster Master: Enemy Below,False,-2.960369,True
+Q7262693,Puzzle De Pon,False,-18.087973,True
+Q7277467,RPG Maker 3,False,-20.520121,False
+Q7284462,Rain,False,-18.848198,True
+Q729074,Dead Space,False,-20.723776,False
+Q7296481,Rogue Stormers,False,-20.217205,True
+Q7298207,Ray Tracers,False,-20.685442,False
+Q7301354,Realms of the Haunting,False,-21.472002,False
+Q7302046,Rebel Raiders: Operation Nighthawk,False,-20.195618,False
+Q731266,Brain Dead 13,False,-18.573574,True
+Q7317942,Revenge of the Titans,False,-20.362255,False
+Q733488,The King of Fighters XI,False,-21.222149,False
+Q7336959,Rival Ball,False,-17.848106,True
+Q7353262,Robo Pit,False,-21.33972,False
+Q7354209,Rock 'Em Sock 'Em Robots,False,-21.132826,False
+Q7355494,Rockman & Forte Mirai kara no Chōsensha,False,-6.087883,True
+Q736865,Zeus: Master of Olympus,False,-20.565815,False
+Q7376278,Ruby Blast,False,-21.323833,False
+Q7378149,Rugby 2005,False,-21.344589,False
+Q7378617,Rugrats: Studio Tour,False,-21.163345,False
+Q738740,The Nomad Soul,False,-20.732372,False
+Q7415733,Sanctum,False,-20.543758,True
+Q7420753,Sanvein,False,-20.493704,True
+Q7430741,Scene It? Box Office Smash!,False,-20.498989,False
+Q7440692,Seaman,False,-20.856722,False
+Q7487409,Shaman King: Master of Spirits 2,False,-19.6402,True
+Q7497753,Shinseiki Odysselya,False,-20.351299,False
+Q7503574,Shrek: Treasure Hunt,False,-7.622673,True
+Q7503580,Shrek n' Roll,False,-21.364044,False
+Q7522603,SingStar Guitar,False,-20.855309,True
+Q7561853,Sonic Wings Special,False,-21.94009,False
+Q7567345,Super Methane Bros.,False,-19.682074,True
+Q7572266,Space Bucks,False,-21.081858,False
+Q7573372,Spanish for Everyone!,False,-21.922579,False
+Q7575926,Spelunker II: Yūsha e no Chōsen,True,6.679306,True
+Q7580026,Spot: The Cool Adventure,True,16.169254,True
+Q758920,Audition Online,False,-18.772259,True
+Q760211,Manic Miner,True,19.232788,True
+Q7605646,Steel Beasts,False,-20.600842,True
+Q7611120,Stepping Selection,False,-20.737593,False
+Q761941,Die Hard Trilogy,False,-21.371489,True
+Q761957,Crash Bandicoot: The Huge Adventure,True,17.761839,True
+Q7628779,Stunt Island,False,-14.850439,True
+Q7642466,Super Invader,False,-21.118252,False
+Q7642911,Super World Court,False,-20.719973,False
+Q7643564,Superior Soldiers,False,-21.692032,False
+Q7647036,Surveillance Kanshisha,False,-22.026567,False
+Q765103,Europa Universalis II,False,-19.991541,False
+Q7674772,Taekwon-Do,False,-19.03894,True
+Q7676081,Tail of the Sun,False,-18.710793,True
+Q76763,CityVille 2,False,-21.425236,False
+Q7685840,Target: Terror,False,-18.704145,True
+Q7687268,TaskMaker,False,-20.401096,False
+Q7691633,Team Yankee,False,-21.334368,False
+Q7694328,Teen Titans,False,-17.6154,True
+Q7703057,Terra,False,-20.688234,False
+Q7705666,Tesserae,False,-12.870941,True
+Q7712528,The Adventures of El Ballo,True,12.065473,True
+Q7717942,The Bigs 2,False,-21.145933,False
+Q7717949,The Bilestoad,False,-20.454735,True
+Q7721575,The Castle,False,-20.865274,True
+Q7728780,The Dame Was Loaded,False,-20.989275,False
+Q7730901,The Dreadnaught Factor,False,-19.628963,False
+Q7736040,The Gene Machine,False,-20.288637,False
+Q7738561,The Guy Game,False,-19.140726,True
+Q7755333,The Organ Trail,False,-21.639736,False
+Q7759704,The Realm Online,False,-21.21677,False
+Q7759939,The Red Solstice,False,-21.125765,False
+Q779988,Rapid Racer,False,-20.511961,False
+Q780045,Driver 76,False,-21.137726,False
+Q780496,Wonder Boy,True,16.587652,True
+Q7805029,Time Leap,False,-20.814609,False
+Q7809721,Titan,False,-21.174368,False
+Q7828616,Touch My Katamari,True,6.099121,True
+Q7831483,Track Meet,False,-21.188837,True
+Q7848381,Truxton II,False,-20.851059,False
+Q784870,Auto Club Revolution,False,-21.227673,False
+Q7850776,Tube Slider,False,-19.510681,True
+Q7853334,Tunnels of Doom,False,-20.490305,True
+Q7853819,Turbo Sub,False,-21.774502,False
+Q7855606,Turmoil,True,16.969448,True
+Q7859661,Ty the Tasmanian Tiger 3: Night of the Quinkan,True,18.77739,True
+Q786434,Drift City,False,-20.2899,False
+Q7877787,Ugly Americans: Apocalypsegeddon,False,-20.034887,False
+Q7881980,Un Juego de Huevos,True,14.60991,True
+Q7915838,Varicella,False,-20.697529,True
+Q7941644,Voodoo Dice,False,-18.155739,True
+Q7961161,Waking Mars,True,4.683716,True
+Q8025703,Winning Post 7 Maximum 2007,False,-19.794081,False
+Q8026327,Winter Sports: The Ultimate Challenge,False,-21.342354,False
+Q8029931,Wolf of the Battlefield: Commando 3,False,-17.4949,True
+Q8035916,World League Soccer,False,-20.986034,True
+Q8036881,Worms?,False,-20.178343,True
+Q8046054,YU-NO: A girl who chants love at the bound of this world,False,-21.364241,False
+Q8069493,Zero4 Champ: RR,False,-20.346865,False
+Q8071917,Zillion II,True,14.133408,True
+Q839015,Super Robot Taisen: Original Generation,False,-20.97546,False
+Q842146,Counter-Strike: Global Offensive,False,-20.837021,False
+Q842474,Death Crimson OX,False,-20.668802,False
+Q846167,Metal Gear Solid 4: Guns of the Patriots,False,-19.529165,True
+Q848362,Tremulous,False,-20.29616,False
+Q84951122,Night Call,False,-20.330605,False
+Q851532,Momoko 120%,True,13.416233,True
+Q85803239,Starmancer,False,-20.467915,False
+Q85863730,Guilty Gear Strive,False,-19.938873,False
+Q861203,BloodRayne 2,False,-21.127476,True
+Q866149,Remember 11: The Age of Infinity,False,-21.04348,False
+Q86752568,Vitamin Connection,False,-20.741078,False
+Q86839765,Toy Defense,False,-21.097519,False
+Q869532,Crash of the Titans,True,14.866795,True
+Q880040,Black,False,-21.842066,False
+Q88556878,Diabotical,False,-20.734129,False
+Q88582,Heroes of the Lance,False,-17.815042,True
+Q88867909,Clubhouse Games: 51 Worldwide Classics,False,-21.224604,False
+Q89409392,Potatoman Seeks the Troof,True,19.946692,True
+Q904367,Desperados: Wanted Dead or Alive,False,-21.844976,False
+Q9086924,The Legend of Kage 2,False,-13.866552,True
+Q91247,Zaxxon,False,-20.690586,True
+Q918495,Smokin' Guns,False,-22.224451,True
+Q91906298,Desperados III,False,-21.753031,False
+Q9196725,Crimson Gem Saga,False,-20.745867,False
+Q927003,Colour Cross,False,-20.109728,False
+Q930345,Metal Gear Rising: Revengeance,False,-19.434765,True
+Q93360657,Spirit of the North,False,-21.118841,False
+Q93645738,The Medium,False,-20.587076,False
+Q937383,Fear Effect,False,-21.379087,False
+Q93875174,Looney Tunes: Galactic Sports,False,-20.38949,True
+Q943377,Spyro: Enter the Dragonfly,True,18.300558,True
+Q945822,Aliens vs. Predator: Extinction,False,-20.867151,True
+Q946557,Richard Burns Rally,False,-21.630688,False
+Q954766,Ever 17: The Out of Infinity,False,-20.494341,False
+Q960773,Ape Escape,True,14.362245,True
+Q9607840,Alpine Racer 3,False,-20.34203,False
+Q96215907,Sackboy: A Big Adventure,True,18.125719,True
+Q96247255,Stray,True,9.289681,True
+Q96385384,Kards,False,-19.964651,False
+Q967889,Alone in the Dark,False,-20.198528,False
+Q970426,Jones in the Fast Lane,False,-21.165474,False
+Q97070007,Crash Bandicoot: On the Run,False,-14.6453,True
+Q973459,Killer Instinct,False,-21.244434,True
+Q973660,The Real Ghostbusters,False,-18.082079,True
+Q97658504,Candleman,True,15.124249,True
+Q97658753,Wonderputt,False,-20.152493,True
+Q97671005,Your Turn To Die -Death Game By Majority-,False,-20.252905,False
+Q97824006,Top Rank Tennis,False,-21.394623,False
+Q98430075,There Is No Game: Wrong Dimension,False,-20.571835,False
+Q98545427,Moose Life,False,-21.668459,False
+Q992485,Shark Jaws,False,-14.588899,True

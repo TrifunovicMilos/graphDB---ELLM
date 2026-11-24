@@ -66,9 +66,11 @@ What the model sees was chosen with two experiments on the development set (3B m
 │   ├── engine.py        graph loading, running the .rq files, join sampling
 │   ├── metrics.py       evaluation against gt/*.csv
 │   ├── runfiles.py      official run files
+│   ├── cascade.py       O1: proxy score from log-probabilities, thresholds, cascade backend
 │   └── pipelines.py     one function per query type
 ├── query/               q1 q2 q4 q5 q6 and the q3 plans (.rq)
 ├── tau_experiments/     how τ and the instructions were chosen: scripts, results.csv, logs, README
+├── o1_cascade/          O1 cascade: calibration script, curve and operating points, README
 ├── runs/                official run files (committed)
 ├── keys/                answer keys of our own queries (committed)
 └── data/games/          NOT committed: course data package (dev/, eval/)
@@ -93,6 +95,7 @@ python run.py <Q1|Q2|Q3|Q4|Q5|Q6|Q8> [--llm fake|gateway] [--model NAME] [--set 
               [--n N] [--m M] [--plan ID] [--run-id ID] [--reference-run ID]
               [--source-run ID] [--query-file FILE] [--write-run] [--yes]
               [--tau ID] [--instr ID] [--inputs FILE]
+              [--proxy-model NAME] [--theta-low X] [--theta-high Y] [--target T]
 ```
 
 | Option | Meaning |
@@ -107,6 +110,7 @@ python run.py <Q1|Q2|Q3|Q4|Q5|Q6|Q8> [--llm fake|gateway] [--model NAME] [--set 
 | `--yes` | skip the confirmation on big runs |
 | `--tau`, `--instr` | another τ / instructions than the frozen ones (only those registered by `tau_experiments/variants.py`; experiments only) |
 | `--inputs` | file with one game code per line: run only on these games (tests and experiments; not with `--write-run`) |
+| `--plan o1...` | the O1 cascade (filter queries): `--model` is the oracle, `--proxy-model` the cheap model, `--theta-low` / `--theta-high` the thresholds from `o1_cascade/calibrate.py`; see `o1_cascade/README.md` |
 
 Examples:
 
@@ -142,7 +146,8 @@ Notes:
 
 ## Open points
 
-- Group id (`g..`) to be set in `config.py`.
+- **TODO: O1 operating points.** Decide which operating points to report and which to ship (proposed 0.90 / 0.96 / 0.99, ship 0.96; see `o1_cascade/README.md`), then run them on dev and, with the same thresholds, on eval.
+- **TODO: real group id.** `semops/config.py` still uses the placeholder `GROUP_ID = "g00"` (the course assigns a `gNN` id; ask on Moodle or the professor). Until it is set, every run file and run id says `g00`. Once known: set `GROUP_ID` (or `SEMOPS_GROUP_ID`), then **re-run every `--write-run` made with `g00`** (reference runs, O1 operating points) with the real id. The model answers come from the gateway cache, so this costs nothing; delete the old `g00` files under `runs/` afterwards. Not needed for tests, experiments or calibration on dev.
 - Which model is the oracle for the official runs, and prices of the cloud models in `prices.json`.
 - P178 (developer) in τ: allowed by the property catalogue but it is the Q5 solution; not used for now.
 - `query/q3_naive.rq` is the default Q3 file in `config.py` but does not exist: `python run.py Q3` fails unless `--query-file` is given.

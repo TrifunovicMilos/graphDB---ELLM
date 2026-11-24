@@ -105,7 +105,7 @@ def load_prices(path):
 
 def write_run(repo_root, *, query_id, data_set, run_id, plan_id, model, answer, n_input,
               sample, started, finished, wallclock, prices_path, plan_params=None,
-              reference_run_id=None, source_run_id=None, labels=None):
+              reference_run_id=None, source_run_id=None, labels=None, model_proxy=None):
     """Builds the run document, validates it with the checker and writes it. Returns the path.
 
     `started`/`finished` are Unix seconds, `wallclock` is seconds, `n_input` is the size of the
@@ -121,7 +121,7 @@ def write_run(repo_root, *, query_id, data_set, run_id, plan_id, model, answer, 
             "query_set": "common", "query_id": query_id, "run_id": run_id, "plan_id": plan_id,
             "plan_params": plan_params or {}, "reference_run_id": reference_run_id,
             "source_run_id": source_run_id, "engine": "oxigraph-" + ox.__version__,
-            "model_oracle": model, "model_proxy": None,
+            "model_oracle": model, "model_proxy": model_proxy,
             "language_expression": config.LANGEX[query_id], "labels": labels,
             "n_input_bindings": n_input, "sample": sample, "pool_mode": None, "shipped": False,
             "started_at": utc(started), "finished_at": utc(finished), "wallclock_s": round(wallclock, 3),

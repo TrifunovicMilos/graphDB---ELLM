@@ -16,7 +16,7 @@ import runpy
 import tempfile
 import time
 
-from semops import config, engine, fake, operators, pipelines, prompts, runfiles
+from semops import cascade, config, engine, fake, operators, pipelines, prompts, runfiles
 from semops.gateway import Gateway, GatewayError
 from semops.operators import ModelCallError
 
@@ -40,7 +40,11 @@ p.add_argument("--instr", choices=sorted(INSTR_IDS),
 p.add_argument("--inputs", help="file with one game code (Q...) per line: run only on these (tests, no --write-run)")
 p.add_argument("--n", type=int, default=0, help="only the first N inputs (0 = all)")
 p.add_argument("--m", type=int, default=0, help="Q6 tests only: M series on the right (0 = all)")
-p.add_argument("--plan", default="ref", help="plan id for the run file (ref = reference plan)")
+p.add_argument("--plan", default="ref", help="plan id for the run file (ref = reference plan; o1... = the O1 cascade)")
+p.add_argument("--proxy-model", default="local/qwen2.5:3b", help="O1: the cheap model that answers first (--model is the oracle)")
+p.add_argument("--theta-low", type=float, help="O1: proxy score <= this -> no (from o1_cascade/calibrate.py)")
+p.add_argument("--theta-high", type=float, help="O1: proxy score >= this -> yes; in between the oracle decides")
+p.add_argument("--target", type=float, help="O1: the target f1_ref these thresholds were calibrated for (recorded only)")
 p.add_argument("--run-id", help="run id (default: <group>-<set>-<query>-<plan>-<timestamp>)")
 p.add_argument("--reference-run", help="run id of the ref run this run is compared with")
 p.add_argument("--source-run", help="Q8: run id of the Q1 run whose decisions are reused")
@@ -59,6 +63,9 @@ if a.instr and INSTR_IDS[a.instr] != operator:
     raise SystemExit("--instr %s is for %s, but %s is a %s query" % (a.instr, INSTR_IDS[a.instr], a.query_id, operator))
 a.instr = a.instr or prompts.INSTR_DEFAULT.get(operator, "")
 frozen = a.tau == config.DEFAULT_TAU and a.instr == prompts.INSTR_DEFAULT.get(operator, "")
+a.cascade = a.plan.startswith("o1")
+if a.cascade and (kind != "filter" or a.llm != "gateway" or a.theta_low is None or a.theta_high is None):
+    raise SystemExit("--plan o1... needs a filter query (Q1-Q3), --llm gateway, --theta-low and --theta-high")
 stamp = time.strftime("%m%d%H%M%S")
 a.run_id = a.run_id or f"{config.GROUP_ID}-{a.set_name}-{a.query_id.lower()}-{a.plan}-tau{a.tau}{'-' + a.instr if a.instr else ''}-{stamp}"
 
@@ -98,8 +105,14 @@ if a.llm == "fake":
     backend = fake.FakeBackend()
 else:
     gateway = Gateway(a.model, a.run_id, namespace=f"{config.CACHE_NAMESPACE}-tau{a.tau}")
-    backend = operators.GatewayBackend(gateway, {operator: prompts.INSTRUCTIONS[operator][a.instr]}
-                                       if a.instr else None)
+    if a.cascade:      # same run id and cache namespace for both, so the oracle's requests are the reference's
+        proxy = Gateway(a.proxy_model, a.run_id, namespace=f"{config.CACHE_NAMESPACE}-tau{a.tau}")
+        backend = cascade.CascadeBackend(proxy, gateway, a.theta_low, a.theta_high,
+                                         prompts.INSTRUCTIONS[operator][a.instr])
+        print("O1 cascade | proxy:", a.proxy_model, "| oracle:", a.model, "| theta_low", a.theta_low, "| theta_high", a.theta_high)
+    else:
+        backend = operators.GatewayBackend(gateway, {operator: prompts.INSTRUCTIONS[operator][a.instr]}
+                                           if a.instr else None)
     print("run id:", a.run_id, "| model:", a.model, "| instructions:", a.instr)
 
 try:
@@ -119,6 +132,9 @@ except (GatewayError, ModelCallError) as e:
     raise SystemExit("ERROR: %s" % e)
 
 print(f"\nfunction calls: {stats.calls} | broken answers: {stats.broken} | out of list: {stats.out_of_list}")
+if a.cascade:
+    print(f"O1: decided by the proxy {backend.by_proxy} | by the oracle {backend.by_oracle} "
+          f"(of which proxy answers without a score: {backend.unscored})")
 if gateway:
     print(f"gateway requests: {gateway.requests} | parse failures: {gateway.parse_failures} "
           f"| time waiting for the model: {gateway.seconds:.0f}s")
@@ -129,6 +145,9 @@ if a.write_run:
         model=a.model, answer=out.answer, n_input=out.n_input, sample=out.sample,
         started=out.started, finished=out.finished, wallclock=out.finished - out.started,
         prices_path=a.prices, reference_run_id=a.reference_run, source_run_id=a.source_run, labels=out.labels,
-        plan_params={"prompt_version": prompts.PROMPT_VERSION if frozen else "experimental",
-                     "tau": a.tau, "instructions": a.instr})
+        model_proxy=a.proxy_model if a.cascade else None,
+        plan_params=dict({"prompt_version": prompts.PROMPT_VERSION if frozen else "experimental",
+                          "tau": a.tau, "instructions": a.instr},
+                         **({"proxy_score": cascade.SCORE_METHOD, "theta_low": a.theta_low, "theta_high": a.theta_high,
+                             "target_f1_ref": a.target} if a.cascade else {})))
     print("run file written:", path)
