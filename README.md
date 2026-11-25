@@ -3,6 +3,8 @@
 Team project for the course *Graph Databases* 2026/2027. Group: **LLME**.
 Domain: video games with series. Engine: **Oxigraph** (`pyoxigraph`). Every model call goes through the course **LLM gateway**.
 
+[M1 design note](docs/m1-design-note.md) · [Reproduction guide](docs/reproduce.md) · [O1 calibration](o1_cascade/README.md)
+
 ## Overview
 
 SPARQL queries run on a video-game graph and, inside the query, a language model decides on each row. Four operators:
@@ -22,7 +24,7 @@ Everything is measured: quality against the official solutions, cost in model ca
 | Query | Status |
 |---|---|
 | Q1, Q2 filters | done |
-| Q3 restriction + filter | done, 3 plans (`q3_naive`, `q3_struttura_prima`, `q3_semantica_prima`) |
+| Q3 restriction + filter | Structure-first and semantic-first plan files. Pass `--query-file` while the separate Q3 fix is pending. |
 | Q4 classification | done (the 8 labels are an enum of the answer schema) |
 | Q5 extraction | done, simple matching |
 | Q6 join 50 x 100 | done, nested loop (5,000 pairs) |
@@ -32,10 +34,10 @@ Everything is measured: quality against the official solutions, cost in model ca
 
 ## Still to do
 
-- Reference runs (`plan ref`) on dev and eval for Q1-Q6, with a cloud model (gateway route + credits).
-- Optimisations: cascade (proxy + oracle), blocking for joins, block prompts; frontier of at least three operating points.
+- The Q1 dev Flash-Lite reference is checked in under provisional group ID `g00`. Record the remaining Q1–Q6 reference runs on dev and eval.
+- Confirm three O1 operating points and the default, record the runs, and evaluate the dev thresholds on eval. Blocking for joins and block prompts remain separate options.
 - Error analysis; Q5 matching beyond identical names. (τ and prompts: done, v1 frozen, see `tau_experiments/`.)
-- The 6 own queries (M2) with answer key under `keys/`, leakage check; design note and report.
+- Six own queries (M2), with answer keys and leakage checks, and the final report.
 
 ## τ and prompts: version v1 (frozen)
 
@@ -148,7 +150,7 @@ Notes:
 
 - **TODO: O1 operating points.** Decide which operating points to report and which to ship (proposed 0.90 / 0.96 / 0.99, ship 0.96; see `o1_cascade/README.md`), then run them on dev and, with the same thresholds, on eval.
 - **TODO: real group id.** `semops/config.py` still uses the placeholder `GROUP_ID = "g00"` (the course assigns a `gNN` id; ask on Moodle or the professor). Until it is set, every run file and run id says `g00`. Once known: set `GROUP_ID` (or `SEMOPS_GROUP_ID`), then **re-run every `--write-run` made with `g00`** (reference runs, O1 operating points) with the real id. The model answers come from the gateway cache, so this costs nothing; delete the old `g00` files under `runs/` afterwards. Not needed for tests, experiments or calibration on dev.
-- Which model is the oracle for the official runs, and prices of the cloud models in `prices.json`.
+- Confirm the official oracle and the approved cloud budget. The existing Q1 dev reference uses `gemini-3.5-flash-lite`, with its rates recorded in `prices.json`.
 - P178 (developer) in τ: allowed by the property catalogue but it is the Q5 solution; not used for now.
 - `query/q3_naive.rq` is the default Q3 file in `config.py` but does not exist: `python run.py Q3` fails unless `--query-file` is given.
 - Q6: with the J5 instructions the 3B model reaches F1 0.74 on 10 dev games (it was 0.14); the wrong pairs left share a publisher with the game. Next: blocking (O2) or the cascade's oracle.

@@ -23,7 +23,7 @@ Not decided yet (calibration on dev, 24 Nov; see `calibration_dev_q1.md` for all
 - The course asks for at least three operating points and the one we would ship.
 - The knee of the curve is at about 0.96: up to there each +0.01 of f1_ref costs 8–22 oracle calls, beyond it 100–250.
 - Proposed: report 0.90 / 0.96 / 0.99 and ship 0.96. The alternative is to ship 0.95 (21 fewer calls; the difference is within the confidence interval).
-- **Decide before running the official dev operating points**, and then keep the same thresholds for eval.
+- Confirm the three operating points and the default before packaging the dev runs. Keep the same Q1 thresholds for eval.
 
 ## Results on dev (Q1, 24 Nov)
 
@@ -73,7 +73,7 @@ The proxy's **score** is the log-odds that the answer is true, read from its top
    ```bash
    python run.py Q1 --llm gateway --model gemini-3.5-flash-lite --plan ref --run-id g00-dev-q1-ref --write-run --yes
    ```
-2. **Calibration on dev:** no paid calls. The proxy's answers come from the cache and the oracle's from the reference run file. The script computes the whole cost/agreement curve and picks the cheapest thresholds for each target.
+2. **Calibration on dev:** the script reads the committed proxy scores and oracle reference file, computes the cost/agreement curve, and picks the cheapest thresholds for each target. This path runs offline.
    The committed files were made with 14 targets and a fine curve:
    ```bash
    python o1_cascade/calibrate.py --reference g00-dev-q1-ref --targets 0.86 0.87 0.88 0.89 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 --curve-rows 60
@@ -88,9 +88,9 @@ The proxy's **score** is the log-odds that the answer is true, read from its top
    - `frontier_dev_q1.csv`: every best point
    - `frontier_dev_q1.png`: the plot (needs `pip install matplotlib`)
    - `scores_dev_q1.csv`: the proxy score of every game
-3. **Operating points:** one official run file each, with the commands printed by step 2:
+3. **Operating points:** one official run file per point. The current calibration generator prints commands without `--llm gateway`, so add the flag as below. Replace the example group and run IDs before using the commands for submission.
    ```bash
-   python run.py Q1 --plan o1-<target> --model gemini-3.5-flash-lite --proxy-model local/qwen2.5:3b \
+   python run.py Q1 --set dev --llm gateway --plan o1-<target> --model gemini-3.5-flash-lite --proxy-model local/qwen2.5:3b \
        --theta-low <θ_low> --theta-high <θ_high> --target <target> --reference-run g00-dev-q1-ref \
        --run-id g00-dev-q1-o1-<target> --write-run --yes
    ```
